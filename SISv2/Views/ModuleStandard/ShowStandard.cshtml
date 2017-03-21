@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SISv2.Models.ClassStudent>
+
+@{
+    ViewBag.Title = "ModelStandard";
+}
+
+<h2>List of Module Standard</h2>
+
+<br/>
+
+@using (Html.BeginForm("ShowStandard", "ModuleStandards", FormMethod.Get))
+{
+    @Html.DropDownList("Search", new List<SelectListItem>
+{
+    new SelectListItem {Text = "-- Select Class Status --", Value = "" },
+    new SelectListItem {Text = "Active", Value = "1" },
+    new SelectListItem {Text = "Deactive", Value = "0" },
+}, htmlAttributes: new {@class = ""})
+
+    <input type="submit" class="btn btn-default" value="Search"/>
+}
+
+<br/>
+
+<table class="table">
+    @{ 
+        int count = Model.Count();
+    }
+
+    @if(count == 0)
+    {
+        <tr>
+            <th>
+                <br />
+                <b>
+                    Does Not Have Class Available !<br />
+                </b>
+            </th>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_Module.Course.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_Module.Module.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_Module.Trainer.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        int? check = 0;
+        foreach(var item in Model)
+        {
+            <tr>
+                @if(item.Course_ModuleId != check)
+                {
+                    check = item.Course_ModuleId;
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course_Module.Course.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course_Module.Trainer.Name)
+                    </td>
+                    if(item.Status == true)
+                    {
+                        <td>
+                            Active
+                        </td>
+                    }
+                    else if(item.Status == false)
+                    {
+                        <td>
+                            Deactive
+                        </td>
+                    }
+                    <td>
+                        @Html.ActionLink("Add", "Add", new { id = item.Course_ModuleId}) |
+                        @Html.ActionLink("Edit", "EditModuleStandard", new { id = item.Course_ModuleId})
+                    </td>
+                }
+                else
+                {
+                    continue;
+                }
+            </tr>
+        }
+    }
+</table>

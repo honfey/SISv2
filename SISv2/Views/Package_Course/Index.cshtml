@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SISv2.Models.Package_Course>
+
+@{
+    ViewBag.Title = "Package";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.IC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ub)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.st)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.IC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ub)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.st)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

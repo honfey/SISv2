@@ -1,0 +1,140 @@
+﻿@model SISv2.Models.Package_Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Package_Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstPay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstPay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterestRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterestRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyInterest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthlyPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthlyPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalMonthlyP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalMonthlyP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AfterPlnPay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AfterPlnPay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.st)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.st)
+        </dd>
+    </dl>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalLeft)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalLeft)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id , @class = "btn btn-default"}) |
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+</p>
