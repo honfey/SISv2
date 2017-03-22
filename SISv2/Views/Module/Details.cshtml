@@ -1,0 +1,72 @@
+﻿@model SISv2.Models.Module
+
+@{
+    ViewBag.Title = "Module";
+}
+
+<h2>Detail</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.st)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.st)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ModuleCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
