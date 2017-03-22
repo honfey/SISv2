@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SISv2.Models;
+using SISV2.Models;
 
 namespace SISV2.Controllers
 {
