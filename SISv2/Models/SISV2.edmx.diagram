@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="690d08c322d04db08d137b35817be377" Name="Diagram1">
+        <EntityTypeShape EntityType="SISV2Model.Package" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.C__MigrationHistory" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.sysdiagram" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Address" Width="1.5" PointX="13.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Attendance" Width="1.5" PointX="10.5" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.ClassStudent" Width="1.5" PointX="8.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Course" Width="1.5" PointX="0.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Course_Module" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.CourseWork" Width="1.5" PointX="16.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Image" Width="1.5" PointX="18.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Intake" Width="1.5" PointX="6" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Invoice" Width="1.5" PointX="13.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.MarkType" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Module" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.ModuleStandard" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Month" Width="1.5" PointX="3.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Nationality" Width="1.5" PointX="9" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Package_Course" Width="1.5" PointX="16.5" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.ReportCard" Width="1.5" PointX="21.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Sibling" Width="1.5" PointX="13.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.SPMResult" Width="1.5" PointX="13.5" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Student" Width="1.5" PointX="11.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Subject" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.TestType" Width="1.5" PointX="14.25" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Trainer" Width="1.5" PointX="0.75" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SISV2Model.Year" Width="1.5" PointX="3.75" PointY="30.5" IsExpanded="true" />
+        <AssociationConnector Association="SISV2Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Address_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Attendance_ClassStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ClassStudent_Course_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ClassStudent_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_CourseWork_ClassStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_ClassStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Course_Module_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Intake_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Package_Course_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Course_Module_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Course_Module_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_CourseWork_Course_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ModuleStandard_Course_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_Course_Module" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_CourseWork_ModuleStandard" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_CourseWork_TestType" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Image_CourseWork" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_CourseWork" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Intake_Month" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Intake_Year" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_Intake" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Student_Intake" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Invoice_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ModuleStandard_MarkType" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_ModuleStandard" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Student_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Package_Course_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_ReportCard_Trainer" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_Sibling_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.FK_SPMResult_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SISV2Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

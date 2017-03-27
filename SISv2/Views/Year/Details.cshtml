@@ -1,0 +1,66 @@
+﻿@model SISv2.Models.Year
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Year</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Year1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.st)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.st)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
