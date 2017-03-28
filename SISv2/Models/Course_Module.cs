@@ -17,10 +17,10 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course_Module()
         {
-            this.ClassStudent = new HashSet<ClassStudent>();
-            this.CourseWork = new HashSet<CourseWork>();
-            this.ModuleStandard = new HashSet<ModuleStandard>();
-            this.ReportCard = new HashSet<ReportCard>();
+            this.ClassStudents = new HashSet<ClassStudent>();
+            this.CourseWorks = new HashSet<CourseWork>();
+            this.ModuleStandards = new HashSet<ModuleStandard>();
+            this.ReportCards = new HashSet<ReportCard>();
         }
     
         public int Id { get; set; }
@@ -34,15 +34,15 @@ namespace SISv2.Models
         public Nullable<byte> st { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassStudent> ClassStudent { get; set; }
+        public virtual ICollection<ClassStudent> ClassStudents { get; set; }
         public virtual Course Course { get; set; }
         public virtual Module Module { get; set; }
         public virtual Trainer Trainer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseWork> CourseWork { get; set; }
+        public virtual ICollection<CourseWork> CourseWorks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ModuleStandard> ModuleStandard { get; set; }
+        public virtual ICollection<ModuleStandard> ModuleStandards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportCard> ReportCard { get; set; }
+        public virtual ICollection<ReportCard> ReportCards { get; set; }
     }
 }

@@ -170,15 +170,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddressesController.cs" />
-    <Compile Include="Controllers\CourseWorksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IntakeController.cs" />
-    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NationalitiesController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\MarkTypeController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\ModuleStandardController.cs" />
+    <Compile Include="Controllers\Package_CourseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,16 +183,16 @@
     <Compile Include="Models\Address.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRoles.cs">
+    <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
+    <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
+    <Compile Include="Models\AspNetUserClaim.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
+    <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Attendance.cs">
@@ -281,7 +278,7 @@
     <Compile Include="Models\Subject.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TestType.cs">
@@ -299,6 +296,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Controllers\shitshitfile.html" />
     <Content Include="Database\test.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -371,49 +369,34 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Addresses\Create.cshtml" />
-    <Content Include="Views\Addresses\Delete.cshtml" />
-    <Content Include="Views\Addresses\Details.cshtml" />
-    <Content Include="Views\Addresses\Edit.cshtml" />
-    <Content Include="Views\Addresses\Index.cshtml" />
-    <Content Include="Views\CourseWorks\Check.cshtml" />
-    <Content Include="Views\CourseWorks\Create.cshtml" />
-    <Content Include="Views\CourseWorks\Delete.cshtml" />
-    <Content Include="Views\CourseWorks\Details.cshtml" />
-    <Content Include="Views\CourseWorks\Edit.cshtml" />
-    <Content Include="Views\CourseWorks\Index.cshtml" />
-    <Content Include="Views\CourseWorks\MarkMarks.cshtml" />
-    <Content Include="Views\CourseWorks\ReportCard.cshtml" />
-    <Content Include="Views\CourseWorks\ShowClass.cshtml" />
-    <Content Include="Views\CourseWorks\ShowStudent.cshtml" />
-    <Content Include="Views\Intake\Create.cshtml" />
-    <Content Include="Views\Intake\Delete.cshtml" />
-    <Content Include="Views\Intake\Details.cshtml" />
-    <Content Include="Views\Intake\Edit.cshtml" />
-    <Content Include="Views\Intake\Index.cshtml" />
-    <Content Include="Views\Invoice\Create.cshtml" />
-    <Content Include="Views\Invoice\Delete.cshtml" />
-    <Content Include="Views\Invoice\Details.cshtml" />
-    <Content Include="Views\Invoice\Edit.cshtml" />
-    <Content Include="Views\Invoice\Index.cshtml" />
-    <Content Include="Views\Nationalities\Create.cshtml" />
-    <Content Include="Views\Nationalities\Delete.cshtml" />
-    <Content Include="Views\Nationalities\Details.cshtml" />
-    <Content Include="Views\Nationalities\Edit.cshtml" />
-    <Content Include="Views\Nationalities\Index.cshtml" />
-    <Content Include="Views\Student\Create.cshtml" />
-    <Content Include="Views\Student\Delete.cshtml" />
-    <Content Include="Views\Student\Details.cshtml" />
-    <Content Include="Views\Student\Edit.cshtml" />
-    <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Subject\Create.cshtml" />
-    <Content Include="Views\Subject\Delete.cshtml" />
-    <Content Include="Views\Subject\Details.cshtml" />
-    <Content Include="Views\Subject\Edit.cshtml" />
-    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\MarkType\Create.cshtml" />
+    <Content Include="Views\MarkType\Delete.cshtml" />
+    <Content Include="Views\MarkType\Details.cshtml" />
+    <Content Include="Views\MarkType\Edit.cshtml" />
+    <Content Include="Views\MarkType\Index.cshtml" />
+    <Content Include="Views\ModuleStandard\Add.cshtml" />
+    <Content Include="Views\ModuleStandard\Create.cshtml" />
+    <Content Include="Views\ModuleStandard\Delete.cshtml" />
+    <Content Include="Views\ModuleStandard\Details.cshtml" />
+    <Content Include="Views\ModuleStandard\Edit.cshtml" />
+    <Content Include="Views\ModuleStandard\EditModuleStandard.cshtml" />
+    <Content Include="Views\ModuleStandard\Index.cshtml" />
+    <Content Include="Views\ModuleStandard\ShowStandard.cshtml" />
+    <Content Include="Views\Module\Create.cshtml" />
+    <Content Include="Views\Module\Delete.cshtml" />
+    <Content Include="Views\Module\Details.cshtml" />
+    <Content Include="Views\Module\Edit.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
+    <Content Include="Views\Package_Course\Create.cshtml" />
+    <Content Include="Views\Package_Course\Delete.cshtml" />
+    <Content Include="Views\Package_Course\Details.cshtml" />
+    <Content Include="Views\Package_Course\Edit.cshtml" />
+    <Content Include="Views\Package_Course\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -443,7 +426,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64596</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
