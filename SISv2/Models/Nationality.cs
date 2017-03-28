@@ -17,7 +17,7 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nationality()
         {
-            this.Students = new HashSet<Student>();
+            this.Student = new HashSet<Student>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace SISv2.Models
         public Nullable<byte> st { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student> Students { get; set; }
+        public virtual ICollection<Student> Student { get; set; }
     }
 }

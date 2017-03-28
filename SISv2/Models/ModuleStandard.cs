@@ -17,8 +17,8 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ModuleStandard()
         {
-            this.CourseWorks = new HashSet<CourseWork>();
-            this.ReportCards = new HashSet<ReportCard>();
+            this.CourseWork = new HashSet<CourseWork>();
+            this.ReportCard = new HashSet<ReportCard>();
         }
     
         public int Id { get; set; }
@@ -34,9 +34,9 @@ namespace SISv2.Models
     
         public virtual Course_Module Course_Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseWork> CourseWorks { get; set; }
+        public virtual ICollection<CourseWork> CourseWork { get; set; }
         public virtual MarkType MarkType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportCard> ReportCards { get; set; }
+        public virtual ICollection<ReportCard> ReportCard { get; set; }
     }
 }

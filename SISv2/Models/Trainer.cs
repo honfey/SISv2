@@ -18,7 +18,7 @@ namespace SISv2.Models
         public Trainer()
         {
             this.Course_Module = new HashSet<Course_Module>();
-            this.ReportCards = new HashSet<ReportCard>();
+            this.ReportCard = new HashSet<ReportCard>();
         }
     
         public int Id { get; set; }
@@ -49,6 +49,6 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course_Module> Course_Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportCard> ReportCards { get; set; }
+        public virtual ICollection<ReportCard> ReportCard { get; set; }
     }
 }

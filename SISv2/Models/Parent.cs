@@ -16,21 +16,6 @@ namespace SISv2.Models
     {
         public int Id { get; set; }
         public Nullable<int> StudentId { get; set; }
-        public string Relationship { get; set; }
-        public string Gender { get; set; }
-        public Nullable<int> IC { get; set; }
-        public byte[] Name { get; set; }
-        public string Edu { get; set; }
-        public string WorkStatus { get; set; }
-        public string Job { get; set; }
-        public string FeildWork { get; set; }
-        public string SectorJob { get; set; }
-        public Nullable<decimal> Salary { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
-        public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
-        public Nullable<int> ub { get; set; }
-        public Nullable<byte> st { get; set; }
         public Nullable<int> FatherIC { get; set; }
         public string FatherName { get; set; }
         public string FatherEdu { get; set; }
@@ -47,6 +32,11 @@ namespace SISv2.Models
         public string MotherFeildWork { get; set; }
         public string MotherSectorJob { get; set; }
         public Nullable<decimal> MotherSalary { get; set; }
+        public Nullable<System.TimeSpan> cd { get; set; }
+        public Nullable<int> cb { get; set; }
+        public Nullable<System.TimeSpan> ud { get; set; }
+        public Nullable<int> ub { get; set; }
+        public Nullable<byte> st { get; set; }
     
         public virtual Student Student { get; set; }
     }
