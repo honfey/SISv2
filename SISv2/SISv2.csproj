@@ -170,12 +170,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\CourseWorksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntakeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarkTypeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\ModuleStandardController.cs" />
+    <Compile Include="Controllers\NationalitiesController.cs" />
     <Compile Include="Controllers\Package_CourseController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,15 +193,19 @@
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRoles.cs" />
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs" />
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\Attendance.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -213,6 +224,9 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Guardian.cs">
+      <DependentUpon>SISV2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
@@ -227,6 +241,7 @@
     <Compile Include="Models\MarkType.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Module.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -281,6 +296,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\TestType.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -392,6 +408,46 @@
     <Content Include="Views\Package_Course\Details.cshtml" />
     <Content Include="Views\Package_Course\Edit.cshtml" />
     <Content Include="Views\Package_Course\Index.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Nationalities\Create.cshtml" />
+    <Content Include="Views\Nationalities\Delete.cshtml" />
+    <Content Include="Views\Nationalities\Details.cshtml" />
+    <Content Include="Views\Nationalities\Edit.cshtml" />
+    <Content Include="Views\Nationalities\Index.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
+    <Content Include="Views\Invoice\Delete.cshtml" />
+    <Content Include="Views\Invoice\Details.cshtml" />
+    <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Intake\Create.cshtml" />
+    <Content Include="Views\Intake\Delete.cshtml" />
+    <Content Include="Views\Intake\Details.cshtml" />
+    <Content Include="Views\Intake\Edit.cshtml" />
+    <Content Include="Views\Intake\Index.cshtml" />
+    <Content Include="Views\Addresses\Create.cshtml" />
+    <Content Include="Views\Addresses\Delete.cshtml" />
+    <Content Include="Views\Addresses\Details.cshtml" />
+    <Content Include="Views\Addresses\Edit.cshtml" />
+    <Content Include="Views\Addresses\Index.cshtml" />
+    <Content Include="Views\CourseWorks\Check.cshtml" />
+    <Content Include="Views\CourseWorks\Create.cshtml" />
+    <Content Include="Views\CourseWorks\Delete.cshtml" />
+    <Content Include="Views\CourseWorks\Details.cshtml" />
+    <Content Include="Views\CourseWorks\Edit.cshtml" />
+    <Content Include="Views\CourseWorks\Index.cshtml" />
+    <Content Include="Views\CourseWorks\MarkMarks.cshtml" />
+    <Content Include="Views\CourseWorks\ReportCard.cshtml" />
+    <Content Include="Views\CourseWorks\ShowClass.cshtml" />
+    <Content Include="Views\CourseWorks\ShowStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

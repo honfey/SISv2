@@ -56,5 +56,6 @@ namespace SISv2.Models
         public virtual DbSet<TestType> TestTypes { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
         public virtual DbSet<Year> Years { get; set; }
+        public virtual DbSet<Guardian> Guardians { get; set; }
     }
 }

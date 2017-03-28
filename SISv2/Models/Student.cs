@@ -25,6 +25,7 @@ namespace SISv2.Models
             this.ReportCards = new HashSet<ReportCard>();
             this.Siblings = new HashSet<Sibling>();
             this.SPMResults = new HashSet<SPMResult>();
+            this.Guardians = new HashSet<Guardian>();
         }
     
         public int Id { get; set; }
@@ -73,5 +74,7 @@ namespace SISv2.Models
         public virtual ICollection<Sibling> Siblings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SPMResult> SPMResults { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Guardian> Guardians { get; set; }
     }
 }
