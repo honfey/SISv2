@@ -452,6 +452,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Pictures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
