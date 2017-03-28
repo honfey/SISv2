@@ -6,10 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SISV2.Models;
+using SISv2.Models;
 using System.Data.Entity.Validation;
 
-namespace SISV2.Controllers
+namespace SISv2.Controllers
 {
     public class StudentController : Controller
     {

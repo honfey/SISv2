@@ -16,16 +16,22 @@ namespace SISv2.Models
     {
         public int Id { get; set; }
         public Nullable<int> StudentId { get; set; }
-        public string Relationship { get; set; }
-        public string Gender { get; set; }
-        public Nullable<int> IC { get; set; }
-        public byte[] Name { get; set; }
-        public string Edu { get; set; }
-        public string WorkStatus { get; set; }
-        public string Job { get; set; }
-        public string FeildWork { get; set; }
-        public string SectorJob { get; set; }
-        public Nullable<decimal> Salary { get; set; }
+        public Nullable<int> FatherIC { get; set; }
+        public string FatherName { get; set; }
+        public string FatherEdu { get; set; }
+        public string FatherWorkStatus { get; set; }
+        public string FatherJob { get; set; }
+        public string FatherFeildWork { get; set; }
+        public string FatherSectorJob { get; set; }
+        public Nullable<decimal> FatherSalary { get; set; }
+        public Nullable<int> MotherIC { get; set; }
+        public string MotherName { get; set; }
+        public string MotherEdu { get; set; }
+        public string MotherWorkStatus { get; set; }
+        public string MotherJob { get; set; }
+        public string MotherFeildWork { get; set; }
+        public string MotherSectorJob { get; set; }
+        public Nullable<decimal> MotherSalary { get; set; }
         public Nullable<System.TimeSpan> cd { get; set; }
         public Nullable<int> cb { get; set; }
         public Nullable<System.TimeSpan> ud { get; set; }

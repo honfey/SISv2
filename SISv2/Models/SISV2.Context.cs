@@ -25,36 +25,37 @@ namespace SISv2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Package> Package { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<Attendance> Attendances { get; set; }
-        public virtual DbSet<ClassStudent> ClassStudents { get; set; }
-        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Attendance> Attendance { get; set; }
+        public virtual DbSet<ClassStudent> ClassStudent { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Course_Module> Course_Module { get; set; }
-        public virtual DbSet<CourseWork> CourseWorks { get; set; }
-        public virtual DbSet<Image> Images { get; set; }
-        public virtual DbSet<Intake> Intakes { get; set; }
-        public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<MarkType> MarkTypes { get; set; }
-        public virtual DbSet<Module> Modules { get; set; }
-        public virtual DbSet<ModuleStandard> ModuleStandards { get; set; }
-        public virtual DbSet<Month> Months { get; set; }
-        public virtual DbSet<Nationality> Nationalities { get; set; }
+        public virtual DbSet<CourseWork> CourseWork { get; set; }
+        public virtual DbSet<Guardian> Guardian { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
+        public virtual DbSet<Intake> Intake { get; set; }
+        public virtual DbSet<Invoice> Invoice { get; set; }
+        public virtual DbSet<MarkType> MarkType { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
+        public virtual DbSet<ModuleStandard> ModuleStandard { get; set; }
+        public virtual DbSet<Month> Month { get; set; }
+        public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Package_Course> Package_Course { get; set; }
-        public virtual DbSet<Parent> Parents { get; set; }
-        public virtual DbSet<ReportCard> ReportCards { get; set; }
-        public virtual DbSet<Sibling> Siblings { get; set; }
-        public virtual DbSet<SPMResult> SPMResults { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<Subject> Subjects { get; set; }
-        public virtual DbSet<TestType> TestTypes { get; set; }
-        public virtual DbSet<Trainer> Trainers { get; set; }
-        public virtual DbSet<Year> Years { get; set; }
+        public virtual DbSet<Parent> Parent { get; set; }
+        public virtual DbSet<ReportCard> ReportCard { get; set; }
+        public virtual DbSet<Sibling> Sibling { get; set; }
+        public virtual DbSet<SPMResult> SPMResult { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<TestType> TestType { get; set; }
+        public virtual DbSet<Trainer> Trainer { get; set; }
+        public virtual DbSet<Year> Year { get; set; }
     }
 }

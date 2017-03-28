@@ -12,23 +12,25 @@ namespace SISv2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Year
+    public partial class Guardian
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Year()
-        {
-            this.Intake = new HashSet<Intake>();
-        }
-    
         public int Id { get; set; }
-        public string Year1 { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
+        public Nullable<int> StudentId { get; set; }
+        public string Gender { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> IC { get; set; }
+        public string Edu { get; set; }
+        public string WorkStatus { get; set; }
+        public string Job { get; set; }
+        public string FeildWork { get; set; }
+        public string SectorJob { get; set; }
+        public Nullable<decimal> Salary { get; set; }
         public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
+        public Nullable<System.TimeSpan> cd { get; set; }
         public Nullable<int> ub { get; set; }
+        public Nullable<System.TimeSpan> ud { get; set; }
         public Nullable<byte> st { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Intake> Intake { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

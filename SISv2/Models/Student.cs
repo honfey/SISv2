@@ -17,14 +17,15 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
-            this.Addresses = new HashSet<Address>();
-            this.ClassStudents = new HashSet<ClassStudent>();
-            this.Invoices = new HashSet<Invoice>();
+            this.Address = new HashSet<Address>();
+            this.ClassStudent = new HashSet<ClassStudent>();
+            this.Guardian = new HashSet<Guardian>();
+            this.Invoice = new HashSet<Invoice>();
             this.Package_Course = new HashSet<Package_Course>();
-            this.Parents = new HashSet<Parent>();
-            this.ReportCards = new HashSet<ReportCard>();
-            this.Siblings = new HashSet<Sibling>();
-            this.SPMResults = new HashSet<SPMResult>();
+            this.Parent = new HashSet<Parent>();
+            this.ReportCard = new HashSet<ReportCard>();
+            this.Sibling = new HashSet<Sibling>();
+            this.SPMResult = new HashSet<SPMResult>();
         }
     
         public int Id { get; set; }
@@ -56,22 +57,24 @@ namespace SISv2.Models
         public Nullable<byte> st { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<Address> Address { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassStudent> ClassStudents { get; set; }
+        public virtual ICollection<ClassStudent> ClassStudent { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Guardian> Guardian { get; set; }
         public virtual Intake Intake { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
         public virtual Nationality Nationality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Package_Course> Package_Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Parent> Parents { get; set; }
+        public virtual ICollection<Parent> Parent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ReportCard> ReportCards { get; set; }
+        public virtual ICollection<ReportCard> ReportCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sibling> Siblings { get; set; }
+        public virtual ICollection<Sibling> Sibling { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SPMResult> SPMResults { get; set; }
+        public virtual ICollection<SPMResult> SPMResult { get; set; }
     }
 }
