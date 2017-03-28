@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarkTypeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
@@ -390,6 +391,9 @@
     <Content Include="Views\Package_Course\Details.cshtml" />
     <Content Include="Views\Package_Course\Edit.cshtml" />
     <Content Include="Views\Package_Course\Index.cshtml" />
+    <Content Include="Views\Image\Create.cshtml" />
+    <Content Include="Views\Image\Delete.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
