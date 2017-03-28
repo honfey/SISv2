@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SISv2.Controllers
+namespace SISV2.Controllers
 {
     public class HomeController : Controller
     {
