@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SISV2.Models;
+using SISv2.Models;
 
 
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace SISV2.Models
+namespace SISv2.Models
 {
     public class AttendanceMetadata
     {

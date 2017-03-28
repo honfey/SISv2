@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SISV2.Models;
+using SISv2.Models;
 
-namespace SISV2.Controllers
+namespace SISv2.Controllers
 {
     [Authorize]
     public class AccountController : Controller
