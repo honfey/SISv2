@@ -1,4 +1,4 @@
-﻿using SISV2.Models;
+﻿using SISv2.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ namespace SISV2.Controllers
     public class ImageController : Controller
     {
         private string webConfigPath = "~/" + WebConfigurationManager.AppSettings["UploadImage"];
-        private SISV2Entities1 db = new SISV2Entities1();
+        private SISV2Entities db = new SISV2Entities();
 
         // GET: Image
         public ActionResult Index()
