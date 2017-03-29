@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SISV2.Models.Image>
+﻿@model IEnumerable<SISv2.Models.Image>
 @using System.Web.Configuration;
 
 @{
@@ -21,7 +21,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr id="@item.Id">
+    <tr id="@item.id">
         <td>
             <img src="@Url.Content("~/" + WebConfigurationManager.AppSettings["UploadImage"]+item.FileName)"class="img-responsive"/>
         </td>

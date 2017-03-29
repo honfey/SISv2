@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SISV2.Models;
+using SISv2.Models;
 
 namespace SISV2.Controllers
 {
@@ -50,8 +50,8 @@ namespace SISV2.Controllers
         // GET: Package_Course/Create
         public ActionResult Create()
         {
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseCode", "Name");
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name");
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name");
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name");
             return View();
         }
 
@@ -89,8 +89,8 @@ namespace SISV2.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseCode", "Name", package_Course.CourseId);
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name", package_Course.StudentId);
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name", package_Course.CourseId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", package_Course.StudentId);
             return View(package_Course);
         }
 
@@ -106,8 +106,8 @@ namespace SISV2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseCode", "Name", package_Course.CourseId);
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name", package_Course.StudentId);
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name", package_Course.CourseId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", package_Course.StudentId);
             return View(package_Course);
         }
 
@@ -144,8 +144,8 @@ namespace SISV2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "CourseCode", "Name", package_Course.CourseId);
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name", package_Course.StudentId);
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name", package_Course.CourseId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", package_Course.StudentId);
             return View(package_Course);
         }
 

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
 using System.Data.Entity.Validation;
+using System.IO;
+using System.Web.Configuration;
 
 namespace SISv2.Controllers
 {
@@ -35,6 +37,7 @@ namespace SISv2.Controllers
                 new SelectListItem{ Text="Male", Value = "Male" },
                 new SelectListItem{ Text="Female", Value = "Female" },
     };
+        private string webConfigPath = "~/" + WebConfigurationManager.AppSettings["UploadImage"];
 
         // GET: Student
         public ActionResult Index(string Month, string Year, string SearchName)
@@ -144,7 +147,7 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Student student)
+        public ActionResult Create(Student student, List<HttpPostedFileBase> images)
         {
             var studentIntakeMonth = db.Intake.Where(r => r.Id == student.IntakeId);
 
@@ -184,6 +187,23 @@ namespace SISv2.Controllers
                 student.StudentId = "P" + ConvertYear + Month + student.Id.ToString("D4");
                 db.SaveChanges();
 
+                //if (ModelState.IsValid && images != null)
+                //{
+                //    List<Student> imgs = new List<Student>();
+                //    foreach (var obj in images)
+                //    {
+                //        if (obj != null && obj.ContentLength != 0 && obj.FileName != "")
+                //        {
+                //            string fDate = string.Format("{0:yyyMMMdddhhmmsstt}", DateTime.Now);
+                //            string documentName = obj.FileName.Trim().Replace(" ", "_");
+                //            string pathToSave = Server.MapPath(webConfigPath);
+                //            string studentpicture = fDate + '_' + documentName;
+                //            obj.SaveAs(Path.Combine(pathToSave, studentpicture));
+                //            imgs.Add(new Student { StudentPicture = studentpicture });
+                //        }
+                //    }
+                //    db.Student.AddRange(imgs);
+                //}
 
                 if (student.Parent != null && student.Parent.Count() > 0)
                 {
@@ -245,6 +265,7 @@ namespace SISv2.Controllers
 
                 try
                 {
+                    
                     db.Student.Add(student);
                     db.SaveChanges();
                 }
@@ -268,6 +289,21 @@ namespace SISv2.Controllers
             return View(student);
         }
 
+        public ActionResult DownloadImage(string StudentPicture)
+        {
+            return File(webConfigPath + StudentPicture, GetContentType(StudentPicture), Server.UrlEncode(StudentPicture));
+        }
+        private string GetContentType(string StudentPicture)
+        {
+            string contentType = "application/octestream";
+            string ext = Path.GetExtension(StudentPicture).ToLower();
+            Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+
+            if (registryKey != null && registryKey.GetValue("Content Type") != null)
+                contentType = registryKey.GetValue("Content Type").ToString();
+
+            return contentType;
+        }
         // GET: Student/Edit/5
         public ActionResult Edit(int? id)
         {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SISV2.Models;
+using SISv2.Models;
 
 namespace SISV2.Controllers
 {
@@ -17,7 +17,7 @@ namespace SISV2.Controllers
         // GET: Module
         public ActionResult Index()
         {
-            return View(db.Modules.ToList());
+            return View(db.Module.ToList());
         }
 
         // GET: Module/Details/5
@@ -27,7 +27,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            Module module = db.Module.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -50,14 +50,14 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var checking = db.Modules.Any(x => x.ModuleCode == module.ModuleCode);
+                var checking = db.Module.Any(x => x.ModuleCode == module.ModuleCode);
                 if (checking)
                 {
                     ModelState.AddModelError("", "This ModuleCode has been used!");
                     return View(module);
                 }
        
-                db.Modules.Add(module);
+                db.Module.Add(module);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Module");
             }
@@ -72,7 +72,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            Module module = db.Module.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -103,7 +103,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
+            Module module = db.Module.Find(id);
             if (module == null)
             {
                 return HttpNotFound();
@@ -116,8 +116,8 @@ namespace SISV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Module module = db.Modules.Find(id);
-            db.Modules.Remove(module);
+            Module module = db.Module.Find(id);
+            db.Module.Remove(module);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
