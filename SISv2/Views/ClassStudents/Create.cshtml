@@ -28,6 +28,7 @@
                 @Html.ValidationMessage("Course_ModuleId", "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.StudentList, htmlAttributes: new { @class = "control-label col-xs-2" })
             <div class="col-xs-4">
@@ -44,7 +45,13 @@
             </div>
         </div>
 
-
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.st, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.st, new { htmlAttributes = new { @class = "form-control", @Value = true, @readonly = "Read Only" } })
+                @Html.ValidationMessageFor(model => model.st, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-xs-offset-2 col-xs-4">

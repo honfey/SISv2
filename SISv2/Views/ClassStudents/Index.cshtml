@@ -11,7 +11,7 @@
 
 <br>
 
-@*@using (Html.BeginForm("Index", "ClassStudents", FormMethod.Get))
+@using (Html.BeginForm("Index", "ClassStudents", FormMethod.Get))
 {
     @Html.DropDownList("Search", new List<SelectListItem>
 
@@ -24,7 +24,7 @@
 
 
     <input type="submit" class="btn btn-default" value="Search" />
-}*@
+}
 
 <br />
 
@@ -74,11 +74,13 @@ else
 
     foreach (var item in Model)
     {
-
-        if (item.Course_ModuleId != same || item.CreateDate.Value.ToShortDateString() != date)
+        if (item.st == 1)
         {
-            same = item.Course_ModuleId;
-            date = item.CreateDate.Value.ToShortDateString();
+
+            if (item.Course_ModuleId != same || item.CreateDate.Value.ToShortDateString() != date)
+            {
+                same = item.Course_ModuleId;
+                date = item.CreateDate.Value.ToShortDateString();
 
             <tr>
                 <td>
@@ -115,14 +117,15 @@ else
                     }
                 </td>
             </tr>
+            }
+            else
+            {
+                continue;
+            }
         }
-        else
-        {
-            continue;
-        }
-
 
     }
+
 }
 
 

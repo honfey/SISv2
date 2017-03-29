@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
 
-namespace SIS.Controllers
+namespace SISv2.Controllers
 {
     public class ClassStudentsController : Controller
     {
@@ -109,6 +109,10 @@ namespace SIS.Controllers
                     {
                         classStudent.Status = Convert.ToBoolean(1);
                     }
+                    if (classStudent.st == null)
+                    {
+                        classStudent.st = 1;
+                    }
                     List<ClassStudent> cs = new List<ClassStudent>();
 
 
@@ -133,7 +137,7 @@ namespace SIS.Controllers
                         foreach (var i in classStudent.StudentList)
                         {
 
-                            cs.Add(new ClassStudent { StudentId = i, Course_ModuleId = classStudent.Course_ModuleId, Day = classStudent.Day, Exam_Day = 1, Trial_Day = 1, Project_Day = 1, CreateDate = DateTime.Now, Status = true });
+                            cs.Add(new ClassStudent { StudentId = i, Course_ModuleId = classStudent.Course_ModuleId, Day = classStudent.Day, Exam_Day = 1, Trial_Day = 1, Project_Day = 1, CreateDate = DateTime.Now, Status = true,st = 1 });
                         }
                         db.ClassStudents.AddRange(cs);
                     }
@@ -195,20 +199,25 @@ namespace SIS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
+            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
             return View(classStudent);
         }
-
         // POST: ClassStudents/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete([Bind(Include = "ClassStudentId,Course_ModuleId,StudentId")] ClassStudent classStudent)
         {
-            ClassStudent classStudent = db.ClassStudents.Find(id);
-            db.ClassStudents.Remove(classStudent);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.Entry(classStudent).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
+            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
+            return View(classStudent);
         }
-     
 
         public ActionResult Pass(int id)
         {
