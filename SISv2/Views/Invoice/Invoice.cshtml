@@ -1,15 +1,13 @@
 ﻿@model SISv2.Models.Invoice
 
-@*@section menu{
-    @Scripts.Render("~/Scripts/Examples/Invoice-menu.js")}*@
-
 <div class="invoice" style="margin-left:0 !important; margin-right:0 !important;">
     <div class="row">
         <div class="col-xs-12">
             <img src="~/Content/image/Companylogo.jpg" alt="CompanyLogo" style="width:390px; height:100px" />
             <address class="pull-right">
                 <strong>
-                    SBIT TRAINING SDN.BHD.</strong> (894857-H)<br />
+                    SBIT TRAINING SDN.BHD.
+                </strong> (894857-H)<br />
                 18A, Jalan 20/16A, Taman Paramount,<br />
                 46300 Petaling Jaya, Selangor.<br />
                 info@sbit.edu.my * www.sbit.edu.my<br />
@@ -17,6 +15,7 @@
                 <b>(GST No: 001194561536)</b>
             </address>
         </div>
+
         <div class="text-center">
             <h2>TAX INVOICE</h2>
             <hr />
@@ -26,8 +25,8 @@
         <div class="col-sm-4 invoice-col">
             <address>
                 <strong>
-                    @Html.DisplayFor(model => model.Student.Name, new { htmlAttribute = new { @class = "form-control"} })<br />
-                    @foreach(var x in Model.Student.Addresses)
+                    @Html.DisplayFor(model => model.Student.Name, new { htmlAttribute = new { @class = "form-control" } })<br />
+                    @foreach (var x in Model.Student.Address)
                     {
                         @Html.DisplayFor(model => x.StreetLine1)<br />
                         @Html.DisplayFor(model => x.StreetLine2)<br />
@@ -80,14 +79,14 @@
                 <tbody>
                     <tr>
                         <td>
-                            @Html.DisplayFor(model => model.Description, new { htmlAttribute = new { @class = "form-control"} })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger"})
+                            @Html.DisplayFor(model => model.Description, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                         </td>
                         <td></td>
                         <td></td>
                         <td>
                             @Html.DisplayFor(model => model.Amount, new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger"})
+                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                 </tbody>
@@ -109,44 +108,48 @@
                 <table class="table">
                     <tr>
                         <th style="width:35%">Total (RM)</th>
-                        <td>@Html.DisplayFor(model => model.Total, new { htmlAttribute = new { @class = "form-control"} })
-                        @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger"})
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>GST Amt</th>
-                        <td>@Html.DisplayFor(model => model.GSTAmt, new { htmlAttribute = new { @class = "form-control"} })
-                        @Html.ValidationMessageFor(model => model.GSTAmt, "", new { @class = "text-danger"})</td>
-                    </tr>
-
-                    <tr>
-                        <th>Final Total</th>
                         <td>
-                            @Html.DisplayFor(model => model.FinalTotal, new { htmlAttribute = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FinalTotal, "", new { @class = "text-danger" })
+                            @Html.DisplayFor(model => model.Total, new { htmlAttribute = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
                     </td>
                 </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+                <tr>
+                    <th>GST Amt</th>
+                    <td>
+                        @Html.DisplayFor(model => model.GSTAmt, new { htmlAttribute = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GSTAmt, "", new { @class = "text-danger" })
+                </td>
+            </tr>
 
-    <script type="text/javascript">
+            <tr>
+                <th>Final Total</th>
+                <td>
+                    @Html.DisplayFor(model => model.FinalTotal, new { htmlAttribute = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FinalTotal, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
         function print_page() {
             var ButtonControl = document.getElementById("btnprint");
             ButtonControl.style.visibility = "hidden";
             window.print();
             ButtonControl.style.visibility = "visible";
         }
-    </script>
+</script>
 
-    <p>
-        <input type="button" id="btnprint" value="Print" onclick="print_page()" />
-    </p>
+<p>
+    <input type="button" id="btnprint" value="Print" onclick="print_page()" />
+</p>
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-
-    <div class="clearfix"></div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
+
+<div class="clearfix"></div>
+</div>
+

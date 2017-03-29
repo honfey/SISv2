@@ -25,11 +25,11 @@ namespace SISV2.Controllers
         {
             if (!String.IsNullOrEmpty(SearchString))
             {
-                var temp = db.Invoices.OrderBy(i => i.Student.Name).Where(j => j.Student.Name.ToLower().Contains(SearchString.ToLower()));
+                var temp = db.Invoice.OrderBy(i => i.Student.Name).Where(j => j.Student.Name.ToLower().Contains(SearchString.ToLower()));
                 return View(temp);
             }
-            var invoice = db.Invoices.Include(p => p.Student).Include(p => p.Student);
-            return View(db.Invoices);
+            var invoice = db.Invoice.Include(p => p.Student).Include(p => p.Student);
+            return View(db.Invoice);
         }
 
         // GET: Invoice/Details/5
@@ -39,7 +39,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoice.Find(id);
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace SISV2.Controllers
         // GET: Invoice/Create
         public ActionResult Create()
         {
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name");
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace SISV2.Controllers
                     invoice.Total = invoice.FinalTotal - invoice.GSTAmt;
                 }
 
-                db.Invoices.Add(invoice);
+                db.Invoice.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,7 +84,7 @@ namespace SISV2.Controllers
             //    return RedirectToAction("Index");
             //}
 
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "", invoice.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "", invoice.StudentId);
             return View(invoice);
         }
 
@@ -94,7 +94,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoice.Find(id);
             if(invoice == null)
             {
                 return HttpNotFound();
@@ -122,12 +122,12 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoice.Find(id);
             if (invoice == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name", invoice.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
 
@@ -154,7 +154,7 @@ namespace SISV2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "Name", invoice.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
 
@@ -165,7 +165,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoice.Find(id);
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -178,8 +178,8 @@ namespace SISV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Invoice invoice = db.Invoices.Find(id);
-            db.Invoices.Remove(invoice);
+            Invoice invoice = db.Invoice.Find(id);
+            db.Invoice.Remove(invoice);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
