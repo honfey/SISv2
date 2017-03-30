@@ -12,7 +12,7 @@ using SISv2.Models;
 
 namespace SIS.Controllers
 {
-    [Authorize(Roles = "Admin, Trainer")]
+    
     public class CourseWorksController : Controller
     {
         private SISV2Entities db = new SISV2Entities();
