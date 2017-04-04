@@ -49,7 +49,6 @@ namespace SISv2.Models
         public virtual DbSet<ReportCard> ReportCard { get; set; }
         public virtual DbSet<Sibling> Sibling { get; set; }
         public virtual DbSet<SPMResult> SPMResult { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Subject> Subject { get; set; }
         public virtual DbSet<TestType> TestType { get; set; }
         public virtual DbSet<Trainer> Trainer { get; set; }
@@ -58,5 +57,6 @@ namespace SISv2.Models
         public virtual DbSet<Amount> Amount { get; set; }
         public virtual DbSet<Guardian> Guardian { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     }
 }

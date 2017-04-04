@@ -1125,7 +1125,6 @@
     <Content Include="Content\UploadedFiles\UploadedImages\20161114101939AM_11.jpg" />
     <Content Include="Content\UploadedFiles\UploadedImages\20161114101939AM_88B93E47-1627-438C-85A1-4E4FEF09B028-2810-000002363534CB75.JPG" />
     <Content Include="DataBase\k.html" />
-    <Content Include="DataBase\scripdatat.sql" />
     <Content Include="DataBase\script.sql" />
     <Content Include="fonts\Database\test.sql" />
     <Content Include="favicon.ico" />

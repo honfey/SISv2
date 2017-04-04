@@ -33,7 +33,7 @@ namespace SISv2.Models
         public virtual CourseWork CourseWork { get; set; }
         public virtual Intake Intake { get; set; }
         public virtual ModuleStandard ModuleStandard { get; set; }
-        public virtual Student Student { get; set; }
         public virtual Trainer Trainer { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

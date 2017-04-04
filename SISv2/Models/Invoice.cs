@@ -31,8 +31,8 @@ namespace SISv2.Models
         public Nullable<int> ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Amount> Amount { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

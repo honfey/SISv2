@@ -466,10 +466,10 @@
           <Property Name="HDYKSBIT" Type="varchar(max)" />
           <Property Name="NumSibling" Type="int" />
           <Property Name="BirthOrd" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Subject">
@@ -1295,7 +1295,7 @@
           <Property Name="ud" Type="Time" Precision="7" />
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Address_Student" FromRole="Address" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Address_Student" FromRole="Address" ToRole="Student" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
@@ -1340,9 +1340,9 @@
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Attendance" Relationship="Self.FK_Attendance_ClassStudent" FromRole="ClassStudent" ToRole="Attendance" />
           <NavigationProperty Name="Course_Module" Relationship="Self.FK_ClassStudent_Course_Module" FromRole="ClassStudent" ToRole="Course_Module" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_ClassStudent_Student" FromRole="ClassStudent" ToRole="Student" />
           <NavigationProperty Name="CourseWork" Relationship="Self.FK_CourseWork_ClassStudent" FromRole="ClassStudent" ToRole="CourseWork" />
           <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_ClassStudent" FromRole="ClassStudent" ToRole="ReportCard" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_ClassStudent_Student" FromRole="ClassStudent" ToRole="Student" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -1440,7 +1440,7 @@
           <NavigationProperty Name="Month" Relationship="Self.FK_Intake_Month" FromRole="Intake" ToRole="Month" />
           <NavigationProperty Name="Year" Relationship="Self.FK_Intake_Year" FromRole="Intake" ToRole="Year" />
           <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_Intake" FromRole="Intake" ToRole="ReportCard" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Intake" FromRole="Intake" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Student_Intake" FromRole="Intake" ToRole="Student" />
         </EntityType>
         <EntityType Name="MarkType">
           <Key>
@@ -1512,7 +1512,7 @@
           <Property Name="ud" Type="Time" Precision="7" />
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Nationality" FromRole="Nationality" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Student_Nationality" FromRole="Nationality" ToRole="Student" />
         </EntityType>
         <EntityType Name="Package_Course">
           <Key>
@@ -1535,7 +1535,7 @@
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Package_Course_Course" FromRole="Package_Course" ToRole="Course" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Package_Course_Student" FromRole="Package_Course" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Package_Course_Student" FromRole="Package_Course" ToRole="Student" />
         </EntityType>
         <EntityType Name="ReportCard">
           <Key>
@@ -1559,8 +1559,8 @@
           <NavigationProperty Name="CourseWork" Relationship="Self.FK_ReportCard_CourseWork" FromRole="ReportCard" ToRole="CourseWork" />
           <NavigationProperty Name="Intake" Relationship="Self.FK_ReportCard_Intake" FromRole="ReportCard" ToRole="Intake" />
           <NavigationProperty Name="ModuleStandard" Relationship="Self.FK_ReportCard_ModuleStandard" FromRole="ReportCard" ToRole="ModuleStandard" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_ReportCard_Student" FromRole="ReportCard" ToRole="Student" />
           <NavigationProperty Name="Trainer" Relationship="Self.FK_ReportCard_Trainer" FromRole="ReportCard" ToRole="Trainer" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_ReportCard_Student" FromRole="ReportCard" ToRole="Student" />
         </EntityType>
         <EntityType Name="Sibling">
           <Key>
@@ -1581,7 +1581,7 @@
           <Property Name="ud" Type="Time" Precision="7" />
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Sibling_Student" FromRole="Sibling" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Sibling_Student" FromRole="Sibling" ToRole="Student" />
         </EntityType>
         <EntityType Name="SPMResult">
           <Key>
@@ -1596,50 +1596,7 @@
           <Property Name="ud" Type="Time" Precision="7" />
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_SPMResult_Student" FromRole="SPMResult" ToRole="Student" />
-        </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IntakeId" Type="Int32" />
-          <Property Name="SPMResultId" Type="Int32" />
-          <Property Name="Insurence" Type="Boolean" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="DOB" Type="DateTime" Precision="0" />
-          <Property Name="IC" Type="Int64" Nullable="false" />
-          <Property Name="NationalityId" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OtherPhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SingleParent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="StudentPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="WorkingExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="HDYKSBIT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NumSibling" Type="Int32" />
-          <Property Name="BirthOrd" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
-          <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Address" Relationship="Self.FK_Address_Student" FromRole="Student" ToRole="Address" />
-          <NavigationProperty Name="ClassStudent" Relationship="Self.FK_ClassStudent_Student" FromRole="Student" ToRole="ClassStudent" />
-          <NavigationProperty Name="Intake" Relationship="Self.FK_Student_Intake" FromRole="Student" ToRole="Intake" />
-          <NavigationProperty Name="Nationality" Relationship="Self.FK_Student_Nationality" FromRole="Student" ToRole="Nationality" />
-          <NavigationProperty Name="Package_Course" Relationship="Self.FK_Package_Course_Student" FromRole="Student" ToRole="Package_Course" />
-          <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_Student" FromRole="Student" ToRole="ReportCard" />
-          <NavigationProperty Name="Sibling" Relationship="Self.FK_Sibling_Student" FromRole="Student" ToRole="Sibling" />
-          <NavigationProperty Name="SPMResult" Relationship="Self.FK_SPMResult_Student" FromRole="Student" ToRole="SPMResult" />
-          <NavigationProperty Name="Invoice" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Student" ToRole="Invoice" />
-          <NavigationProperty Name="Guardian" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Student" ToRole="Guardian" />
-          <NavigationProperty Name="Parent" Relationship="SISV2Model.FK_Parent_Student" FromRole="Student" ToRole="Parent" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_SPMResult_Student" FromRole="SPMResult" ToRole="Student" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -1739,18 +1696,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Address_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Address" Type="Self.Address" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Address">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Attendance_ClassStudent">
           <End Role="ClassStudent" Type="Self.ClassStudent" Multiplicity="0..1" />
           <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
@@ -1772,18 +1717,6 @@
             </Principal>
             <Dependent Role="ClassStudent">
               <PropertyRef Name="Course_ModuleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClassStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="ClassStudent" Type="Self.ClassStudent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ClassStudent">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1991,18 +1924,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Student_Intake">
-          <End Role="Intake" Type="Self.Intake" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Intake">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="IntakeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ModuleStandard_MarkType">
           <End Role="MarkType" Type="Self.MarkType" Multiplicity="0..1" />
           <End Role="ModuleStandard" Type="Self.ModuleStandard" Multiplicity="*" />
@@ -2027,42 +1948,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Student_Nationality">
-          <End Role="Nationality" Type="Self.Nationality" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nationality">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="NationalityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Package_Course_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Package_Course" Type="Self.Package_Course" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Package_Course">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReportCard_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="ReportCard" Type="Self.ReportCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReportCard">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ReportCard_Trainer">
           <End Role="Trainer" Type="Self.Trainer" Multiplicity="0..1" />
           <End Role="ReportCard" Type="Self.ReportCard" Multiplicity="*" />
@@ -2072,30 +1957,6 @@
             </Principal>
             <Dependent Role="ReportCard">
               <PropertyRef Name="TrainerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Sibling_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Sibling" Type="Self.Sibling" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Sibling">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SPMResult_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="SPMResult" Type="Self.SPMResult" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SPMResult">
-              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2128,7 +1989,6 @@
           <EntitySet Name="ReportCard" EntityType="Self.ReportCard" />
           <EntitySet Name="Sibling" EntityType="Self.Sibling" />
           <EntitySet Name="SPMResult" EntityType="Self.SPMResult" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="Subject" EntityType="Self.Subject" />
           <EntitySet Name="TestType" EntityType="Self.TestType" />
           <EntitySet Name="Trainer" EntityType="Self.Trainer" />
@@ -2141,20 +2001,12 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Address_Student" Association="Self.FK_Address_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Address" EntitySet="Address" />
-          </AssociationSet>
           <AssociationSet Name="FK_Attendance_ClassStudent" Association="Self.FK_Attendance_ClassStudent">
             <End Role="ClassStudent" EntitySet="ClassStudent" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
           <AssociationSet Name="FK_ClassStudent_Course_Module" Association="Self.FK_ClassStudent_Course_Module">
             <End Role="Course_Module" EntitySet="Course_Module" />
-            <End Role="ClassStudent" EntitySet="ClassStudent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClassStudent_Student" Association="Self.FK_ClassStudent_Student">
-            <End Role="Student" EntitySet="Student" />
             <End Role="ClassStudent" EntitySet="ClassStudent" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseWork_ClassStudent" Association="Self.FK_CourseWork_ClassStudent">
@@ -2225,10 +2077,6 @@
             <End Role="Intake" EntitySet="Intake" />
             <End Role="ReportCard" EntitySet="ReportCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Student_Intake" Association="Self.FK_Student_Intake">
-            <End Role="Intake" EntitySet="Intake" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
           <AssociationSet Name="FK_ModuleStandard_MarkType" Association="Self.FK_ModuleStandard_MarkType">
             <End Role="MarkType" EntitySet="MarkType" />
             <End Role="ModuleStandard" EntitySet="ModuleStandard" />
@@ -2237,53 +2085,66 @@
             <End Role="ModuleStandard" EntitySet="ModuleStandard" />
             <End Role="ReportCard" EntitySet="ReportCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Student_Nationality" Association="Self.FK_Student_Nationality">
-            <End Role="Nationality" EntitySet="Nationality" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Package_Course_Student" Association="Self.FK_Package_Course_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Package_Course" EntitySet="Package_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReportCard_Student" Association="Self.FK_ReportCard_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="ReportCard" EntitySet="ReportCard" />
-          </AssociationSet>
           <AssociationSet Name="FK_ReportCard_Trainer" Association="Self.FK_ReportCard_Trainer">
             <End Role="Trainer" EntitySet="Trainer" />
             <End Role="ReportCard" EntitySet="ReportCard" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sibling_Student" Association="Self.FK_Sibling_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Sibling" EntitySet="Sibling" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SPMResult_Student" Association="Self.FK_SPMResult_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="SPMResult" EntitySet="SPMResult" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Invoice" EntityType="SISV2Model.Invoice" />
-          <AssociationSet Name="FK_Invoice_Student" Association="SISV2Model.FK_Invoice_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Invoice" EntitySet="Invoice" />
-          </AssociationSet>
           <EntitySet Name="Amount" EntityType="SISV2Model.Amount" />
           <AssociationSet Name="FK_Amount_Invoice" Association="SISV2Model.FK_Amount_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="Amount" EntitySet="Amount" />
           </AssociationSet>
           <EntitySet Name="Guardian" EntityType="SISV2Model.Guardian" />
+          <EntitySet Name="Parent" EntityType="SISV2Model.Parent" />
+          <EntitySet Name="Student" EntityType="SISV2Model.Student" />
+          <AssociationSet Name="FK_Address_Student" Association="SISV2Model.FK_Address_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassStudent_Student" Association="SISV2Model.FK_ClassStudent_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ClassStudent" EntitySet="ClassStudent" />
+          </AssociationSet>
           <AssociationSet Name="FK_Guardian_Student" Association="SISV2Model.FK_Guardian_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Guardian" EntitySet="Guardian" />
           </AssociationSet>
-          <EntitySet Name="Parent" EntityType="SISV2Model.Parent" />
+          <AssociationSet Name="FK_Student_Intake" Association="SISV2Model.FK_Student_Intake">
+            <End Role="Intake" EntitySet="Intake" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoice_Student" Association="SISV2Model.FK_Invoice_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Nationality" Association="SISV2Model.FK_Student_Nationality">
+            <End Role="Nationality" EntitySet="Nationality" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Package_Course_Student" Association="SISV2Model.FK_Package_Course_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Package_Course" EntitySet="Package_Course" />
+          </AssociationSet>
           <AssociationSet Name="FK_Parent_Student" Association="SISV2Model.FK_Parent_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Parent" EntitySet="Parent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportCard_Student" Association="SISV2Model.FK_ReportCard_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ReportCard" EntitySet="ReportCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sibling_Student" Association="SISV2Model.FK_Sibling_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Sibling" EntitySet="Sibling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPMResult_Student" Association="SISV2Model.FK_SPMResult_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="SPMResult" EntitySet="SPMResult" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Invoice">
@@ -2300,21 +2161,9 @@
           <Property Name="ud" Type="Time" Precision="7" />
           <Property Name="ub" Type="Int32" />
           <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Invoice" ToRole="Student" />
           <NavigationProperty Name="Amount" Relationship="SISV2Model.FK_Amount_Invoice" FromRole="Invoice" ToRole="Amount" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Invoice" ToRole="Student" />
         </EntityType>
-        <Association Name="FK_Invoice_Student">
-          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
-          <End Type="SISV2Model.Invoice" Role="Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Amount">
           <Key>
             <PropertyRef Name="Id" />
@@ -2363,18 +2212,6 @@
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Guardian" ToRole="Student" />
         </EntityType>
-        <Association Name="FK_Guardian_Student">
-          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
-          <End Type="SISV2Model.Guardian" Role="Guardian" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Guardian">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Parent">
           <Key>
             <PropertyRef Name="Id" />
@@ -2404,6 +2241,133 @@
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
         </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IntakeId" Type="Int32" />
+          <Property Name="SPMResultId" Type="Int32" />
+          <Property Name="Insurence" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="IC" Type="Int64" Nullable="false" />
+          <Property Name="NationalityId" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OtherPhoneNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SingleParent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudentPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WorkingExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HDYKSBIT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumSibling" Type="Int32" />
+          <Property Name="BirthOrd" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="st" Type="Byte" />
+          <NavigationProperty Name="Address" Relationship="SISV2Model.FK_Address_Student" FromRole="Student" ToRole="Address" />
+          <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_ClassStudent_Student" FromRole="Student" ToRole="ClassStudent" />
+          <NavigationProperty Name="Guardian" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Student" ToRole="Guardian" />
+          <NavigationProperty Name="Intake" Relationship="SISV2Model.FK_Student_Intake" FromRole="Student" ToRole="Intake" />
+          <NavigationProperty Name="Invoice" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Student" ToRole="Invoice" />
+          <NavigationProperty Name="Nationality" Relationship="SISV2Model.FK_Student_Nationality" FromRole="Student" ToRole="Nationality" />
+          <NavigationProperty Name="Package_Course" Relationship="SISV2Model.FK_Package_Course_Student" FromRole="Student" ToRole="Package_Course" />
+          <NavigationProperty Name="Parent" Relationship="SISV2Model.FK_Parent_Student" FromRole="Student" ToRole="Parent" />
+          <NavigationProperty Name="ReportCard" Relationship="SISV2Model.FK_ReportCard_Student" FromRole="Student" ToRole="ReportCard" />
+          <NavigationProperty Name="Sibling" Relationship="SISV2Model.FK_Sibling_Student" FromRole="Student" ToRole="Sibling" />
+          <NavigationProperty Name="SPMResult" Relationship="SISV2Model.FK_SPMResult_Student" FromRole="Student" ToRole="SPMResult" />
+        </EntityType>
+        <Association Name="FK_Address_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassStudent_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.ClassStudent" Role="ClassStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassStudent">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guardian_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Guardian" Role="Guardian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guardian">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Intake">
+          <End Type="SISV2Model.Intake" Role="Intake" Multiplicity="0..1" />
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Intake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IntakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoice_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Nationality">
+          <End Type="SISV2Model.Nationality" Role="Nationality" Multiplicity="0..1" />
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="NationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Package_Course_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Package_Course" Role="Package_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Package_Course">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Parent_Student">
           <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
           <End Type="SISV2Model.Parent" Role="Parent" Multiplicity="*" />
@@ -2412,6 +2376,42 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Parent">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportCard_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.ReportCard" Role="ReportCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportCard">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sibling_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="1" />
+          <End Type="SISV2Model.Sibling" Role="Sibling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sibling">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPMResult_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.SPMResult" Role="SPMResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SPMResult">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2793,39 +2793,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="SISV2Model.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="IntakeId" ColumnName="IntakeId" />
-                <ScalarProperty Name="SPMResultId" ColumnName="SPMResultId" />
-                <ScalarProperty Name="Insurence" ColumnName="Insurence" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="IC" ColumnName="IC" />
-                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
-                <ScalarProperty Name="OtherPhoneNum" ColumnName="OtherPhoneNum" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="Religion" ColumnName="Religion" />
-                <ScalarProperty Name="SingleParent" ColumnName="SingleParent" />
-                <ScalarProperty Name="StudentPicture" ColumnName="StudentPicture" />
-                <ScalarProperty Name="WorkingExp" ColumnName="WorkingExp" />
-                <ScalarProperty Name="HDYKSBIT" ColumnName="HDYKSBIT" />
-                <ScalarProperty Name="NumSibling" ColumnName="NumSibling" />
-                <ScalarProperty Name="BirthOrd" ColumnName="BirthOrd" />
-                <ScalarProperty Name="cd" ColumnName="cd" />
-                <ScalarProperty Name="cb" ColumnName="cb" />
-                <ScalarProperty Name="ud" ColumnName="ud" />
-                <ScalarProperty Name="ub" ColumnName="ub" />
-                <ScalarProperty Name="st" ColumnName="st" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Subject">
             <EntityTypeMapping TypeName="SISV2Model.Subject">
               <MappingFragment StoreEntitySet="Subject">
@@ -2980,6 +2947,39 @@
                 <ScalarProperty Name="FatherEdu" ColumnName="FatherEdu" />
                 <ScalarProperty Name="FatherName" ColumnName="FatherName" />
                 <ScalarProperty Name="FatherIC" ColumnName="FatherIC" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="SISV2Model.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="ub" ColumnName="ub" />
+                <ScalarProperty Name="ud" ColumnName="ud" />
+                <ScalarProperty Name="cb" ColumnName="cb" />
+                <ScalarProperty Name="cd" ColumnName="cd" />
+                <ScalarProperty Name="BirthOrd" ColumnName="BirthOrd" />
+                <ScalarProperty Name="NumSibling" ColumnName="NumSibling" />
+                <ScalarProperty Name="HDYKSBIT" ColumnName="HDYKSBIT" />
+                <ScalarProperty Name="WorkingExp" ColumnName="WorkingExp" />
+                <ScalarProperty Name="StudentPicture" ColumnName="StudentPicture" />
+                <ScalarProperty Name="SingleParent" ColumnName="SingleParent" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="OtherPhoneNum" ColumnName="OtherPhoneNum" />
+                <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="NationalityId" ColumnName="NationalityId" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Insurence" ColumnName="Insurence" />
+                <ScalarProperty Name="SPMResultId" ColumnName="SPMResultId" />
+                <ScalarProperty Name="IntakeId" ColumnName="IntakeId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

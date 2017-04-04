@@ -183,7 +183,7 @@ namespace SISv2.Controllers
 
             if (ModelState.IsValid)
             {
-
+                student.cd = DateTime.Now;
                 db.Student.Add(student);
                 db.SaveChanges();
                 student.StudentId = "P" + ConvertYear + Month + student.Id.ToString("D4");
