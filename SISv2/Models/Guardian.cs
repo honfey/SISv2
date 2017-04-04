@@ -25,10 +25,10 @@ namespace SISv2.Models
         public string FeildWork { get; set; }
         public string SectorJob { get; set; }
         public Nullable<decimal> Salary { get; set; }
-        public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
-        public Nullable<int> ub { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
+        public Nullable<System.DateTime> cb { get; set; }
+        public string cd { get; set; }
+        public Nullable<System.DateTime> ub { get; set; }
+        public string ud { get; set; }
         public Nullable<byte> st { get; set; }
     
         public virtual Student Student { get; set; }

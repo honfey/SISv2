@@ -17,10 +17,10 @@ namespace SISv2.Models
         public int Id { get; set; }
         public string FileName { get; set; }
         public Nullable<int> CourseWorkId { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
-        public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
-        public Nullable<int> ub { get; set; }
+        public Nullable<System.DateTime> cd { get; set; }
+        public string cb { get; set; }
+        public Nullable<System.DateTime> ud { get; set; }
+        public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
         public virtual CourseWork CourseWork { get; set; }
