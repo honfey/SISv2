@@ -36,71 +36,72 @@ namespace SISv2.Models
         public string Name { get; set; }
     }
 
-    public class StudentMetadata
-    {
-        [Display(Name = "Phone Number")]
-        public string PhoneNum { get; set; }
+    //show this and the bottom part to ji hui later ya
+    //public class StudentMetadata
+    //{
+    //    [Display(Name = "Phone Number")]
+    //    public string PhoneNum { get; set; }
 
-        [Display(Name = "Other Phone Number")]
-        public string OtherPhoneNum { get; set; }
+    //    [Display(Name = "Other Phone Number")]
+    //    public string OtherPhoneNum { get; set; }
 
-        [Display(Name = "Single Parent")]
-        public string SingleParent { get; set; }
+    //    [Display(Name = "Single Parent")]
+    //    public string SingleParent { get; set; }
 
-        [Display(Name = "Mother Name")]
-        public string MomName { get; set; }
+    //    [Display(Name = "Mother Name")]
+    //    public string MomName { get; set; }
 
-        [Display(Name = "Mother Education")]
-        public string MomEdu { get; set; }
+    //    [Display(Name = "Mother Education")]
+    //    public string MomEdu { get; set; }
 
-        [Display(Name = "Mother Work Status")]
-        public string MomWorkStatus { get; set; }
+    //    [Display(Name = "Mother Work Status")]
+    //    public string MomWorkStatus { get; set; }
 
-        [Display(Name = "Mother Job")]
-        public string MomJob { get; set; }
+    //    [Display(Name = "Mother Job")]
+    //    public string MomJob { get; set; }
 
-        [Display(Name = "Mother Field Work")]
-        public string MomFeildWork { get; set; }
+    //    [Display(Name = "Mother Field Work")]
+    //    public string MomFeildWork { get; set; }
 
-        [Display(Name = "Mother Sector Job")]
-        public string MomSectorJob { get; set; }
+    //    [Display(Name = "Mother Sector Job")]
+    //    public string MomSectorJob { get; set; }
 
-        [Display(Name = "Student Name")]
-        public string Name { get; set; }
+    //    [Display(Name = "Student Name")]
+    //    public string Name { get; set; }
 
-        [Display(Name = "IC Number")]
-        public long IC { get; set; }
+    //    [Display(Name = "IC Number")]
+    //    public long IC { get; set; }
 
-        [Display(Name = "Student ID")]
-        public string StudentId { get; set; }
+    //    [Display(Name = "Student ID")]
+    //    public string StudentId { get; set; }
 
-        [Display(Name = "Mom Salary")]
-        public Nullable<decimal> MomSalary { get; set; }
+    //    [Display(Name = "Mom Salary")]
+    //    public Nullable<decimal> MomSalary { get; set; }
 
-        [Display(Name = "Father Name")]
-        public string FatherName { get; set; }
+    //    [Display(Name = "Father Name")]
+    //    public string FatherName { get; set; }
 
-        [Display(Name = "Father Education")]
-        public string FatherEdu { get; set; }
+    //    [Display(Name = "Father Education")]
+    //    public string FatherEdu { get; set; }
 
-        [Display(Name = "Father Work Status")]
-        public string FatherWorkStatus { get; set; }
+    //    [Display(Name = "Father Work Status")]
+    //    public string FatherWorkStatus { get; set; }
 
-        [Display(Name = "Father Job")]
-        public string FatherJob { get; set; }
+    //    [Display(Name = "Father Job")]
+    //    public string FatherJob { get; set; }
 
-        [Display(Name = "Father Field Work")]
-        public string FatherFeildWork { get; set; }
+    //    [Display(Name = "Father Field Work")]
+    //    public string FatherFeildWork { get; set; }
 
-        [Display(Name = "Father Sector Job")]
-        public string FatherSectorJob { get; set; }
+    //    [Display(Name = "Father Sector Job")]
+    //    public string FatherSectorJob { get; set; }
 
-        [Display(Name = "Father Salary")]
-        public Nullable<decimal> FatherSalary { get; set; }
+    //    [Display(Name = "Father Salary")]
+    //    public Nullable<decimal> FatherSalary { get; set; }
 
-        [Display(Name = "Email Address")]
-        public string EmailAddress { get; set; }
-    }
+    //    [Display(Name = "Email Address")]
+    //    public string EmailAddress { get; set; }
+    //}
 
     public class SPMResultMetadata
     {
@@ -232,8 +233,9 @@ namespace SISv2.Models
     [MetadataType(typeof(TrainerMetadata))]
     public partial class Trainer { }
 
-    [MetadataType(typeof(StudentMetadata))]
-    public partial class Student { }
+    //show this and the bottom part to ji hui later ya
+    //[MetadataType(typeof(StudentMetadata))]
+    //public partial class Student { }
 
     public partial class Student {
         public int MinV { get; set; }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SISv2.Models.Image>
+@using System.Web.Configuration;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Image</th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>Download</th>
+        <th>Delete</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="@item.id">
+        <td>
+            <img src="@Url.Content("~/" + WebConfigurationManager.AppSettings["UploadImage"]+item.FileName)"class="img-responsive"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            <a href="@Url.Action("DownloadImage",new {FileName=item.FileName})"><i class="fa fa-download fa-2x" aria-hidden="true" title="Download"></i></a>
+        </td>
+        <td>
+            <a href="@Url.Action("DownloadImage",new {FileName=item.FileName})"><i class="fa fa-download fa-2x" aria-hidden="true" title="Download"></i></a>
+        </td>
+    </tr>
+}
+
+</table>
