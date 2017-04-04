@@ -17,7 +17,7 @@ namespace SISV2.Controllers
         // GET: ModuleStandard
         public ActionResult Index()
         {
-            var moduleStandards = db.ModuleStandards.Include(m => m.Course_Module).Include(m => m.MarkType);
+            var moduleStandards = db.ModuleStandard.Include(m => m.Course_Module).Include(m => m.MarkType);
             return View(moduleStandards.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ModuleStandard moduleStandard = db.ModuleStandards.Find(id);
+            ModuleStandard moduleStandard = db.ModuleStandard.Find(id);
             if (moduleStandard == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace SISV2.Controllers
         public ActionResult Create()
         {
             //ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId");
-            ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name");
+            ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name");
             return View();
         }
 
@@ -53,13 +53,13 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ModuleStandards.Add(moduleStandard);
+                db.ModuleStandard.Add(moduleStandard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", moduleStandard.Course_ModuleId);
-            ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name", moduleStandard.MarkTypeId);
+            ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name", moduleStandard.MarkTypeId);
             return View(moduleStandard);
         }
 
@@ -105,7 +105,7 @@ namespace SISV2.Controllers
             var n = db.Course_Module.Find(id);
             var c = n.Module.Name + "(" + n.Module.ModuleCode + ")";
             ViewData["name"] = c;
-            ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name");
+            ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name");
             return View(ms);
         }
 
@@ -124,7 +124,7 @@ namespace SISV2.Controllers
                 {
                     foreach (var i in mss)
                     {
-                        db.ModuleStandards.Add(i);
+                        db.ModuleStandard.Add(i);
                     }
                     db.SaveChanges();
                     ViewBag.Message = "Data successfully saved!";
@@ -136,11 +136,11 @@ namespace SISV2.Controllers
                     var n = db.Course_Module.Find(id);
                     var c = n.Module.Name;
                     ViewData["name"] = c;
-                    ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name");
+                    ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name");
                     return View(mss);
                 }
             }
-            ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name");
+            ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name");
             return View(mss);
         }
 
@@ -148,21 +148,21 @@ namespace SISV2.Controllers
         {
             if (Search == null)
             {
-                var standard = db.ClassStudents.OrderBy(x => x.Course_ModuleId).Where(x => x.Status == true);
+                var standard = db.ClassStudent.OrderBy(x => x.Course_ModuleId).Where(x => x.Status == true);
                 return View(standard.ToList());
             }
             else
             {
                 var convert = Convert.ToBoolean(Search);
-                var resultName = db.ClassStudents.OrderBy(x => x.Course_ModuleId).Where(x => x.Status == convert);
+                var resultName = db.ClassStudent.OrderBy(x => x.Course_ModuleId).Where(x => x.Status == convert);
                 return View(resultName.ToList());
             }
         }
 
         public ActionResult EditModuleStandard(int id)
         {
-            ViewBag.MT = new SelectList(db.MarkTypes, "Id", "Name");
-            var CheckModuleStandard = db.ModuleStandards.Where(x => x.Course_ModuleId == id);
+            ViewBag.MT = new SelectList(db.MarkType, "Id", "Name");
+            var CheckModuleStandard = db.ModuleStandard.Where(x => x.Course_ModuleId == id);
 
             var CourseModuleName = db.Course_Module.Find(id);
             var cmName = CourseModuleName.Module.Name + "(" + CourseModuleName.Module.ModuleCode + ")";
@@ -210,7 +210,7 @@ namespace SISV2.Controllers
                 {
                     ViewData["int"] = total;
                     ViewBag.alert = "Total Marks must be 100%";
-                    ViewBag.MT = new SelectList(db.MarkTypes, "Id", "Name");
+                    ViewBag.MT = new SelectList(db.MarkType, "Id", "Name");
 
                     var CourseModuleName = db.Course_Module.Find(id);
                     var cmName = CourseModuleName.Module.Name;
@@ -224,8 +224,8 @@ namespace SISV2.Controllers
         public ActionResult D(int id)
         {
             int rs = 0;
-            var aa = db.ModuleStandards.Find(id);
-            db.ModuleStandards.Remove(aa);
+            var aa = db.ModuleStandard.Find(id);
+            db.ModuleStandard.Remove(aa);
             rs = db.SaveChanges();
 
             return Json(new { deleteRow = rs }, JsonRequestBehavior.AllowGet);

@@ -17,7 +17,7 @@ namespace SISV2.Controllers
         // GET: MarkType
         public ActionResult Index()
         {
-            return View(db.MarkTypes.ToList());
+            return View(db.MarkType.ToList());
         }
 
         // GET: MarkType/Details/5
@@ -27,7 +27,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MarkType markType = db.MarkTypes.Find(id);
+            MarkType markType = db.MarkType.Find(id);
             if (markType == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.MarkTypes.Add(markType);
+                db.MarkType.Add(markType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MarkType markType = db.MarkTypes.Find(id);
+            MarkType markType = db.MarkType.Find(id);
             if (markType == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace SISV2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MarkType markType = db.MarkTypes.Find(id);
+            MarkType markType = db.MarkType.Find(id);
             if (markType == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace SISV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MarkType markType = db.MarkTypes.Find(id);
-            db.MarkTypes.Remove(markType);
+            MarkType markType = db.MarkType.Find(id);
+            db.MarkType.Remove(markType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

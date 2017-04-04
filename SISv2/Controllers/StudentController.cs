@@ -107,7 +107,11 @@ namespace SISv2.Controllers
 
 
 
-
+        public ActionResult FileUpload ()
+        {
+            
+            return RedirectToAction("actionname", "controller name");
+        }
 
 
         // GET: Student/Details/5
@@ -141,13 +145,14 @@ namespace SISv2.Controllers
 
             return View();
         }
+        
 
         // POST: Student/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Student student, List<HttpPostedFileBase> images)
+        public ActionResult Create(Student student)
         {
             var studentIntakeMonth = db.Intake.Where(r => r.Id == student.IntakeId);
 
@@ -176,34 +181,14 @@ namespace SISv2.Controllers
 
             int ConvertYear = Convert.ToInt32(Year) - 2000;
 
-
-
-
             if (ModelState.IsValid)
             {
-
+                student.cd = DateTime.Now;
                 db.Student.Add(student);
                 db.SaveChanges();
                 student.StudentId = "P" + ConvertYear + Month + student.Id.ToString("D4");
                 db.SaveChanges();
 
-                //if (ModelState.IsValid && images != null)
-                //{
-                //    List<Student> imgs = new List<Student>();
-                //    foreach (var obj in images)
-                //    {
-                //        if (obj != null && obj.ContentLength != 0 && obj.FileName != "")
-                //        {
-                //            string fDate = string.Format("{0:yyyMMMdddhhmmsstt}", DateTime.Now);
-                //            string documentName = obj.FileName.Trim().Replace(" ", "_");
-                //            string pathToSave = Server.MapPath(webConfigPath);
-                //            string studentpicture = fDate + '_' + documentName;
-                //            obj.SaveAs(Path.Combine(pathToSave, studentpicture));
-                //            imgs.Add(new Student { StudentPicture = studentpicture });
-                //        }
-                //    }
-                //    db.Student.AddRange(imgs);
-                //}
 
                 if (student.Parent != null && student.Parent.Count() > 0)
                 {
