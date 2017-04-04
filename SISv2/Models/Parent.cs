@@ -12,28 +12,32 @@ namespace SISv2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportCard
+    public partial class Parent
     {
         public int Id { get; set; }
-        public Nullable<int> Course_ModuleId { get; set; }
         public Nullable<int> StudentId { get; set; }
-        public Nullable<int> IntakeId { get; set; }
-        public Nullable<int> TrainerId { get; set; }
-        public Nullable<int> ClassStudentId { get; set; }
-        public Nullable<int> ModuleStandardId { get; set; }
-        public Nullable<int> CourseWorkId { get; set; }
+        public Nullable<int> FatherIC { get; set; }
+        public string FatherName { get; set; }
+        public string FatherEdu { get; set; }
+        public string FatherWorkStatus { get; set; }
+        public string FatherJob { get; set; }
+        public string FatherFeildWork { get; set; }
+        public string FatherSectorJob { get; set; }
+        public Nullable<decimal> FatherSalary { get; set; }
+        public Nullable<int> MotherIC { get; set; }
+        public string MotherName { get; set; }
+        public string MotherEdu { get; set; }
+        public string MotherWorkStatus { get; set; }
+        public string MotherJob { get; set; }
+        public string MotherFeildWork { get; set; }
+        public string MotherSectorJob { get; set; }
+        public Nullable<decimal> MotherSalary { get; set; }
         public Nullable<System.TimeSpan> cd { get; set; }
         public Nullable<int> cb { get; set; }
         public Nullable<System.TimeSpan> ud { get; set; }
         public Nullable<int> ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        public virtual ClassStudent ClassStudent { get; set; }
-        public virtual Course_Module Course_Module { get; set; }
-        public virtual CourseWork CourseWork { get; set; }
-        public virtual Intake Intake { get; set; }
-        public virtual ModuleStandard ModuleStandard { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Trainer Trainer { get; set; }
     }
 }

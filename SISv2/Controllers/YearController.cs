@@ -12,12 +12,12 @@ namespace SISv2.Controllers
 {
     public class YearController : Controller
     {
-        private SISV2Entities1 db = new SISV2Entities1();
+        private SISV2Entities db = new SISV2Entities();
 
         // GET: Year
         public ActionResult Index()
         {
-            return View(db.Years.ToList());
+            return View(db.Year.ToList());
         }
 
         // GET: Year/Details/5
@@ -27,7 +27,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
+            Year year = db.Year.Find(id);
             if (year == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Years.Add(year);
+                db.Year.Add(year);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
+            Year year = db.Year.Find(id);
             if (year == null)
             {
                 return HttpNotFound();
@@ -104,7 +104,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
+            Year year = db.Year.Find(id);
             if (year == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace SISv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Year year = db.Years.Find(id);
-            db.Years.Remove(year);
+            Year year = db.Year.Find(id);
+            db.Year.Remove(year);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

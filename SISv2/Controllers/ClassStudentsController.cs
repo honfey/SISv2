@@ -12,20 +12,20 @@ namespace SISv2.Controllers
 {
     public class ClassStudentsController : Controller
     {
-        private SISV2Entities1 db = new SISV2Entities1();
+        private SISV2Entities db = new SISV2Entities();
 
         // GET: ClassStudents
         public ActionResult Index(int? id,int? Search)
         {
             if (Search == null)
             {
-                var classStudents = db.ClassStudents.Include(c => c.Course_Module).Include(c => c.Student).OrderBy(x => x.Course_ModuleId).Where(x => x.Status == true);
+                var classStudents = db.ClassStudent.Include(c => c.Course_Module).Include(c => c.Student).OrderBy(x => x.Course_ModuleId).Where(x => x.Status == true);
                 return View(classStudents.ToList());
             }
             else
             {
                 var convert = Convert.ToBoolean(Search);
-                var resultName = db.ClassStudents.Include(c => c.Course_Module).Include(c => c.Student).OrderBy(x => x.Course_ModuleId).Where(x => x.Status == convert);
+                var resultName = db.ClassStudent.Include(c => c.Course_Module).Include(c => c.Student).OrderBy(x => x.Course_ModuleId).Where(x => x.Status == convert);
                 return View(resultName.ToList());
             }
 
@@ -34,19 +34,19 @@ namespace SISv2.Controllers
 
         public ActionResult CreateNewDetail(int? id, DateTime id2)
         {
-            var getdata = db.ClassStudents.Where(x => x.Course_ModuleId == id && x.CreateDate == id2);
+            var getdata = db.ClassStudent.Where(x => x.Course_ModuleId == id && x.CreateDate == id2);
             return View(getdata);
 
         }
 
         public ActionResult deletecreate(int? id)
         {
-            var select = db.ClassStudents.Where(x => x.Course_ModuleId == id);
+            var select = db.ClassStudent.Where(x => x.Course_ModuleId == id);
 
             foreach (var item in select.ToList())
             {
                 
-                var finding = db.ClassStudents.Single(x => x.Course_ModuleId == item.Course_ModuleId && x.StudentId == item.StudentId);
+                var finding = db.ClassStudent.Single(x => x.Course_ModuleId == item.Course_ModuleId && x.StudentId == item.StudentId);
                 finding.Status = false;
                 db.Entry(finding).State = EntityState.Modified;
             }
@@ -67,7 +67,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClassStudent classStudent = db.ClassStudents.Find(id);
+            ClassStudent classStudent = db.ClassStudent.Find(id);
             if (classStudent == null)
             {
                 return HttpNotFound();
@@ -79,10 +79,10 @@ namespace SISv2.Controllers
         public ActionResult Create()
         {
             var moduleName = from l in db.Course_Module
-                             join c in db.Modules on l.ModuleId equals c.ModuleCode
+                             join c in db.Module on l.ModuleId equals c.ModuleCode
                              select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
 
-            var studentName = from s in db.Students
+            var studentName = from s in db.Student
                               select new { s.Id, Name = s.Name + "(" + s.StudentId + ")" };
 
             ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
@@ -118,16 +118,16 @@ namespace SISv2.Controllers
 
                     DateTime todaydate = DateTime.Now.Date;
 
-                    var checking = db.ClassStudents.Any(x => x.Course_ModuleId == classStudent.Course_ModuleId && x.CreateDate == todaydate);
+                    var checking = db.ClassStudent.Any(x => x.Course_ModuleId == classStudent.Course_ModuleId && x.CreateDate == todaydate);
                     if (checking)
                     {
                         var moduleName = from l in db.Course_Module
-                                         join c in db.Modules on l.ModuleId equals c.ModuleCode
+                                         join c in db.Module on l.ModuleId equals c.ModuleCode
                                          select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
 
                         ModelState.AddModelError("", "You have already create THIS class today !");
                         ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
-                        ViewBag.StudentId = new MultiSelectList(db.Students, "ID", "Name");
+                        ViewBag.StudentId = new MultiSelectList(db.Student, "ID", "Name");
                         return View(classStudent);
                     }
                     else
@@ -139,7 +139,7 @@ namespace SISv2.Controllers
 
                             cs.Add(new ClassStudent { StudentId = i, Course_ModuleId = classStudent.Course_ModuleId, Day = classStudent.Day, Exam_Day = 1, Trial_Day = 1, Project_Day = 1, CreateDate = DateTime.Now, Status = true,st = 1 });
                         }
-                        db.ClassStudents.AddRange(cs);
+                        db.ClassStudent.AddRange(cs);
                     }
                 }
 
@@ -159,13 +159,13 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClassStudent classStudent = db.ClassStudents.Find(id);
+            ClassStudent classStudent = db.ClassStudent.Find(id);
             if (classStudent == null)
             {
                 return HttpNotFound();
             }
             ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
-            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "ID", "Name", classStudent.StudentId);
             return View(classStudent);
         }
 
@@ -183,7 +183,7 @@ namespace SISv2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
-            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "ID", "Name", classStudent.StudentId);
             return View(classStudent);
         }
 
@@ -194,13 +194,13 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ClassStudent classStudent = db.ClassStudents.Find(id);
+            ClassStudent classStudent = db.ClassStudent.Find(id);
             if (classStudent == null)
             {
                 return HttpNotFound();
             }
             ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
-            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "ID", "Name", classStudent.StudentId);
             return View(classStudent);
         }
         // POST: ClassStudents/Delete/5
@@ -215,7 +215,7 @@ namespace SISv2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
-            ViewBag.StudentId = new SelectList(db.Students, "ID", "Name", classStudent.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "ID", "Name", classStudent.StudentId);
             return View(classStudent);
         }
 

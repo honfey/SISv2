@@ -171,6 +171,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\ClassStudentsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CourseWorksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -184,6 +186,8 @@
     <Compile Include="Controllers\Package_CourseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\YearController.cs" />
+    <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,12 +198,16 @@
     <Compile Include="Models\Amount.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserClaims.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\AspNetUserLogins.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -293,6 +301,7 @@
     <Compile Include="Models\Subject.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -1313,6 +1322,19 @@
     <Content Include="Views\Invoice\Details.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\ClassStudents\CIndex.cshtml" />
+    <Content Include="Views\ClassStudents\ClassAvailable.cshtml" />
+    <Content Include="Views\ClassStudents\Create.cshtml" />
+    <Content Include="Views\ClassStudents\CreateNewDetail.cshtml" />
+    <Content Include="Views\ClassStudents\Delete.cshtml" />
+    <Content Include="Views\ClassStudents\Details.cshtml" />
+    <Content Include="Views\ClassStudents\Edit.cshtml" />
+    <Content Include="Views\ClassStudents\Index.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
