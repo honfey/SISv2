@@ -25,10 +25,10 @@ namespace SISv2.Models
         public string Ref { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string Color { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
-        public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
-        public Nullable<int> ub { get; set; }
+        public Nullable<System.DateTime> cd { get; set; }
+        public string cb { get; set; }
+        public Nullable<System.DateTime> ud { get; set; }
+        public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
