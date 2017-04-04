@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
 
-namespace SISV2.Controllers
+namespace SISv2.Controllers
 {
     public class InvoiceController : Controller
     {
@@ -17,11 +17,11 @@ namespace SISV2.Controllers
         // GET: Invoice
         //public ActionResult Index()
         //{
-        //    var invoices = db.Invoices.Include(i => i.Student);
-        //    return View(invoices.ToList());
+        //    var invoice = db.Invoice.Include(i => i.Student);
+        //    return View(invoice.ToList());
         //}
 
-        public ActionResult Index(string SearchString)
+          public ActionResult Index(string SearchString)
         {
             if (!String.IsNullOrEmpty(SearchString))
             {
@@ -59,59 +59,16 @@ namespace SISV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Ref,Date,Description,Amount,GST,GSTAmt,Total,FinalTotal,Color,cd,cb,ud,ub,st")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "Id,StudentId,Ref,Date,Color,cd,cb,ud,ub,st")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                if(invoice.GST == null)
-                {
-                    invoice.GST = 0;
-                }
-                if(invoice.Amount != null)
-                {
-                    invoice.FinalTotal = invoice.Amount;
-                    invoice.GSTAmt = invoice.GST;
-                    invoice.Total = invoice.FinalTotal - invoice.GSTAmt;
-                }
-
                 db.Invoice.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //{
-            //    db.Invoices.Add(invoice);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
 
-            ViewBag.StudentId = new SelectList(db.Student, "Id", "", invoice.StudentId);
-            return View(invoice);
-        }
-
-        public ActionResult Invoice(int? id)
-        {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Invoice invoice = db.Invoice.Find(id);
-            if(invoice == null)
-            {
-                return HttpNotFound();
-            }
-            return View(invoice);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Invoice([Bind(Include = "Id,StudentId,Ref,Date,Description,Amount,GST,GSTAmt,Total,FinalTotal,Color,cd,cb,ud,ub,st")] Invoice invoice)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(invoice).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
 
@@ -136,25 +93,15 @@ namespace SISV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StudentId,Ref,Date,Description,Amount,GST,GSTAmt,Total,FinalTotal,Color,cd,cb,ud,ub,st")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "Id,StudentId,Ref,Date,Color,cd,cb,ud,ub,st")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                if(invoice.GST == null)
-                {
-                    invoice.GST = 0;
-                }
-                if(invoice.Amount != null)
-                {
-                    invoice.FinalTotal = invoice.Amount;
-                    invoice.GSTAmt = invoice.GST;
-                    invoice.Total = invoice.FinalTotal - invoice.GSTAmt;
-                }
                 db.Entry(invoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "StudentId", invoice.StudentId);
             return View(invoice);
         }
 

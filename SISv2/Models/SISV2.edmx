@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SISV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SISV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Package">
           <Key>
             <PropertyRef Name="PackageId" />
@@ -108,6 +108,19 @@
           <Property Name="ud" Type="time" Precision="7" />
           <Property Name="ub" Type="int" />
           <Property Name="st" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Amount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GSTAmt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
@@ -255,12 +268,6 @@
           <Property Name="StudentId" Type="int" />
           <Property Name="Ref" Type="varchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
-          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="GST" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="GSTAmt" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="FinalTotal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="cd" Type="time" Precision="7" />
           <Property Name="cb" Type="int" />
@@ -540,6 +547,18 @@
             </Principal>
             <Dependent Role="Address">
               <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Amount_Invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1" />
+          <End Role="Amount" Type="Self.Amount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Amount">
+              <PropertyRef Name="InvoiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -993,6 +1012,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="Training" store:Type="Tables" />
+          <EntitySet Name="Amount" EntityType="Self.Amount" Schema="Training" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="Training" store:Type="Tables" />
           <EntitySet Name="ClassStudent" EntityType="Self.ClassStudent" Schema="Training" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="Training" store:Type="Tables" />
@@ -1020,6 +1040,10 @@
           <AssociationSet Name="FK_Address_Student" Association="Self.FK_Address_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Amount_Invoice" Association="Self.FK_Amount_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Amount" EntitySet="Amount" />
           </AssociationSet>
           <AssociationSet Name="FK_Attendance_ClassStudent" Association="Self.FK_Attendance_ClassStudent">
             <End Role="ClassStudent" EntitySet="ClassStudent" />
@@ -1166,8 +1190,7 @@
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SISV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1386,28 +1409,6 @@
           <NavigationProperty Name="Image" Relationship="Self.FK_Image_CourseWork" FromRole="CourseWork" ToRole="Image" />
           <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_CourseWork" FromRole="CourseWork" ToRole="ReportCard" />
         </EntityType>
-        <EntityType Name="Guardian">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IC" Type="Int32" />
-          <Property Name="Edu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Guardian_Student" FromRole="Guardian" ToRole="Student" />
-        </EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="Id" />
@@ -1440,28 +1441,6 @@
           <NavigationProperty Name="Year" Relationship="Self.FK_Intake_Year" FromRole="Intake" ToRole="Year" />
           <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_Intake" FromRole="Intake" ToRole="ReportCard" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Student_Intake" FromRole="Intake" ToRole="Student" />
-        </EntityType>
-        <EntityType Name="Invoice">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="GSTAmt" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
-          <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Invoice_Student" FromRole="Invoice" ToRole="Student" />
         </EntityType>
         <EntityType Name="MarkType">
           <Key>
@@ -1558,35 +1537,6 @@
           <NavigationProperty Name="Course" Relationship="Self.FK_Package_Course_Course" FromRole="Package_Course" ToRole="Course" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Package_Course_Student" FromRole="Package_Course" ToRole="Student" />
         </EntityType>
-        <EntityType Name="Parent">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="FatherIC" Type="Int32" />
-          <Property Name="FatherName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="FatherEdu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FatherWorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FatherJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FatherFeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FatherSectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FatherSalary" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MotherIC" Type="Int32" />
-          <Property Name="MotherName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="MotherEdu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherWorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherFeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherSectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MotherSalary" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
-          <Property Name="st" Type="Byte" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
-        </EntityType>
         <EntityType Name="ReportCard">
           <Key>
             <PropertyRef Name="Id" />
@@ -1681,15 +1631,15 @@
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Address_Student" FromRole="Student" ToRole="Address" />
           <NavigationProperty Name="ClassStudent" Relationship="Self.FK_ClassStudent_Student" FromRole="Student" ToRole="ClassStudent" />
-          <NavigationProperty Name="Guardian" Relationship="Self.FK_Guardian_Student" FromRole="Student" ToRole="Guardian" />
           <NavigationProperty Name="Intake" Relationship="Self.FK_Student_Intake" FromRole="Student" ToRole="Intake" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK_Invoice_Student" FromRole="Student" ToRole="Invoice" />
           <NavigationProperty Name="Nationality" Relationship="Self.FK_Student_Nationality" FromRole="Student" ToRole="Nationality" />
           <NavigationProperty Name="Package_Course" Relationship="Self.FK_Package_Course_Student" FromRole="Student" ToRole="Package_Course" />
-          <NavigationProperty Name="Parent" Relationship="Self.FK_Parent_Student" FromRole="Student" ToRole="Parent" />
           <NavigationProperty Name="ReportCard" Relationship="Self.FK_ReportCard_Student" FromRole="Student" ToRole="ReportCard" />
           <NavigationProperty Name="Sibling" Relationship="Self.FK_Sibling_Student" FromRole="Student" ToRole="Sibling" />
           <NavigationProperty Name="SPMResult" Relationship="Self.FK_SPMResult_Student" FromRole="Student" ToRole="SPMResult" />
+          <NavigationProperty Name="Invoice" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Student" ToRole="Invoice" />
+          <NavigationProperty Name="Guardian" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Student" ToRole="Guardian" />
+          <NavigationProperty Name="Parent" Relationship="SISV2Model.FK_Parent_Student" FromRole="Student" ToRole="Parent" />
         </EntityType>
         <EntityType Name="Subject">
           <Key>
@@ -2005,18 +1955,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Guardian_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Guardian" Type="Self.Guardian" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Guardian">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Intake_Month">
           <End Role="Month" Type="Self.Month" Multiplicity="1" />
           <End Role="Intake" Type="Self.Intake" Multiplicity="*" />
@@ -2065,18 +2003,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Invoice_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Invoice">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ModuleStandard_MarkType">
           <End Role="MarkType" Type="Self.MarkType" Multiplicity="0..1" />
           <End Role="ModuleStandard" Type="Self.ModuleStandard" Multiplicity="*" />
@@ -2121,18 +2047,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Package_Course">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Parent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Parent">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2203,17 +2117,14 @@
           <EntitySet Name="Course" EntityType="Self.Course" />
           <EntitySet Name="Course_Module" EntityType="Self.Course_Module" />
           <EntitySet Name="CourseWork" EntityType="Self.CourseWork" />
-          <EntitySet Name="Guardian" EntityType="Self.Guardian" />
           <EntitySet Name="Image" EntityType="Self.Image" />
           <EntitySet Name="Intake" EntityType="Self.Intake" />
-          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
           <EntitySet Name="MarkType" EntityType="Self.MarkType" />
           <EntitySet Name="Module" EntityType="Self.Module" />
           <EntitySet Name="ModuleStandard" EntityType="Self.ModuleStandard" />
           <EntitySet Name="Month" EntityType="Self.Month" />
           <EntitySet Name="Nationality" EntityType="Self.Nationality" />
           <EntitySet Name="Package_Course" EntityType="Self.Package_Course" />
-          <EntitySet Name="Parent" EntityType="Self.Parent" />
           <EntitySet Name="ReportCard" EntityType="Self.ReportCard" />
           <EntitySet Name="Sibling" EntityType="Self.Sibling" />
           <EntitySet Name="SPMResult" EntityType="Self.SPMResult" />
@@ -2302,10 +2213,6 @@
             <End Role="CourseWork" EntitySet="CourseWork" />
             <End Role="ReportCard" EntitySet="ReportCard" />
           </AssociationSet>
-          <AssociationSet Name="FK_Guardian_Student" Association="Self.FK_Guardian_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Guardian" EntitySet="Guardian" />
-          </AssociationSet>
           <AssociationSet Name="FK_Intake_Month" Association="Self.FK_Intake_Month">
             <End Role="Month" EntitySet="Month" />
             <End Role="Intake" EntitySet="Intake" />
@@ -2322,10 +2229,6 @@
             <End Role="Intake" EntitySet="Intake" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
-          <AssociationSet Name="FK_Invoice_Student" Association="Self.FK_Invoice_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Invoice" EntitySet="Invoice" />
-          </AssociationSet>
           <AssociationSet Name="FK_ModuleStandard_MarkType" Association="Self.FK_ModuleStandard_MarkType">
             <End Role="MarkType" EntitySet="MarkType" />
             <End Role="ModuleStandard" EntitySet="ModuleStandard" />
@@ -2341,10 +2244,6 @@
           <AssociationSet Name="FK_Package_Course_Student" Association="Self.FK_Package_Course_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Package_Course" EntitySet="Package_Course" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Parent_Student" Association="Self.FK_Parent_Student">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Parent" EntitySet="Parent" />
           </AssociationSet>
           <AssociationSet Name="FK_ReportCard_Student" Association="Self.FK_ReportCard_Student">
             <End Role="Student" EntitySet="Student" />
@@ -2366,7 +2265,157 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Invoice" EntityType="SISV2Model.Invoice" />
+          <AssociationSet Name="FK_Invoice_Student" Association="SISV2Model.FK_Invoice_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <EntitySet Name="Amount" EntityType="SISV2Model.Amount" />
+          <AssociationSet Name="FK_Amount_Invoice" Association="SISV2Model.FK_Amount_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Amount" EntitySet="Amount" />
+          </AssociationSet>
+          <EntitySet Name="Guardian" EntityType="SISV2Model.Guardian" />
+          <AssociationSet Name="FK_Guardian_Student" Association="SISV2Model.FK_Guardian_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Guardian" EntitySet="Guardian" />
+          </AssociationSet>
+          <EntitySet Name="Parent" EntityType="SISV2Model.Parent" />
+          <AssociationSet Name="FK_Parent_Student" Association="SISV2Model.FK_Parent_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Parent" EntitySet="Parent" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cd" Type="Time" Precision="7" />
+          <Property Name="cb" Type="Int32" />
+          <Property Name="ud" Type="Time" Precision="7" />
+          <Property Name="ub" Type="Int32" />
+          <Property Name="st" Type="Byte" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Invoice" ToRole="Student" />
+          <NavigationProperty Name="Amount" Relationship="SISV2Model.FK_Amount_Invoice" FromRole="Invoice" ToRole="Amount" />
+        </EntityType>
+        <Association Name="FK_Invoice_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Amount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GSTAmt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Invoice" Relationship="SISV2Model.FK_Amount_Invoice" FromRole="Amount" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK_Amount_Invoice">
+          <End Type="SISV2Model.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="SISV2Model.Amount" Role="Amount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Amount">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Guardian">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IC" Type="Int32" />
+          <Property Name="Edu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Job" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cb" Type="Int32" />
+          <Property Name="cd" Type="Time" Precision="7" />
+          <Property Name="ub" Type="Int32" />
+          <Property Name="ud" Type="Time" Precision="7" />
+          <Property Name="st" Type="Byte" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Guardian" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Guardian_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Guardian" Role="Guardian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guardian">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="FatherIC" Type="Int32" />
+          <Property Name="FatherName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FatherEdu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherWorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherFeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherSectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FatherSalary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MotherIC" Type="Int32" />
+          <Property Name="MotherName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MotherEdu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherWorkStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherFeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherSectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MotherSalary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cd" Type="Time" Precision="7" />
+          <Property Name="cb" Type="Int32" />
+          <Property Name="ud" Type="Time" Precision="7" />
+          <Property Name="ub" Type="Int32" />
+          <Property Name="st" Type="Byte" />
+          <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Parent_Student">
+          <End Type="SISV2Model.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="SISV2Model.Parent" Role="Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2569,28 +2618,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Guardian">
-            <EntityTypeMapping TypeName="SISV2Model.Guardian">
-              <MappingFragment StoreEntitySet="Guardian">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IC" ColumnName="IC" />
-                <ScalarProperty Name="Edu" ColumnName="Edu" />
-                <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
-                <ScalarProperty Name="Job" ColumnName="Job" />
-                <ScalarProperty Name="FeildWork" ColumnName="FeildWork" />
-                <ScalarProperty Name="SectorJob" ColumnName="SectorJob" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="cb" ColumnName="cb" />
-                <ScalarProperty Name="cd" ColumnName="cd" />
-                <ScalarProperty Name="ub" ColumnName="ub" />
-                <ScalarProperty Name="ud" ColumnName="ud" />
-                <ScalarProperty Name="st" ColumnName="st" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Image">
             <EntityTypeMapping TypeName="SISV2Model.Image">
               <MappingFragment StoreEntitySet="Image">
@@ -2612,28 +2639,6 @@
                 <ScalarProperty Name="YearId" ColumnName="YearId" />
                 <ScalarProperty Name="MonthId" ColumnName="MonthId" />
                 <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
-                <ScalarProperty Name="cd" ColumnName="cd" />
-                <ScalarProperty Name="cb" ColumnName="cb" />
-                <ScalarProperty Name="ud" ColumnName="ud" />
-                <ScalarProperty Name="ub" ColumnName="ub" />
-                <ScalarProperty Name="st" ColumnName="st" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Invoice">
-            <EntityTypeMapping TypeName="SISV2Model.Invoice">
-              <MappingFragment StoreEntitySet="Invoice">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="Ref" ColumnName="Ref" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="GST" ColumnName="GST" />
-                <ScalarProperty Name="GSTAmt" ColumnName="GSTAmt" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="cd" ColumnName="cd" />
                 <ScalarProperty Name="cb" ColumnName="cb" />
                 <ScalarProperty Name="ud" ColumnName="ud" />
@@ -2725,35 +2730,6 @@
                 <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
                 <ScalarProperty Name="MonthlyPayment" ColumnName="MonthlyPayment" />
                 <ScalarProperty Name="TotalLeft" ColumnName="TotalLeft" />
-                <ScalarProperty Name="cd" ColumnName="cd" />
-                <ScalarProperty Name="cb" ColumnName="cb" />
-                <ScalarProperty Name="ud" ColumnName="ud" />
-                <ScalarProperty Name="ub" ColumnName="ub" />
-                <ScalarProperty Name="st" ColumnName="st" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Parent">
-            <EntityTypeMapping TypeName="SISV2Model.Parent">
-              <MappingFragment StoreEntitySet="Parent">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="FatherIC" ColumnName="FatherIC" />
-                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
-                <ScalarProperty Name="FatherEdu" ColumnName="FatherEdu" />
-                <ScalarProperty Name="FatherWorkStatus" ColumnName="FatherWorkStatus" />
-                <ScalarProperty Name="FatherJob" ColumnName="FatherJob" />
-                <ScalarProperty Name="FatherFeildWork" ColumnName="FatherFeildWork" />
-                <ScalarProperty Name="FatherSectorJob" ColumnName="FatherSectorJob" />
-                <ScalarProperty Name="FatherSalary" ColumnName="FatherSalary" />
-                <ScalarProperty Name="MotherIC" ColumnName="MotherIC" />
-                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
-                <ScalarProperty Name="MotherEdu" ColumnName="MotherEdu" />
-                <ScalarProperty Name="MotherWorkStatus" ColumnName="MotherWorkStatus" />
-                <ScalarProperty Name="MotherJob" ColumnName="MotherJob" />
-                <ScalarProperty Name="MotherFeildWork" ColumnName="MotherFeildWork" />
-                <ScalarProperty Name="MotherSectorJob" ColumnName="MotherSectorJob" />
-                <ScalarProperty Name="MotherSalary" ColumnName="MotherSalary" />
                 <ScalarProperty Name="cd" ColumnName="cd" />
                 <ScalarProperty Name="cb" ColumnName="cb" />
                 <ScalarProperty Name="ud" ColumnName="ud" />
@@ -2928,6 +2904,87 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="SISV2Model.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="ub" ColumnName="ub" />
+                <ScalarProperty Name="ud" ColumnName="ud" />
+                <ScalarProperty Name="cb" ColumnName="cb" />
+                <ScalarProperty Name="cd" ColumnName="cd" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Ref" ColumnName="Ref" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Amount">
+            <EntityTypeMapping TypeName="SISV2Model.Amount">
+              <MappingFragment StoreEntitySet="Amount">
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="GSTAmt" ColumnName="GSTAmt" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="Amount1" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guardian">
+            <EntityTypeMapping TypeName="SISV2Model.Guardian">
+              <MappingFragment StoreEntitySet="Guardian">
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="ud" ColumnName="ud" />
+                <ScalarProperty Name="ub" ColumnName="ub" />
+                <ScalarProperty Name="cd" ColumnName="cd" />
+                <ScalarProperty Name="cb" ColumnName="cb" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="SectorJob" ColumnName="SectorJob" />
+                <ScalarProperty Name="FeildWork" ColumnName="FeildWork" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="WorkStatus" ColumnName="WorkStatus" />
+                <ScalarProperty Name="Edu" ColumnName="Edu" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parent">
+            <EntityTypeMapping TypeName="SISV2Model.Parent">
+              <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="ub" ColumnName="ub" />
+                <ScalarProperty Name="ud" ColumnName="ud" />
+                <ScalarProperty Name="cb" ColumnName="cb" />
+                <ScalarProperty Name="cd" ColumnName="cd" />
+                <ScalarProperty Name="MotherSalary" ColumnName="MotherSalary" />
+                <ScalarProperty Name="MotherSectorJob" ColumnName="MotherSectorJob" />
+                <ScalarProperty Name="MotherFeildWork" ColumnName="MotherFeildWork" />
+                <ScalarProperty Name="MotherJob" ColumnName="MotherJob" />
+                <ScalarProperty Name="MotherWorkStatus" ColumnName="MotherWorkStatus" />
+                <ScalarProperty Name="MotherEdu" ColumnName="MotherEdu" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="MotherIC" ColumnName="MotherIC" />
+                <ScalarProperty Name="FatherSalary" ColumnName="FatherSalary" />
+                <ScalarProperty Name="FatherSectorJob" ColumnName="FatherSectorJob" />
+                <ScalarProperty Name="FatherFeildWork" ColumnName="FatherFeildWork" />
+                <ScalarProperty Name="FatherJob" ColumnName="FatherJob" />
+                <ScalarProperty Name="FatherWorkStatus" ColumnName="FatherWorkStatus" />
+                <ScalarProperty Name="FatherEdu" ColumnName="FatherEdu" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="FatherIC" ColumnName="FatherIC" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
