@@ -12,28 +12,24 @@ namespace SISv2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportCard
+    public partial class Sibling
     {
         public int Id { get; set; }
-        public Nullable<int> Course_ModuleId { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public Nullable<int> IntakeId { get; set; }
-        public Nullable<int> TrainerId { get; set; }
-        public Nullable<int> ClassStudentId { get; set; }
-        public Nullable<int> ModuleStandardId { get; set; }
-        public Nullable<int> CourseWorkId { get; set; }
+        public int StudentId { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Age { get; set; }
+        public string Gender { get; set; }
+        public Nullable<int> HomePosition { get; set; }
+        public string Occupation { get; set; }
+        public Nullable<int> IC { get; set; }
+        public Nullable<int> HandphoneNumber { get; set; }
+        public string Email { get; set; }
         public Nullable<System.DateTime> cd { get; set; }
         public string cb { get; set; }
         public Nullable<System.DateTime> ud { get; set; }
         public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        public virtual ClassStudent ClassStudent { get; set; }
-        public virtual Course_Module Course_Module { get; set; }
-        public virtual CourseWork CourseWork { get; set; }
-        public virtual Intake Intake { get; set; }
-        public virtual ModuleStandard ModuleStandard { get; set; }
         public virtual Student Student { get; set; }
-        public virtual Trainer Trainer { get; set; }
     }
 }

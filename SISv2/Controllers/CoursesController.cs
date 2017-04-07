@@ -13,12 +13,12 @@ namespace SISv2.Controllers
 {
     public class CoursesController : Controller
     {
-        private SISV2Entities1 db = new SISV2Entities1();
+        private SISV2Entities db = new SISV2Entities();
 
         // GET: Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(db.Course.ToList());
         }
 
         // GET: Courses/Details/5
@@ -28,7 +28,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Course.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -47,26 +47,34 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Course course)
+        public ActionResult Create([Bind(Include = "CourseCode,PackageId,Name,Fee")] Course course)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                course.st = 1;
+                var checking = db.Course.Any(x => x.CourseCode == course.CourseCode);
+                if (checking)
+                {
+
+                    ModelState.AddModelError("", "THIS CourseCode has been used !");
+                    return View(course);
+                }
+                db.Course.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(course);
         }
-
         // GET: Courses/Edit/5
         public ActionResult Edit(string id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Course.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -79,10 +87,12 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Course course)
+        public ActionResult Edit([Bind(Include = "CourseCode,PackageId,Name,Fee")] Course course)
         {
             if (ModelState.IsValid)
             {
+                course.st = 1;
+
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,7 +107,7 @@ namespace SISv2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
+            Course course = db.Course.Find(id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -110,7 +120,7 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Course course)
+        public ActionResult Delete([Bind(Include = "CourseCode,PackageId,Name,Fee")]Course course)
         {
             if (ModelState.IsValid)
             {

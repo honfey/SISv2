@@ -31,19 +31,19 @@ namespace SISv2.Models
         public Nullable<int> Project_Day { get; set; }
         public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<System.TimeSpan> cd { get; set; }
-        public Nullable<int> cb { get; set; }
-        public Nullable<System.TimeSpan> ud { get; set; }
-        public Nullable<int> ub { get; set; }
+        public Nullable<System.DateTime> cd { get; set; }
+        public string cb { get; set; }
+        public Nullable<System.DateTime> ud { get; set; }
+        public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendance> Attendance { get; set; }
         public virtual Course_Module Course_Module { get; set; }
+        public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseWork> CourseWork { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportCard> ReportCard { get; set; }
-        public virtual Student Student { get; set; }
     }
 }

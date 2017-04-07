@@ -1,40 +1,38 @@
-﻿@model IEnumerable<SISv2.Models.Intake>
+﻿@model IEnumerable<SISv2.Models.ClassStudent>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CIndex";
 }
 
-<h2>Index</h2>
+<h2>CIndex</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-       
         <th>
-            @Html.DisplayNameFor(model => model.Course.Name)
+            @Html.DisplayNameFor(model => model.Day)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Month.Month1)
+            @Html.DisplayNameFor(model => model.Course_Module.CourseId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year.Year1)
+            @Html.DisplayNameFor(model => model.Student.Name)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-     
         <td>
-            @Html.DisplayFor(modelItem => item.Course.Name)
+            @Html.DisplayFor(modelItem => item.Day)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Month.Month1)
+            @Html.DisplayFor(modelItem => item.Course_Module.CourseId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Year.Year1)
+            @Html.DisplayFor(modelItem => item.Student.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -171,6 +171,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\ClassStudentsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CourseWorksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -1124,8 +1126,6 @@
     <Content Include="Content\UploadedFiles\UploadedImages\20161114033219PM_19a0975310c9ae8a68cf566513c098e9.jpg" />
     <Content Include="Content\UploadedFiles\UploadedImages\20161114101939AM_11.jpg" />
     <Content Include="Content\UploadedFiles\UploadedImages\20161114101939AM_88B93E47-1627-438C-85A1-4E4FEF09B028-2810-000002363534CB75.JPG" />
-    <Content Include="DataBase\k.html" />
-    <Content Include="DataBase\script.sql" />
     <Content Include="fonts\Database\test.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1313,6 +1313,19 @@
     <Content Include="Views\Invoice\Details.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\ClassStudents\CIndex.cshtml" />
+    <Content Include="Views\ClassStudents\ClassAvailable.cshtml" />
+    <Content Include="Views\ClassStudents\Create.cshtml" />
+    <Content Include="Views\ClassStudents\CreateNewDetail.cshtml" />
+    <Content Include="Views\ClassStudents\Delete.cshtml" />
+    <Content Include="Views\ClassStudents\Details.cshtml" />
+    <Content Include="Views\ClassStudents\Edit.cshtml" />
+    <Content Include="Views\ClassStudents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
