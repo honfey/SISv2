@@ -47,18 +47,10 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseCode,PackageId,Name,Fee")] Course course)
+        public ActionResult Create( Course course)
         {
             if (ModelState.IsValid)
             {
-                course.st = 1;
-                var checking = db.Course.Any(x => x.CourseCode == course.CourseCode);
-                if (checking)
-                {
-
-                    ModelState.AddModelError("", "THIS CourseCode has been used !");
-                    return View(course);
-                }
                 db.Course.Add(course);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -66,10 +58,10 @@ namespace SISv2.Controllers
 
             return View(course);
         }
+
         // GET: Courses/Edit/5
         public ActionResult Edit(string id)
         {
-            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -87,12 +79,10 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseCode,PackageId,Name,Fee")] Course course)
+        public ActionResult Edit(Course course)
         {
             if (ModelState.IsValid)
             {
-                course.st = 1;
-
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -120,7 +110,7 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete([Bind(Include = "CourseCode,PackageId,Name,Fee")]Course course)
+        public ActionResult Delete(Course course)
         {
             if (ModelState.IsValid)
             {
