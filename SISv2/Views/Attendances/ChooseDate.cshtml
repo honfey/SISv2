@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SISv2.Models.ClassStudent>
+
+@{
+    ViewBag.Title = "Select Date (Edit / Mark Back)";
+}
+
+<h2>Select Date (Edit / Mark Back)</h2>
+
+<br>
+
+<table class="table">
+    <tr>
+        <th>
+           <strong style="font-size: 16px" >Date</strong>
+        </th>
+    </tr>
+
+
+
+
+    @foreach (var item in ViewData["DateList"] as List<DateTime?>)
+    {
+        <tr>
+            <td>
+                &nbsp; &nbsp; &nbsp; @Html.ActionLink(item.Value.ToShortDateString(), "EditDate", new { id = Url.RequestContext.RouteData.Values["id"], Date = item.Value.ToShortDateString(), id2 = Model.ElementAtOrDefault(0).Status, id3 = Model.ElementAtOrDefault(0).CreateDate })
+            </td>
+        </tr>
+    }
+
+
+        <tr>
+            <td>
+                @Html.ActionLink("None Of The Above ?", "MarkBack", new { id = Url.RequestContext.RouteData.Values["id"], id2 = Model.ElementAtOrDefault(0).Status, id3 = Model.ElementAtOrDefault(0).CreateDate }, new { @class ="alert"})
+            </td>
+        </tr>
+
+    <tr>
+        <td>
+            @Html.ActionLink("Back to home", "ClassAvailable", null,new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+
+
+</table>
+
+@section Scripts {
+    <script>
+    $(document).on("click", ".alert", function (e) {
+        var link = $(this).attr("href");
+        e.preventDefault();
+        bootbox.confirm("Are you sure mark back this class attendance ?", function (result) {
+            if (result) {
+                document.location.href = link;
+            }
+        });
+    });
+    </script>
+
+}

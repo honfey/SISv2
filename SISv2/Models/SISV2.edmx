@@ -81,16 +81,6 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -103,10 +93,10 @@
           <Property Name="City" Type="varchar" MaxLength="20" />
           <Property Name="State" Type="varchar" MaxLength="20" />
           <Property Name="Country" Type="varchar" MaxLength="30" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Amount">
@@ -138,10 +128,10 @@
           <Property Name="Status" Type="bit" />
           <Property Name="EditBy" Type="varchar" MaxLength="50" />
           <Property Name="EditDate" Type="datetime" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="ClassStudent">
@@ -157,10 +147,10 @@
           <Property Name="Project_Day" Type="int" />
           <Property Name="Status" Type="bit" />
           <Property Name="CreateDate" Type="date" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Course">
@@ -171,10 +161,10 @@
           <Property Name="CourseCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PackageId" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Course_Module">
@@ -185,10 +175,10 @@
           <Property Name="CourseId" Type="varchar" MaxLength="50" />
           <Property Name="ModuleId" Type="varchar" MaxLength="50" />
           <Property Name="TrainerId" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="CourseWork">
@@ -206,10 +196,10 @@
           <Property Name="Total2" Type="int" />
           <Property Name="Total3" Type="int" />
           <Property Name="Total4" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Guardian">
@@ -227,10 +217,10 @@
           <Property Name="FeildWork" Type="varchar" MaxLength="50" />
           <Property Name="SectorJob" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="money" />
-          <Property Name="cb" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
+          <Property Name="cb" Type="datetime" />
+          <Property Name="cd" Type="nvarchar" MaxLength="128" />
+          <Property Name="ub" Type="datetime" />
+          <Property Name="ud" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Image">
@@ -240,10 +230,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FileName" Type="nvarchar" MaxLength="500" />
           <Property Name="CourseWorkId" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Intake">
@@ -254,10 +244,10 @@
           <Property Name="YearId" Type="int" Nullable="false" />
           <Property Name="MonthId" Type="int" Nullable="false" />
           <Property Name="CourseCode" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Invoice">
@@ -269,10 +259,10 @@
           <Property Name="Ref" Type="varchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="MarkType">
@@ -281,10 +271,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Module">
@@ -294,10 +284,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ModuleCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="ModuleStandard">
@@ -309,10 +299,10 @@
           <Property Name="MarkTypeId" Type="int" />
           <Property Name="LabName" Type="varchar" MaxLength="50" />
           <Property Name="Marks" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Month">
@@ -321,10 +311,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Month" Type="varchar" MaxLength="4" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Nationality">
@@ -333,10 +323,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Package_Course">
@@ -354,10 +344,10 @@
           <Property Name="InterestRate" Type="int" />
           <Property Name="MonthlyPayment" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalLeft" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Parent">
@@ -382,10 +372,10 @@
           <Property Name="MotherFeildWork" Type="varchar" MaxLength="50" />
           <Property Name="MotherSectorJob" Type="varchar" MaxLength="50" />
           <Property Name="MotherSalary" Type="money" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="ReportCard">
@@ -400,10 +390,10 @@
           <Property Name="ClassStudentId" Type="int" />
           <Property Name="ModuleStandardId" Type="int" />
           <Property Name="CourseWorkId" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Sibling">
@@ -420,10 +410,10 @@
           <Property Name="IC" Type="int" />
           <Property Name="HandphoneNumber" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="SPMResult">
@@ -434,10 +424,10 @@
           <Property Name="StudentId" Type="int" />
           <Property Name="SubjectName" Type="varchar" MaxLength="50" />
           <Property Name="Grade" Type="nchar" MaxLength="10" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Student">
@@ -466,10 +456,10 @@
           <Property Name="HDYKSBIT" Type="varchar(max)" />
           <Property Name="NumSibling" Type="int" />
           <Property Name="BirthOrd" Type="int" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Subject">
@@ -479,10 +469,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubjectName" Type="varchar" MaxLength="50" />
           <Property Name="Grade" Type="nchar" MaxLength="10" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="TestType">
@@ -491,10 +481,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Trainer">
@@ -520,10 +510,10 @@
           <Property Name="DateOfBirth" Type="date" />
           <Property Name="FileName" Type="varchar(max)" />
           <Property Name="iohykSBIT" Type="varchar(max)" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <EntityType Name="Year">
@@ -532,10 +522,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Year" Type="varchar" MaxLength="50" />
-          <Property Name="cd" Type="time" Precision="7" />
-          <Property Name="cb" Type="int" />
-          <Property Name="ud" Type="time" Precision="7" />
-          <Property Name="ub" Type="int" />
+          <Property Name="cd" Type="datetime" />
+          <Property Name="cb" Type="nvarchar" MaxLength="128" />
+          <Property Name="ud" Type="datetime" />
+          <Property Name="ub" Type="nvarchar" MaxLength="128" />
           <Property Name="st" Type="tinyint" />
         </EntityType>
         <Association Name="FK_Address_Student">
@@ -1010,7 +1000,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="Training" store:Type="Tables" />
           <EntitySet Name="Amount" EntityType="Self.Amount" Schema="Training" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="Training" store:Type="Tables" />
@@ -1201,7 +1190,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="SISV2Model.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="SISV2Model.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="SISV2Model.AspNetUsers" />
-          <EntitySet Name="sysdiagrams" EntityType="SISV2Model.sysdiagrams" />
           <EntitySet Name="Address" EntityType="SISV2Model.Address" />
           <EntitySet Name="Amount" EntityType="SISV2Model.Amount" />
           <EntitySet Name="Attendance" EntityType="SISV2Model.Attendance" />
@@ -1451,16 +1439,6 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="SISV2Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="SISV2Model.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -1473,10 +1451,10 @@
           <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Address_Student" FromRole="Address" ToRole="Student" />
         </EntityType>
@@ -1510,10 +1488,10 @@
           <Property Name="Status" Type="Boolean" />
           <Property Name="EditBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_Attendance_ClassStudent" FromRole="Attendance" ToRole="ClassStudent" />
         </EntityType>
@@ -1530,10 +1508,10 @@
           <Property Name="Project_Day" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Attendance" Relationship="SISV2Model.FK_Attendance_ClassStudent" FromRole="ClassStudent" ToRole="Attendance" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_ClassStudent_Course_Module" FromRole="ClassStudent" ToRole="Course_Module" />
@@ -1549,10 +1527,10 @@
           <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PackageId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_Course_Module_Course" FromRole="Course" ToRole="Course_Module" />
           <NavigationProperty Name="Intake" Relationship="SISV2Model.FK_Intake_Course" FromRole="Course" ToRole="Intake" />
@@ -1566,10 +1544,10 @@
           <Property Name="CourseId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ModuleId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TrainerId" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_ClassStudent_Course_Module" FromRole="Course_Module" ToRole="ClassStudent" />
           <NavigationProperty Name="Course" Relationship="SISV2Model.FK_Course_Module_Course" FromRole="Course_Module" ToRole="Course" />
@@ -1594,10 +1572,10 @@
           <Property Name="Total2" Type="Int32" />
           <Property Name="Total3" Type="Int32" />
           <Property Name="Total4" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_CourseWork_ClassStudent" FromRole="CourseWork" ToRole="ClassStudent" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_CourseWork_Course_Module" FromRole="CourseWork" ToRole="Course_Module" />
@@ -1621,10 +1599,10 @@
           <Property Name="FeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
+          <Property Name="cb" Type="DateTime" Precision="3" />
+          <Property Name="cd" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ub" Type="DateTime" Precision="3" />
+          <Property Name="ud" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Guardian_Student" FromRole="Guardian" ToRole="Student" />
         </EntityType>
@@ -1635,10 +1613,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CourseWorkId" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="CourseWork" Relationship="SISV2Model.FK_Image_CourseWork" FromRole="Image" ToRole="CourseWork" />
         </EntityType>
@@ -1650,10 +1628,10 @@
           <Property Name="YearId" Type="Int32" Nullable="false" />
           <Property Name="MonthId" Type="Int32" Nullable="false" />
           <Property Name="CourseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course" Relationship="SISV2Model.FK_Intake_Course" FromRole="Intake" ToRole="Course" />
           <NavigationProperty Name="Month" Relationship="SISV2Model.FK_Intake_Month" FromRole="Intake" ToRole="Month" />
@@ -1670,10 +1648,10 @@
           <Property Name="Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Amount" Relationship="SISV2Model.FK_Amount_Invoice" FromRole="Invoice" ToRole="Amount" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Invoice_Student" FromRole="Invoice" ToRole="Student" />
@@ -1684,10 +1662,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="ModuleStandard" Relationship="SISV2Model.FK_ModuleStandard_MarkType" FromRole="MarkType" ToRole="ModuleStandard" />
         </EntityType>
@@ -1698,10 +1676,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_Course_Module_Module" FromRole="Module" ToRole="Course_Module" />
         </EntityType>
@@ -1714,10 +1692,10 @@
           <Property Name="MarkTypeId" Type="Int32" />
           <Property Name="LabName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Marks" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_ModuleStandard_Course_Module" FromRole="ModuleStandard" ToRole="Course_Module" />
           <NavigationProperty Name="CourseWork" Relationship="SISV2Model.FK_CourseWork_ModuleStandard" FromRole="ModuleStandard" ToRole="CourseWork" />
@@ -1730,10 +1708,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Month1" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Intake" Relationship="SISV2Model.FK_Intake_Month" FromRole="Month" ToRole="Intake" />
         </EntityType>
@@ -1743,10 +1721,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Student_Nationality" FromRole="Nationality" ToRole="Student" />
         </EntityType>
@@ -1765,10 +1743,10 @@
           <Property Name="InterestRate" Type="Int32" />
           <Property Name="MonthlyPayment" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalLeft" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course" Relationship="SISV2Model.FK_Package_Course_Course" FromRole="Package_Course" ToRole="Course" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Package_Course_Student" FromRole="Package_Course" ToRole="Student" />
@@ -1795,10 +1773,10 @@
           <Property Name="MotherFeildWork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MotherSectorJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MotherSalary" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
         </EntityType>
@@ -1814,10 +1792,10 @@
           <Property Name="ClassStudentId" Type="Int32" />
           <Property Name="ModuleStandardId" Type="Int32" />
           <Property Name="CourseWorkId" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_ReportCard_ClassStudent" FromRole="ReportCard" ToRole="ClassStudent" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_ReportCard_Course_Module" FromRole="ReportCard" ToRole="Course_Module" />
@@ -1841,10 +1819,10 @@
           <Property Name="IC" Type="Int32" />
           <Property Name="HandphoneNumber" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_Sibling_Student" FromRole="Sibling" ToRole="Student" />
         </EntityType>
@@ -1856,10 +1834,10 @@
           <Property Name="StudentId" Type="Int32" />
           <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Grade" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Student" Relationship="SISV2Model.FK_SPMResult_Student" FromRole="SPMResult" ToRole="Student" />
         </EntityType>
@@ -1889,10 +1867,10 @@
           <Property Name="HDYKSBIT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NumSibling" Type="Int32" />
           <Property Name="BirthOrd" Type="Int32" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Address" Relationship="SISV2Model.FK_Address_Student" FromRole="Student" ToRole="Address" />
           <NavigationProperty Name="ClassStudent" Relationship="SISV2Model.FK_ClassStudent_Student" FromRole="Student" ToRole="ClassStudent" />
@@ -1913,10 +1891,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Grade" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
         </EntityType>
         <EntityType Name="TestType">
@@ -1925,10 +1903,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="CourseWork" Relationship="SISV2Model.FK_CourseWork_TestType" FromRole="TestType" ToRole="CourseWork" />
         </EntityType>
@@ -1955,10 +1933,10 @@
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
           <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="iohykSBIT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Course_Module" Relationship="SISV2Model.FK_Course_Module_Trainer" FromRole="Trainer" ToRole="Course_Module" />
           <NavigationProperty Name="ReportCard" Relationship="SISV2Model.FK_ReportCard_Trainer" FromRole="Trainer" ToRole="ReportCard" />
@@ -1969,10 +1947,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Year1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cd" Type="Time" Precision="7" />
-          <Property Name="cb" Type="Int32" />
-          <Property Name="ud" Type="Time" Precision="7" />
-          <Property Name="ub" Type="Int32" />
+          <Property Name="cd" Type="DateTime" Precision="3" />
+          <Property Name="cb" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ud" Type="DateTime" Precision="3" />
+          <Property Name="ub" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="st" Type="Byte" />
           <NavigationProperty Name="Intake" Relationship="SISV2Model.FK_Intake_Year" FromRole="Year" ToRole="Intake" />
         </EntityType>
@@ -2490,17 +2468,6 @@
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SISV2Model.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

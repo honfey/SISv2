@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\ClassStudentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\CourseWorksController.cs" />
@@ -302,9 +303,6 @@
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TestType.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -1335,6 +1333,23 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Attendances\CheckAttendance.cshtml" />
+    <Content Include="Views\Attendances\CheckChoise.cshtml" />
+    <Content Include="Views\Attendances\CheckIndividual.cshtml" />
+    <Content Include="Views\Attendances\CheckIndividualAttendance.cshtml" />
+    <Content Include="Views\Attendances\ChooseDate.cshtml" />
+    <Content Include="Views\Attendances\ChooseDateDelete.cshtml" />
+    <Content Include="Views\Attendances\ClassAvailable.cshtml" />
+    <Content Include="Views\Attendances\Create.cshtml" />
+    <Content Include="Views\Attendances\CSS.cshtml" />
+    <Content Include="Views\Attendances\CSSM.cshtml" />
+    <Content Include="Views\Attendances\Delete.cshtml" />
+    <Content Include="Views\Attendances\Details.cshtml" />
+    <Content Include="Views\Attendances\Edit.cshtml" />
+    <Content Include="Views\Attendances\EditDate.cshtml" />
+    <Content Include="Views\Attendances\Index.cshtml" />
+    <Content Include="Views\Attendances\MarkAttendance.cshtml" />
+    <Content Include="Views\Attendances\MarkBack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

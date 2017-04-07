@@ -31,7 +31,6 @@ namespace SISv2.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Amount> Amount { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
