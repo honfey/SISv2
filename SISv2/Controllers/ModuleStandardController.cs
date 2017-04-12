@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
+using Microsoft.AspNet.Identity;
 
-namespace SISV2.Controllers
+namespace SISv2.Controllers
 {
     public class ModuleStandardController : Controller
     {
@@ -17,8 +18,8 @@ namespace SISV2.Controllers
         // GET: ModuleStandard
         public ActionResult Index()
         {
-            var moduleStandards = db.ModuleStandard.Include(m => m.Course_Module).Include(m => m.MarkType);
-            return View(moduleStandards.ToList());
+            var moduleStandard = db.ModuleStandard.Include(m => m.Course_Module).Include(m => m.MarkType);
+            return View(moduleStandard.ToList());
         }
 
         // GET: ModuleStandard/Details/5
@@ -53,6 +54,10 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                moduleStandard.cb = User.Identity.GetUserId();
+                moduleStandard.cd = DateTime.Now;
+                moduleStandard.st = 1;
+                        
                 db.ModuleStandard.Add(moduleStandard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -70,13 +75,13 @@ namespace SISV2.Controllers
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    ModuleStandard moduleStandard = db.ModuleStandards.Find(id);
+        //    ModuleStandard moduleStandard = db.ModuleStandard.Find(id);
         //    if (moduleStandard == null)
         //    {
         //        return HttpNotFound();
         //    }
         //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", moduleStandard.Course_ModuleId);
-        //    ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name", moduleStandard.MarkTypeId);
+        //    ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name", moduleStandard.MarkTypeId);
         //    return View(moduleStandard);
         //}
 
@@ -89,15 +94,52 @@ namespace SISV2.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
+        //        moduleStandard.ub = User.Identity.GetUserId();
+        //        moduleStandard.ud = DateTime.Now;
+        //        moduleStandard.st = 1;
+                        
         //        db.Entry(moduleStandard).State = EntityState.Modified;
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
         //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", moduleStandard.Course_ModuleId);
-        //    ViewBag.MarkTypeId = new SelectList(db.MarkTypes, "Id", "Name", moduleStandard.MarkTypeId);
+        //    ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name", moduleStandard.MarkTypeId);
         //    return View(moduleStandard);
         //}
 
+        //// GET: ModuleStandard/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ModuleStandard moduleStandard = db.ModuleStandard.Find(id);
+        //    if (moduleStandard == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", moduleStandard.Course_ModuleId);
+        //    ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name", moduleStandard.MarkTypeId);
+        //    return View(moduleStandard);
+        //}
+        
+        //// POST: ModuleStandard/Delete/5
+        //public ActionResult Delete([Bind(Include = "Id,Course_ModuleId,MarkTypeId,LabName,Marks,cd,cb,ud,ub,st")] ModuleStandard moduleStandard)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        moduleStandard.ub = User.Identity.GetUserId();
+        //        moduleStandard.st = 0;
+
+        //        db.Entry(moduleStandard).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", moduleStandard.Course_ModuleId);
+        //    ViewBag.MarkTypeId = new SelectList(db.MarkType, "Id", "Name", moduleStandard.MarkTypeId);
+        //    return View(moduleStandard);
+        //}
 
         public ActionResult Add(int? id)
         {
@@ -116,13 +158,13 @@ namespace SISV2.Controllers
             if (ModelState.IsValid)
             {
                 var total = (int?)0;
-                foreach (var item in mss)
+                foreach(var item in mss)
                 {
                     total += item.Marks;
                 }
-                if (total == 100)
+                if(total == 100)
                 {
-                    foreach (var i in mss)
+                    foreach(var i in mss)
                     {
                         db.ModuleStandard.Add(i);
                     }
@@ -146,7 +188,7 @@ namespace SISV2.Controllers
 
         public ActionResult ShowStandard(int? Search)
         {
-            if (Search == null)
+            if(Search == null)
             {
                 var standard = db.ClassStudent.OrderBy(x => x.Course_ModuleId).Where(x => x.Status == true);
                 return View(standard.ToList());
@@ -183,17 +225,17 @@ namespace SISV2.Controllers
             if (ModelState.IsValid)
             {
                 var total = (int?)0;
-                foreach (var item in moduleStandard)
+                foreach(var item in moduleStandard)
                 {
                     total += item.Marks;
                 }
-                if (total == 100)
+                if(total == 100)
                 {
-                    if (moduleStandard != null && moduleStandard.Count() > 0)
+                    if(moduleStandard != null && moduleStandard.Count() > 0)
                     {
-                        foreach (var i in moduleStandard)
+                        foreach(var i in moduleStandard)
                         {
-                            if (i.Id == 0)
+                            if(i.Id == 0)
                             {
                                 db.Entry(i).State = EntityState.Added;
                             }
@@ -231,32 +273,6 @@ namespace SISV2.Controllers
             return Json(new { deleteRow = rs }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: ModuleStandard/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ModuleStandard moduleStandard = db.ModuleStandards.Find(id);
-        //    if (moduleStandard == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(moduleStandard);
-        //}
-
-        //// POST: ModuleStandard/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    ModuleStandard moduleStandard = db.ModuleStandards.Find(id);
-        //    db.ModuleStandards.Remove(moduleStandard);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -265,6 +281,6 @@ namespace SISV2.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
-

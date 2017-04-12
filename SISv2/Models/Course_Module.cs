@@ -25,7 +25,7 @@ namespace SISv2.Models
     
         public int Id { get; set; }
         public string CourseId { get; set; }
-        public string ModuleId { get; set; }
+        public Nullable<int> ModuleId { get; set; }
         public Nullable<int> TrainerId { get; set; }
         public Nullable<System.DateTime> cd { get; set; }
         public string cb { get; set; }
@@ -35,9 +35,7 @@ namespace SISv2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClassStudent> ClassStudent { get; set; }
-        public virtual Course Course { get; set; }
         public virtual Module Module { get; set; }
-        public virtual Trainer Trainer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseWork> CourseWork { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

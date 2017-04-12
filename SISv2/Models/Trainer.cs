@@ -17,7 +17,6 @@ namespace SISv2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trainer()
         {
-            this.Course_Module = new HashSet<Course_Module>();
             this.ReportCard = new HashSet<ReportCard>();
         }
     
@@ -46,8 +45,6 @@ namespace SISv2.Models
         public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course_Module> Course_Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportCard> ReportCard { get; set; }
     }

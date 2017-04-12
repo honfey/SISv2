@@ -32,24 +32,17 @@ namespace SISv2.Models
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Address> Address { get; set; }
-        public virtual DbSet<Amount> Amount { get; set; }
         public virtual DbSet<Attendance> Attendance { get; set; }
-        public virtual DbSet<ClassStudent> ClassStudent { get; set; }
         public virtual DbSet<Course> Course { get; set; }
-        public virtual DbSet<Course_Module> Course_Module { get; set; }
         public virtual DbSet<CourseWork> CourseWork { get; set; }
         public virtual DbSet<Guardian> Guardian { get; set; }
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Intake> Intake { get; set; }
-        public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<MarkType> MarkType { get; set; }
-        public virtual DbSet<Module> Module { get; set; }
-        public virtual DbSet<ModuleStandard> ModuleStandard { get; set; }
         public virtual DbSet<Month> Month { get; set; }
         public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Package_Course> Package_Course { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
-        public virtual DbSet<ReportCard> ReportCard { get; set; }
         public virtual DbSet<Sibling> Sibling { get; set; }
         public virtual DbSet<SPMResult> SPMResult { get; set; }
         public virtual DbSet<Student> Student { get; set; }
@@ -57,5 +50,12 @@ namespace SISv2.Models
         public virtual DbSet<TestType> TestType { get; set; }
         public virtual DbSet<Trainer> Trainer { get; set; }
         public virtual DbSet<Year> Year { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
+        public virtual DbSet<ModuleStandard> ModuleStandard { get; set; }
+        public virtual DbSet<ReportCard> ReportCard { get; set; }
+        public virtual DbSet<ClassStudent> ClassStudent { get; set; }
+        public virtual DbSet<Course_Module> Course_Module { get; set; }
+        public virtual DbSet<Invoice> Invoice { get; set; }
+        public virtual DbSet<Amount> Amount { get; set; }
     }
 }

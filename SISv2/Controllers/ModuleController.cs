@@ -7,8 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
+using Microsoft.AspNet.Identity;
 
-namespace SISV2.Controllers
+namespace SISv2.Controllers
 {
     public class ModuleController : Controller
     {
@@ -21,7 +22,7 @@ namespace SISV2.Controllers
         }
 
         // GET: Module/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,17 +47,21 @@ namespace SISV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ModuleCode,TrainerId,Name,cd,cb,ud,ub,st")] Module module)
+        public ActionResult Create([Bind(Include = "Id,ModuleCode,Name,cd,cb,ud,ub,st")] Module module)
         {
             if (ModelState.IsValid)
             {
                 var checking = db.Module.Any(x => x.ModuleCode == module.ModuleCode);
                 if (checking)
                 {
-                    ModelState.AddModelError("", "This ModuleCode has been used!");
+                    ModelState.AddModelError("", "This ModuleCode has been used !");
                     return View(module);
                 }
-       
+
+                module.cb = User.Identity.GetUserId();
+                module.cd = DateTime.Now;
+                module.st = 1;
+            
                 db.Module.Add(module);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Module");
@@ -66,7 +71,7 @@ namespace SISV2.Controllers
         }
 
         // GET: Module/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -89,6 +94,10 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                module.ub = User.Identity.GetUserId();
+                module.ud = DateTime.Now;
+                module.st = 1;
+
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,7 +106,7 @@ namespace SISV2.Controllers
         }
 
         // GET: Module/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -111,24 +120,54 @@ namespace SISV2.Controllers
             return View(module);
         }
 
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Module module = db.Module.Find(id);
+        //    if (module == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(module);
+        //}
+
         // POST: Module/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult Delete([Bind(Include = "Id,ModuleCode,Name,cd,cb,ud,ub,st")] Module module)
         {
-            Module module = db.Module.Find(id);
-            db.Module.Remove(module);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                module.ub = User.Identity.GetUserId();
+                module.st = 0;
+
+                db.Entry(module).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(module);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Module module = db.Module.Find(id);
+        //    db.Module.Remove(module);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

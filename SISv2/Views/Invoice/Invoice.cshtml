@@ -1,0 +1,171 @@
+﻿@model SISv2.Models.Invoice
+
+@*@section menu{
+    @Scripts.Render("~/Scripts/Examples/Invoice-menu.js")}*@
+
+<div class="invoice" style="margin-left:0 !important; margin-right:0 !important;">
+    <div class="row">
+        <div class="col-xs-12">
+            <img src="~/Content/image/Companylogo.jpg" alt="CompanyLogo" style="width:390px; height:100px" />
+            <address class="pull-right">
+                <strong>
+                    SBIT TRAINING SDN.BHD.
+                </strong> (894857-H)<br />
+                18A, Jalan 20/16A, Taman Paramount,<br />
+                46300 Petaling Jaya, Selangor.<br />
+                info@sbit.edu.my * www.sbit.edu.my<br />
+                Tel : 603-78774668<br />
+                <b>(GST No: 001194561536)</b>
+            </address>
+        </div>
+        <div class="text-center">
+            <h2>TAX INVOICE</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>
+                    @Html.DisplayFor(model => model.Student.Name, new { htmlAttribute = new { @class = "form-control" } })<br />
+                    @foreach (var x in Model.Student.Address)
+                    {
+                        @Html.DisplayFor(model => x.StreetLine1)<br />
+                        @Html.DisplayFor(model => x.StreetLine2)<br />
+                        @Html.DisplayFor(model => x.PostCode)<br />
+                        @Html.DisplayFor(model => x.State)<br />
+                        @Html.DisplayFor(model => x.Country)
+                    }
+                </strong>
+                <br />
+                <br />
+                <br />
+                TEL:&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; FAX:
+            </address>
+        </div>
+
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong></strong><br />
+                <br />
+                <br />
+                <br />
+            </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+            <b>
+                Receipt No &nbsp; &nbsp; &nbsp; &nbsp;: CS- @Html.DisplayFor(model => model.Id, new { htmlAttribute = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </b><br>
+            Your Ref. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: @Html.DisplayFor(model => model.Ref, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })<br>
+            Ext. No &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :<br>
+            Terms &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : C.O.D.<br>
+            Date &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: @Html.DisplayFor(model => model.Date, new { htmlAttribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })<br />
+            @*Page &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: 1 of 1<br />*@
+            @*A/C No &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: 300-00001*@
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.Amount.Description, new { htmlAttribute = new {@class = "form-control"}})
+                            @Html.ValidationMessageFor(model => model.Amount.Description, "", new { @class = "text-danger"})
+                            @*@Html.Display("Amount[0].Description", "Description", new { htmlAttributes = new { @class = "control-label col-xs-2" } })
+                            @Html.ValidationMessage("Amount[0].Description", "", new { @class = "text-danger" })*@
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(model => model.Description, new { htmlAttribute = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </td>*@
+                        <td></td>
+                        <td></td>
+                        <td>
+                          @Html.DisplayFor(model => model.Amount.Amt, new { htmlAttribute = new {@class = "form-control"}})
+                            @Html.ValidationMessageFor(model => model.Amount.Amt, "", new { @class = "text-danger"})
+                            @*@Html.DisplayFor(model => model.Amount, new { htmlAttribute = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <p>
+                Notes:<br />
+                1. All cheques should be crossed and made payable to<br />
+                <b>SBIT TRAINING SDN.BHD</b><br />
+                2. Goods sold are neither returnable not refundable.<br />
+            </p>
+        </div>
+        <div class="col-xs-6">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th style="width:35%">Total (RM)</th>
+                        <td>
+                            @Html.DisplayFor(model => model.Amount.Total, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount.Total, "", new { @class = "text-danger" })
+                            @*@Html.Display("Amount[0].Total", new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessage("Amount[0].Total", "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>GST Amt</th>
+                        <td>
+                            @Html.DisplayFor(model => model.Amount.GSTAmt, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount.GSTAmt, "", new { @class = "text-danger" })
+                            @*@Html.Display("Amount[0].GSTAmt", new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessage("Amount[0].GSTAmt", "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Final Total</th>
+                        <td>
+                            @Html.DisplayFor(model => model.Amount.FinalTotal, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Amount.FinalTotal, "", new { @class = "text-danger" })
+                            @*@Html.Display("Amount[0].FinalTotal", new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessage("Amount[0].FinalTotal", "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function print_page() {
+            var ButtonControl = document.getElementById("btnprint");
+            ButtonControl.style.visibility = "hidden";
+            window.print();
+            ButtonControl.style.visibility = "visible";
+        }
+    </script>
+
+    <p>
+        <input type="button" id="btnprint" value="Print" onclick="print_page()" />
+    </p>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+

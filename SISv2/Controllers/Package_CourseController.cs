@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SISV2.Controllers
 {
@@ -83,6 +84,9 @@ namespace SISV2.Controllers
                     package_Course.TotalMonthlyP = package_Course.MonthlyPayment * package_Course.MonthlyInterest;
                     package_Course.TotalLeft = package_Course.TotalPrice - package_Course.FirstPay;
                 }
+                package_Course.cb = User.Identity.GetUserId();
+                package_Course.cd = DateTime.Now;
+                package_Course.st = 1;
             
                 db.Package_Course.Add(package_Course);
                 db.SaveChanges();
@@ -139,6 +143,9 @@ namespace SISV2.Controllers
                     package_Course.TotalMonthlyP = package_Course.MonthlyPayment * package_Course.MonthlyInterest;
                     package_Course.TotalLeft = package_Course.TotalLeft - package_Course.Amount;
                 }
+                package_Course.ub = User.Identity.GetUserId();
+                package_Course.ud = DateTime.Now;
+                package_Course.st = 1;
 
                 db.Entry(package_Course).State = EntityState.Modified;
                 db.SaveChanges();
@@ -161,27 +168,81 @@ namespace SISV2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name", package_Course.CourseId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", package_Course.StudentId);
             return View(package_Course);
         }
 
+
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Package_Course package_Course = db.Package_Course.Find(id);
+        //    if (package_Course == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(package_Course);
+        //}
+
         // POST: Package_Course/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete([Bind(Include = "Id,CourseId,StudentId,TotalPrice,FirstPay,MonthlyInterest,InterestRate,MonthlyPayment,AfterPlnPay,TotalMonthlyP,TotalLeft,Amount,cd,cb,ud,ub,st")] Package_Course package_Course)
         {
-            Package_Course package_Course = db.Package_Course.Find(id);
-            db.Package_Course.Remove(package_Course);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (package_Course.MonthlyInterest == 0 || package_Course.MonthlyInterest == null)
+                {
+                    package_Course.InterestRate = 0;
+                    package_Course.MonthlyPayment = package_Course.TotalPrice - package_Course.FirstPay;
+                    package_Course.TotalLeft = package_Course.TotalLeft - package_Course.Amount;
+                }
+                else if (package_Course.InterestRate == 0 || package_Course.InterestRate == null)
+                {
+                    package_Course.MonthlyPayment = (package_Course.TotalPrice - package_Course.FirstPay) / package_Course.MonthlyInterest;
+                    package_Course.TotalMonthlyP = package_Course.MonthlyPayment * package_Course.MonthlyInterest;
+                    package_Course.TotalLeft = package_Course.TotalLeft - package_Course.Amount;
+                }
+                else
+                {
+                    package_Course.MonthlyPayment = ((package_Course.TotalPrice / 100 * Convert.ToDecimal(package_Course.InterestRate)) - package_Course.FirstPay) / Convert.ToDecimal(package_Course.MonthlyInterest);
+                    package_Course.AfterPlnPay = package_Course.TotalPrice * ((100 - Convert.ToDecimal(package_Course.InterestRate)) / 100);
+                    package_Course.TotalMonthlyP = package_Course.MonthlyPayment * package_Course.MonthlyInterest;
+                    package_Course.TotalLeft = package_Course.TotalLeft - package_Course.Amount;
+                }
+                package_Course.ub = User.Identity.GetUserId();
+                package_Course.st = 0;
+
+                db.Entry(package_Course).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CourseId = new SelectList(db.Course, "CourseCode", "Name", package_Course.CourseId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", package_Course.StudentId);
+            return View(package_Course);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Package_Course package_Course = db.Package_Course.Find(id);
+        //    db.Package_Course.Remove(package_Course);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

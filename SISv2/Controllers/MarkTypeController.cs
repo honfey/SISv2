@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SISV2.Controllers
 {
@@ -50,6 +51,10 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                markType.cb = User.Identity.GetUserId();
+                markType.cd = DateTime.Now;
+                markType.st = 1;
+                      
                 db.MarkType.Add(markType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +87,10 @@ namespace SISV2.Controllers
         {
             if (ModelState.IsValid)
             {
+                markType.ub = User.Identity.GetUserId();
+                markType.ud = DateTime.Now;
+                markType.st = 1;
+                     
                 db.Entry(markType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,23 +114,57 @@ namespace SISV2.Controllers
         }
 
         // POST: MarkType/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete([Bind(Include = "Id,Name,cd,cb,ud,ub,st")] MarkType markType)
         {
-            MarkType markType = db.MarkType.Find(id);
-            db.MarkType.Remove(markType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                markType.ub = User.Identity.GetUserId();
+                markType.st = 0;
+
+                db.Entry(markType).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(markType);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //// GET: MarkType/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    MarkType markType = db.MarkType.Find(id);
+        //    if (markType == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(markType);
+        //}
+
+        //// POST: MarkType/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    MarkType markType = db.MarkType.Find(id);
+        //    db.MarkType.Remove(markType);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

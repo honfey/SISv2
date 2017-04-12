@@ -214,7 +214,6 @@ namespace SISv2.Controllers
 
                 if (student.Address != null && student.Address.Count() > 0)
                 {
-
                     foreach (var i in student.Address)
                     {
                         i.StudentId = student.Id;
