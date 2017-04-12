@@ -210,6 +210,7 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                classStudent.st = 0;
                 db.Entry(classStudent).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

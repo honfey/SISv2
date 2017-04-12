@@ -21,11 +21,11 @@
     }
     else
     {
-    <tr>
-        <td>
-            @Html.ActionLink("Mark Attendance (Today)", "MarkAttendance", new { id = Url.RequestContext.RouteData.Values["id"], id2 = Model.ElementAtOrDefault(0).Status, id3 = Model.ElementAtOrDefault(0).CreateDate },new { @class = "alert" })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Mark Attendance (Today)", "MarkAttendance", new { id = Url.RequestContext.RouteData.Values["id"], id2 = Model.ElementAtOrDefault(0).Status, id3 = Model.ElementAtOrDefault(0).CreateDate }, new { @class = "alert" })
+            </td>
+        </tr>
     }
     <tr>
         <td>
@@ -39,7 +39,7 @@
         </td>
     </tr>
 
- 
+
 
     <tr>
         <td>
@@ -75,4 +75,4 @@
     </script>
 
 }
- @*new { onclick = "return confirm('Are you sure mark this class attendance ?');" }*@
+@*new { onclick = "return confirm('Are you sure mark this class attendance ?');" }*@
