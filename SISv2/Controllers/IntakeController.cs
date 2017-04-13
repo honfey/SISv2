@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -54,6 +55,8 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                intake.cb = User.Identity.GetUserId();
+                intake.cd = DateTime.Now;
                 intake.st = 1;
                 db.Intake.Add(intake);
                 db.SaveChanges();
@@ -93,6 +96,8 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                intake.ub = User.Identity.GetUserId();
+                intake.ud =DateTime.Now;
                 intake.st = 1;
 
                 db.Entry(intake).State = EntityState.Modified;
@@ -130,6 +135,7 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                intake.ub =User.Identity.GetUserId();
                 intake.st = 0;
                 
                 db.Entry(intake).State = EntityState.Modified;
