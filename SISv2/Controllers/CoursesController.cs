@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.AspNet.Identity;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity.Validation;
 using SISv2.Models;
 
 namespace SISv2.Controllers
@@ -39,6 +40,8 @@ namespace SISv2.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
+
+
             return View();
         }
 
@@ -49,8 +52,12 @@ namespace SISv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CourseCode,PackageId,Name,Fee")] Course course)
         {
+
+
             if (ModelState.IsValid)
             {
+                course.cb = User.Identity.GetUserId();
+                course.cd = DateTime.Now;
                 course.st = 1;
                 var checking = db.Course.Any(x => x.CourseCode == course.CourseCode);
                 if (checking)
@@ -58,13 +65,40 @@ namespace SISv2.Controllers
                     ModelState.AddModelError("", "THIS CourseCode has been used !");
                     return View(course);
                 }
-                db.Course.Add(course);
-                db.SaveChanges();
+                if (course.Intake != null && course.Intake.Count() > 0)
+                {
+
+                    foreach (var i in course.Intake)
+                    {
+                        i.CourseCode = course.CourseCode;
+                        db.Entry(i).State = EntityState.Modified;
+                    }
+
+                }
+
+                try
+                {
+                    db.Course.Add(course);
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                        }
+                    }
+                }
+
                 return RedirectToAction("Index");
+
             }
 
             return View(course);
-        }
+        
+    }
 
         // GET: Courses/Edit/5
         public ActionResult Edit(string id)
@@ -90,6 +124,8 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                course.ub =User.Identity.GetUserId();
+                course.ud = DateTime.Now;
                 course.st = 1;
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
@@ -122,6 +158,7 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                course.ub = User.Identity.GetUserId();
                 course.st = 0;
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
