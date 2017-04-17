@@ -30,7 +30,6 @@ namespace SISv2.Models
     
         public int Id { get; set; }
         public string StudentId { get; set; }
-        public Nullable<int> IntakeId { get; set; }
         public Nullable<int> SPMResultId { get; set; }
         public Nullable<bool> Insurence { get; set; }
         public string Name { get; set; }
@@ -50,6 +49,7 @@ namespace SISv2.Models
         public string HDYKSBIT { get; set; }
         public Nullable<int> NumSibling { get; set; }
         public Nullable<int> BirthOrd { get; set; }
+        public string ResultType { get; set; }
         public Nullable<System.DateTime> cd { get; set; }
         public string cb { get; set; }
         public Nullable<System.DateTime> ud { get; set; }
@@ -62,7 +62,6 @@ namespace SISv2.Models
         public virtual ICollection<ClassStudent> ClassStudent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Guardian> Guardian { get; set; }
-        public virtual Intake Intake { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoice { get; set; }
         public virtual Nationality Nationality { get; set; }

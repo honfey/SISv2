@@ -24,8 +24,8 @@ namespace SISv2.Models
         }
     
         public int Id { get; set; }
-        public string CourseId { get; set; }
-        public string ModuleId { get; set; }
+        public Nullable<int> CourseId { get; set; }
+        public Nullable<int> ModuleId { get; set; }
         public Nullable<int> TrainerId { get; set; }
         public Nullable<System.DateTime> cd { get; set; }
         public string cb { get; set; }

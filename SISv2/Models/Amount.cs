@@ -17,7 +17,7 @@ namespace SISv2.Models
         public int Id { get; set; }
         public Nullable<int> InvoiceId { get; set; }
         public string Description { get; set; }
-        public Nullable<decimal> Amount1 { get; set; }
+        public Nullable<decimal> Amt { get; set; }
         public Nullable<decimal> GST { get; set; }
         public Nullable<decimal> GSTAmt { get; set; }
         public Nullable<decimal> Total { get; set; }

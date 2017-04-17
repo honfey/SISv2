@@ -21,9 +21,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Student", "index", "student")</li>
+                    <li>@Html.ActionLink("Trainer", "index", "Trainer")</li>
+                    <li>@Html.ActionLink("Coursework", "index", "CourseWorks")</li>
+                    <li>@Html.ActionLink("Module", "index", "module")</li>
+                    <li>@Html.ActionLink("Course", "index", "Course")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -37,15 +39,8 @@
         </footer>
     </div>
 
-
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Content/plugins/jquery/js")
-    @RenderSection("menu", required: false)
-    @Scripts.Render("~/Content/bootstrap/js")
-    @Scripts.Render("~/Content/plugins/slimscroll/js")
-    @Scripts.Render("~/Content/plugins/fastclick/js")
-    @Scripts.Render("~/Scripts/Shared/_Layout")
-    @Scripts.Render("~/Content/dist/js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

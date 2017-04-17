@@ -10,6 +10,7 @@ using SISv2.Models;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Web.Configuration;
+using Microsoft.AspNet.Identity;
 
 namespace SISv2.Controllers
 {
@@ -37,72 +38,13 @@ namespace SISv2.Controllers
                 new SelectListItem{ Text="Male", Value = "Male" },
                 new SelectListItem{ Text="Female", Value = "Female" },
     };
-        private string webConfigPath = "~/" + WebConfigurationManager.AppSettings["UploadImage"];
+        private string webConfigPath = "~/" + WebConfigurationManager.AppSettings["FileName"];
 
         // GET: Student
-        public ActionResult Index(string Month, string Year, string SearchName)
+        public ActionResult Index()
         {
-            if (!string.IsNullOrWhiteSpace(SearchName) && !string.IsNullOrWhiteSpace(Month) && !string.IsNullOrWhiteSpace(Year))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Name.ToString().ToLower().Contains(SearchName) && x.Intake.Year.Year1.ToString().Contains(Year) && x.Intake.Month.Month1.ToString().Contains(Month));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(Month) && !string.IsNullOrWhiteSpace(Year))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Intake.Year.Year1.ToString().Contains(Year) && x.Intake.Month.Month1.ToString().Contains(Month));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(Month) && !string.IsNullOrWhiteSpace(SearchName))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Name.ToString().ToLower().Contains(SearchName) && x.Intake.Month.Month1.ToString().Contains(Month));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(Year) && !string.IsNullOrWhiteSpace(SearchName))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Name.ToString().ToLower().Contains(SearchName) && x.Intake.Year.Year1.ToString().Contains(Year));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(Month))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Intake.Month.Month1.ToString().Contains(Month));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(Year))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StudentName = db.Student.Where(x => x.Intake.Year.Year1.ToString().Contains(Year));
-                return View(StudentName);
-            }
-            else if (!string.IsNullOrWhiteSpace(SearchName))
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var StduentName = db.Student.Where(x => x.Name.ToString().ToLower().Contains(SearchName));
-                return View(StduentName);
-            }
-            else
-            {
-                ViewBag.Year = new SelectList(db.Year, "Id", "Year1");
-                ViewBag.Month = new SelectList(db.Month, "Id", "Month1");
-                var students = db.Student.Include(s => s.Intake).Include(s => s.SPMResult);
-                return View(students.ToList());
-            }
-
-
-
-
-
+            var student = db.Student.Include(s => s.Nationality);
+            return View(student.ToList());
         }
 
 
@@ -133,13 +75,8 @@ namespace SISv2.Controllers
         public ActionResult Create()
         {
             //viewbag.state = new selectlist(db.)
-
-            var course_intakeName = from c in db.Intake
-                                    join i in db.Course on c.CourseCode equals i.CourseCode
-                                    select new { c.Id, Name = i.CourseCode + "(" + c.Year.Year1 + "/" + c.Month.Month1 + ")" };
-
+            
             ViewBag.NationalityId = new SelectList(db.Nationality, "Id", "Name");
-            ViewBag.IntakeId = new SelectList(course_intakeName, "Id", "Name");
             //ViewBag.SPMResultId = new SelectList(db.SPMResults, "Id", "Id");
             ViewBag.SPMResultList = new SelectList(resultList, "Value", "Text");
 
@@ -154,41 +91,24 @@ namespace SISv2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
-            var studentIntakeMonth = db.Intake.Where(r => r.Id == student.IntakeId);
-
-            int IntakeyearId = 0;
-            int IntakemonthId = 0;
-            foreach (var items in studentIntakeMonth.ToList())
-            {
-                IntakeyearId = items.YearId;
-                IntakemonthId = items.MonthId;
-            }
-
-            var studentIntakeMonth2 = db.Month.Where(s => s.Id == IntakemonthId);
-            var studentIntakeYear = db.Year.Where(t => t.Id == IntakeyearId);
-
-            string Month = "";
-            string Year = "";
-            foreach (var items1 in studentIntakeMonth2.ToList())
-            {
-                Month = items1.Month1;
-            }
-
-            foreach (var items2 in studentIntakeYear.ToList())
-            {
-                Year = items2.Year1;
-            }
-
-            int ConvertYear = Convert.ToInt32(Year) - 2000;
 
             if (ModelState.IsValid)
             {
                 student.cd = DateTime.Now;
+                student.cb = User.Identity.GetUserId();
                 db.Student.Add(student);
                 db.SaveChanges();
-                student.StudentId = "P" + ConvertYear + Month + student.Id.ToString("D4");
-                db.SaveChanges();
 
+                //HttpPostedFileBase obj = Request.Files["FileName"];
+                //if (obj.ContentLength != 0 && obj.FileName != "")
+                //{
+                //    string fDate = string.Format("  {0:yyyyMddhhmmsstt}", DateTime.Now);
+                //    string documentName = obj.FileName.Trim().Replace(" ", "_");
+                //    string pathToSave = Server.MapPath(webConfigPath);
+                //    string filename = fDate + "_" + documentName;
+                //    obj.SaveAs(Path.Combine(pathToSave, filename));
+                //    student.StudentPicture = filename;
+                //}
 
                 if (student.Parent != null && student.Parent.Count() > 0)
                 {
@@ -203,29 +123,24 @@ namespace SISv2.Controllers
 
                 if (student.Guardian != null && student.Guardian.Count() > 0)
                 {
-
                     foreach (var i in student.Guardian)
                     {
                         i.StudentId = student.Id;
                         db.Entry(i).State = EntityState.Modified;
                     }
-
                 }
 
                 if (student.Address != null && student.Address.Count() > 0)
                 {
-
                     foreach (var i in student.Address)
                     {
                         i.StudentId = student.Id;
                         db.Entry(i).State = EntityState.Modified;
                     }
-
                 }
 
                 if (student.SPMResult != null && student.SPMResult.Count() > 0)
                 {
-
                     foreach (var i in student.SPMResult)
                     {
                         if (i.SubjectName != null && i.Grade != null)
@@ -234,7 +149,6 @@ namespace SISv2.Controllers
                             db.Entry(i).State = EntityState.Modified;
                         }
                     }
-
                 }
 
                 if (student.Sibling != null && student.Sibling.Count() > 0)
@@ -250,8 +164,6 @@ namespace SISv2.Controllers
 
                 try
                 {
-                    
-                    db.Student.Add(student);
                     db.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
@@ -268,27 +180,26 @@ namespace SISv2.Controllers
             }
 
             ViewBag.NationalityId = new SelectList(db.Nationality, "Id", "Name", student.NationalityId);
-            ViewBag.IntakeId = new SelectList(db.Intake, "Id", "CourseCode", student.IntakeId);
             //ViewBag.SPMResultId = new SelectList(db.SPMResults, "Id", "Id", student.SPMResultId);
             ViewBag.SPMResultList = new SelectList(resultList, "Value", "Text");
             return View(student);
         }
 
-        public ActionResult DownloadImage(string StudentPicture)
-        {
-            return File(webConfigPath + StudentPicture, GetContentType(StudentPicture), Server.UrlEncode(StudentPicture));
-        }
-        private string GetContentType(string StudentPicture)
-        {
-            string contentType = "application/octestream";
-            string ext = Path.GetExtension(StudentPicture).ToLower();
-            Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+        //public ActionResult DownloadImage(string StudentPicture)
+        //{
+        //    return File(webConfigPath + StudentPicture, GetContentType(StudentPicture), Server.UrlEncode(StudentPicture));
+        //}
+        //private string GetContentType(string StudentPicture)
+        //{
+        //    string contentType = "application/octestream";
+        //    string ext = Path.GetExtension(StudentPicture).ToLower();
+        //    Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
 
-            if (registryKey != null && registryKey.GetValue("Content Type") != null)
-                contentType = registryKey.GetValue("Content Type").ToString();
+        //    if (registryKey != null && registryKey.GetValue("Content Type") != null)
+        //        contentType = registryKey.GetValue("Content Type").ToString();
 
-            return contentType;
-        }
+        //    return contentType;
+        //}
         // GET: Student/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -302,12 +213,7 @@ namespace SISv2.Controllers
                 return HttpNotFound();
             }
 
-            var course_intakeName = from c in db.Intake
-                                    join i in db.Course on c.CourseCode equals i.CourseCode
-                                    select new { c.Id, Name = i.CourseCode + "(" + c.Year.Year1 + "/" + c.Month.Month1 + ")" };
-
             ViewBag.NationalityId = new SelectList(db.Nationality, "Id", "Name", student.NationalityId);
-            ViewBag.IntakeId = new SelectList(course_intakeName, "Id", "Name", student.IntakeId);
 
             ViewBag.SiblingGender = new SelectList(siblingGender, "Value", "Text");
             ViewBag.SPMResultList = new SelectList(resultList, "Value", "Text");
@@ -391,13 +297,8 @@ namespace SISv2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            var course_intakeName = from c in db.Intake
-                                    join i in db.Course on c.CourseCode equals i.CourseCode
-                                    select new { c.Id, Name = i.CourseCode + "(" + c.Year.Year1 + "/" + c.Month.Month1 + ")" };
-
+            
             ViewBag.NationalityId = new SelectList(db.Nationality, "Id", "Name", student.NationalityId);
-            ViewBag.IntakeId = new SelectList(course_intakeName, "Id", "Name", student.IntakeId);
             //ViewBag.SPMResultId = new SelectList(db.SPMResults, "Id", "Id", student.SPMResultId);
 
             ViewBag.SiblingGender = new SelectList(siblingGender, "Value", "Text");

@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Ref)
         </dt>
 
@@ -18,8 +26,44 @@
             @Html.DisplayFor(model => model.Ref)
         </dd>
 
+        <dd>
+            @Html.DisplayFor(model => model.Amount.Description)
+        </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Amount.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount.Amt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount.Amt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount.GSTAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount.GSTAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount.FinalTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount.FinalTotal)
         </dt>
 
         <dd>
@@ -31,10 +75,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Color)
+            @Html.TextBoxFor(model => model.Color, htmlAttributes: new { @class = "col-md-20", @type = "color" })
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.cd)
         </dt>
 
@@ -72,15 +116,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.st)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.StudentId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student.StudentId)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>

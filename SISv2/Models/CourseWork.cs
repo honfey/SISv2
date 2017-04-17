@@ -39,12 +39,12 @@ namespace SISv2.Models
         public Nullable<byte> st { get; set; }
     
         public virtual ClassStudent ClassStudent { get; set; }
-        public virtual Course_Module Course_Module { get; set; }
         public virtual ModuleStandard ModuleStandard { get; set; }
         public virtual TestType TestType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportCard> ReportCard { get; set; }
+        public virtual Course_Module Course_Module { get; set; }
     }
 }

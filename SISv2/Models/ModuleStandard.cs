@@ -32,11 +32,11 @@ namespace SISv2.Models
         public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        public virtual Course_Module Course_Module { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseWork> CourseWork { get; set; }
         public virtual MarkType MarkType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportCard> ReportCard { get; set; }
+        public virtual Course_Module Course_Module { get; set; }
     }
 }

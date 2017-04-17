@@ -1,96 +1,284 @@
 ﻿@model SISv2.Models.Invoice
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Delete</h2>
+<h2>Edit</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Invoice</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ref)
-        </dt>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Ref)
-        </dd>
+    <div class="form-horizontal">
+        <h4>Invoice</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cb)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cb)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ud)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ud)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ub)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ub)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.st)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.st)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.StudentId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student.StudentId)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentId, "StudentId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("StudentId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
+            </div>
         </div>
-    }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ref, "Your Ref.", htmlAttributes: new { @class = "control-label col-xs-2" })
+            <div class="col-xs-4">
+                @Html.DropDownList("Ref", new List<SelectListItem>
+           {
+               new SelectListItem {Text ="Cash", Value ="Cash" },
+               new SelectListItem {Text = "Cheque", Value ="Cheque" },
+           }, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.Ref, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ref, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div id="Amount">
+            <div class="form-group">
+                @Html.Label("Amount[0].Description", "Description", htmlAttributes: new { @class = "control-label col-xs-2" })
+                <div class="col-xs-4">
+                    @Html.Editor("Amount[0].Description", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("Amount[0].Description", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Amount[0].Amt", htmlAttributes: new { @class = "control-label col-xs-2" })
+                <div class="col-xs-4">
+                    <input type="checkbox" onclick="click1()" id="checkbx1" />include 6%(GST)
+                    @Html.Editor("Amount[0].Amt", new { htmlAttributes = new { @class = "form-control", id = "txt1" } })
+                    @Html.ValidationMessage("Amount[0].Amt", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div id="AmountBtn" class="form-group">
+                <label class="control-label col-xs-2"></label>
+                <div class="col-xs-4">
+                    <button id="addAmount" type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.cd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cb, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ud, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ud, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ub, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ub, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.st, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.st, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.st, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+        function click1()
+        {
+            var checkBoxMI = $('#checkbx1');
+            var x = document.getElementById("txt1").value;
+            if (checkBoxMI.is(':checked'))
+            {
+                document.getElementById("Gst1").value = x - ((x * 100) / 106)
+            }
+        }
+</script>
+
+<div>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
 </div>
+
+@section Scripts{
+    <script>
+    function _deleteAmount(t) {
+        $(t).parent().parent().remove();
+        _updateAmountId();
+    }
+
+    function _updateAmountId() {
+        var AmountObj = $('.AmountDiv');
+        var le = AmountObj.length;
+        var a = 1;
+
+        AmountObj.each(function () {
+            if (le > 0 && a <= le) {
+                this.childNodes[0].childNodes[0].innerHTML = "Amount(" + (a+1) + ")";
+                this.childNodes[1].childNodes[1].childNodes[0].name = "Amount[" + a + "].Description";
+                this.childNodes[2].childNodes[1].childNodes[0].name = "Amount[" + a + "].Amt";
+
+                a++;
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#addAmount").click(function () {
+            var b = $('.AmountDiv').length + 1;
+
+            $("#AmountBtn").before("<div class = 'AmountDiv'><h4><span>Description(" + (b + 1) + ")</span><button type='button' onclick='return _deleteAmount(this)' class='btn btn-primary btn-xs'><i class='fa fa-times' aria-hidden='true'></i></button></h4><div class = 'form-group'><label class = 'control-label col-xs-2'>Description</label><div class='col-xs-4'><input class='form-control text-box single-line' name='Description[" + b + "].Description' type='text' value=''></div></div><div class='form-group'><label class = 'control-label col-xs-4'><input type='checkbox' onclick='click1()' id='checkbx1' /> include 6%(GST)</div></label><div class = 'form-group'><label class = 'control-label col-xs-2'>Amount</label><div class='col-xs-4'><input class='form-control text-box single-line' name='Description[" + b + "].Description' type='text' value=''></div>");
+
+        });
+    });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+@*@model SISv2.Models.Invoice
+
+    @{
+        ViewBag.Title = "Delete";
+    }
+
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Invoice</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Ref)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ref)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cd)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cd)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cb)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cb)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ud)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ud)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ub)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ub)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.st)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.st)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Student.StudentId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Student.StudentId)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>*@

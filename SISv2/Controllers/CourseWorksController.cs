@@ -39,75 +39,75 @@ namespace SIS.Controllers
             return View(courseWork);
         }
 
-        //// GET: CourseWorks/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.ClassStudentId = new SelectList(db.ClassStudents, "Id", "Id");
-        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId");
-        //    ViewBag.ModuleStandardId = new SelectList(db.ModuleStandards, "Id", "LabName");
-        //    ViewBag.TestTypeId = new SelectList(db.TestTypes, "Id", "Name");
-        //    return View();
-        //}
+        // GET: CourseWorks/Create
+        public ActionResult Create()
+        {
+            ViewBag.ClassStudentId = new SelectList(db.ClassStudent, "Id", "Id");
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId");
+            ViewBag.ModuleStandardId = new SelectList(db.ModuleStandard, "Id", "LabName");
+            ViewBag.TestTypeId = new SelectList(db.TestType, "Id", "Name");
+            return View();
+        }
 
-        //// POST: CourseWorks/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,ClassStudentId,Course_ModuleId,TestTypeId,ModuleStandardId,Marks")] CourseWork courseWork)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.CourseWorks.Add(courseWork);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: CourseWorks/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,ClassStudentId,Course_ModuleId,TestTypeId,ModuleStandardId,Marks")] CourseWork courseWork)
+        {
+            if (ModelState.IsValid)
+            {
+                db.CourseWork.Add(courseWork);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.ClassStudentId = new SelectList(db.ClassStudents, "Id", "Id", courseWork.ClassStudentId);
-        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
-        //    ViewBag.ModuleStandardId = new SelectList(db.ModuleStandards, "Id", "LabName", courseWork.ModuleStandardId);
-        //    ViewBag.TestTypeId = new SelectList(db.TestTypes, "Id", "Name", courseWork.TestTypeId);
-        //    return View(courseWork);
-        //}
+            ViewBag.ClassStudentId = new SelectList(db.ClassStudent, "Id", "Id", courseWork.ClassStudentId);
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
+            ViewBag.ModuleStandardId = new SelectList(db.ModuleStandard, "Id", "LabName", courseWork.ModuleStandardId);
+            ViewBag.TestTypeId = new SelectList(db.TestType, "Id", "Name", courseWork.TestTypeId);
+            return View(courseWork);
+        }
 
-        //// GET: CourseWorks/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CourseWork courseWork = db.CourseWorks.Find(id);
-        //    if (courseWork == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.ClassStudentId = new SelectList(db.ClassStudents, "Id", "Id", courseWork.ClassStudentId);
-        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
-        //    ViewBag.ModuleStandardId = new SelectList(db.ModuleStandards, "Id", "LabName", courseWork.ModuleStandardId);
-        //    ViewBag.TestTypeId = new SelectList(db.TestTypes, "Id", "Name", courseWork.TestTypeId);
-        //    return View(courseWork);
-        //}
+        // GET: CourseWorks/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CourseWork courseWork = db.CourseWork.Find(id);
+            if (courseWork == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ClassStudentId = new SelectList(db.ClassStudent, "Id", "Id", courseWork.ClassStudentId);
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
+            ViewBag.ModuleStandardId = new SelectList(db.ModuleStandard, "Id", "LabName", courseWork.ModuleStandardId);
+            ViewBag.TestTypeId = new SelectList(db.TestType, "Id", "Name", courseWork.TestTypeId);
+            return View(courseWork);
+        }
 
-        //// POST: CourseWorks/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,ClassStudentId,Course_ModuleId,TestTypeId,ModuleStandardId,Marks")] CourseWork courseWork)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(courseWork).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.ClassStudentId = new SelectList(db.ClassStudents, "Id", "Id", courseWork.ClassStudentId);
-        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
-        //    ViewBag.ModuleStandardId = new SelectList(db.ModuleStandards, "Id", "LabName", courseWork.ModuleStandardId);
-        //    ViewBag.TestTypeId = new SelectList(db.TestTypes, "Id", "Name", courseWork.TestTypeId);
-        //    return View(courseWork);
-        //}
+        // POST: CourseWorks/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,ClassStudentId,Course_ModuleId,TestTypeId,ModuleStandardId,Marks")] CourseWork courseWork)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(courseWork).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ClassStudentId = new SelectList(db.ClassStudent, "Id", "Id", courseWork.ClassStudentId);
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", courseWork.Course_ModuleId);
+            ViewBag.ModuleStandardId = new SelectList(db.ModuleStandard, "Id", "LabName", courseWork.ModuleStandardId);
+            ViewBag.TestTypeId = new SelectList(db.TestType, "Id", "Name", courseWork.TestTypeId);
+            return View(courseWork);
+        }
 
         // GET: CourseWorks/Delete/5
         public ActionResult Delete(int? id)

@@ -10,115 +10,107 @@ using SISv2.Models;
 
 namespace SISv2.Controllers
 {
-    public class YearController : Controller
+    public class NationalityController : Controller
     {
-        private SISV2Entities1 db = new SISV2Entities1();
+        private SISV2Entities db = new SISV2Entities();
 
-        // GET: Year
+        // GET: Nationality
         public ActionResult Index()
         {
-            return View(db.Years.ToList());
+            return View(db.Nationality.ToList());
         }
 
-        // GET: Year/Details/5
+        // GET: Nationality/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
-            if (year == null)
+            Nationality nationality = db.Nationality.Find(id);
+            if (nationality == null)
             {
                 return HttpNotFound();
             }
-            return View(year);
+            return View(nationality);
         }
 
-        // GET: Year/Create
+        // GET: Nationality/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Year/Create
+        // POST: Nationality/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Year1,cd,cb,ud,ub,st")] Year year)
+        public ActionResult Create([Bind(Include = "Id,Name,cd,cb,ud,ub,st")] Nationality nationality)
         {
             if (ModelState.IsValid)
             {
-                db.Years.Add(year);
+                db.Nationality.Add(nationality);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            var types = new List<SelectListItem>();
-            types.Add(new SelectListItem() { Text = "Select...", Value = string.Empty });
-            types.Add(new SelectListItem() { Text = "OTC", Value = "0" });
-            types.Add(new SelectListItem() { Text = "Generic", Value = "1" });
-            types.Add(new SelectListItem() { Text = "Brand", Value = "2" });
-            types.Add(new SelectListItem() { Text = "Non-Merchandise", Value = "9" });
 
-            ViewBag.Year1 = types;
-
-            return View(year);
+            return View(nationality);
         }
 
-        // GET: Year/Edit/5
+        // GET: Nationality/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
-            if (year == null)
+            Nationality nationality = db.Nationality.Find(id);
+            if (nationality == null)
             {
                 return HttpNotFound();
             }
-            return View(year);
+            return View(nationality);
         }
 
-        // POST: Year/Edit/5
+        // POST: Nationality/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Year1,cd,cb,ud,ub,st")] Year year)
+        public ActionResult Edit([Bind(Include = "Id,Name,cd,cb,ud,ub,st")] Nationality nationality)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(year).State = EntityState.Modified;
+                db.Entry(nationality).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(year);
+            return View(nationality);
         }
 
-        // GET: Year/Delete/5
+        // GET: Nationality/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Year year = db.Years.Find(id);
-            if (year == null)
+            Nationality nationality = db.Nationality.Find(id);
+            if (nationality == null)
             {
                 return HttpNotFound();
             }
-            return View(year);
+            return View(nationality);
         }
 
-        // POST: Year/Delete/5
+        // POST: Nationality/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Year year = db.Years.Find(id);
-            db.Years.Remove(year);
+            Nationality nationality = db.Nationality.Find(id);
+            db.Nationality.Remove(nationality);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

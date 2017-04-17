@@ -171,7 +171,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\ClassStudentsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CoursesIntakeController.cs" />
     <Compile Include="Controllers\CourseWorksController.cs" />
+    <Compile Include="Controllers\Course_ModuleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\IntakeController.cs" />
@@ -180,130 +184,129 @@
     <Compile Include="Controllers\MarkTypeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\ModuleStandardController.cs" />
-    <Compile Include="Controllers\NationalitiesController.cs" />
+    <Compile Include="Controllers\NationalityController.cs" />
+    <Compile Include="Controllers\Package_Course1Controller.cs" />
     <Compile Include="Controllers\Package_CourseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\TrainersController.cs" />
+    <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Amount.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs" />
     <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="Models\AspNetUserClaim.cs" />
     <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Attendance.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassStudent.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseWork.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course_Module.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Guardian.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Intake.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Invoice.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MarkType.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Module.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModuleStandard.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Month.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Nationality.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Package.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Package_Course.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Parent.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ReportCard.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sibling.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SISV2.Context.cs">
+    <Compile Include="Models\SISv2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SISV2.Context.tt</DependentUpon>
+      <DependentUpon>SISv2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SISV2.cs">
+    <Compile Include="Models\SISv2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SISV2.Designer.cs">
+    <Compile Include="Models\SISv2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SISV2.edmx</DependentUpon>
+      <DependentUpon>SISv2.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SPMResult.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TestType.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Trainer.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Year.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
+      <DependentUpon>SISv2.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1130,15 +1133,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\SISV2.Context.tt">
+    <Content Include="Models\SISv2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SISV2.edmx</DependentUpon>
-      <LastGenOutput>SISV2.Context.cs</LastGenOutput>
+      <DependentUpon>SISv2.edmx</DependentUpon>
+      <LastGenOutput>SISv2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\SISV2.tt">
+    <Content Include="Models\SISv2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SISV2.edmx</DependentUpon>
-      <LastGenOutput>SISV2.cs</LastGenOutput>
+      <DependentUpon>SISv2.edmx</DependentUpon>
+      <LastGenOutput>SISv2.cs</LastGenOutput>
     </Content>
     <Content Include="Pictures\2017MarFri101801AM_518169-backgrounds.jpg" />
     <Content Include="Pictures\2017MarMon012747PM_b1862e_35ce0046d2c849adbf6c10fb4d9f16c4.jpg" />
@@ -1153,13 +1156,6 @@
     <Content Include="Pictures\2017MarThu114213AM_b1862e_35ce0046d2c849adbf6c10fb4d9f16c4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\SISV2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SISV2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SISV2.edmx.diagram">
-      <DependentUpon>SISV2.edmx</DependentUpon>
-    </Content>
     <Content Include="bin\SISv2.dll.config" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\bootstrap\fonts\fontawesome-webfont.ttf" />
@@ -1197,10 +1193,23 @@
     <Content Include="Content\plugins\ionicons\fonts\ionicons.eot" />
     <Content Include="Content\plugins\ionicons\fonts\ionicons.ttf" />
     <Content Include="Content\plugins\ionicons\fonts\ionicons.woff" />
+    <EntityDeploy Include="Models\SISv2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SISv2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SISv2.edmx.diagram">
+      <DependentUpon>SISv2.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1275,16 +1284,6 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Subject\Create.cshtml" />
-    <Content Include="Views\Subject\Delete.cshtml" />
-    <Content Include="Views\Subject\Details.cshtml" />
-    <Content Include="Views\Subject\Edit.cshtml" />
-    <Content Include="Views\Subject\Index.cshtml" />
-    <Content Include="Views\Nationalities\Create.cshtml" />
-    <Content Include="Views\Nationalities\Delete.cshtml" />
-    <Content Include="Views\Nationalities\Details.cshtml" />
-    <Content Include="Views\Nationalities\Edit.cshtml" />
-    <Content Include="Views\Nationalities\Index.cshtml" />
     <Content Include="Views\Intake\Create.cshtml" />
     <Content Include="Views\Intake\Delete.cshtml" />
     <Content Include="Views\Intake\Details.cshtml" />
@@ -1308,11 +1307,55 @@
     <Content Include="Views\Image\Create.cshtml" />
     <Content Include="Views\Image\Delete.cshtml" />
     <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\ClassStudents\CIndex.cshtml" />
+    <Content Include="Views\ClassStudents\ClassAvailable.cshtml" />
+    <Content Include="Views\ClassStudents\Create.cshtml" />
+    <Content Include="Views\ClassStudents\CreateNewDetail.cshtml" />
+    <Content Include="Views\ClassStudents\Delete.cshtml" />
+    <Content Include="Views\ClassStudents\Details.cshtml" />
+    <Content Include="Views\ClassStudents\Edit.cshtml" />
+    <Content Include="Views\ClassStudents\Index.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Subject\Create.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Edit.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\CoursesIntake\Create.cshtml" />
+    <Content Include="Views\CoursesIntake\Delete.cshtml" />
+    <Content Include="Views\CoursesIntake\Details.cshtml" />
+    <Content Include="Views\CoursesIntake\Edit.cshtml" />
+    <Content Include="Views\CoursesIntake\Index.cshtml" />
+    <Content Include="Views\Package_Course1\Create.cshtml" />
+    <Content Include="Views\Package_Course1\Delete.cshtml" />
+    <Content Include="Views\Package_Course1\Details.cshtml" />
+    <Content Include="Views\Package_Course1\Edit.cshtml" />
+    <Content Include="Views\Package_Course1\Index.cshtml" />
+    <Content Include="Views\Course_Module\Create.cshtml" />
+    <Content Include="Views\Course_Module\Delete.cshtml" />
+    <Content Include="Views\Course_Module\Details.cshtml" />
+    <Content Include="Views\Course_Module\Edit.cshtml" />
+    <Content Include="Views\Course_Module\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Delete.cshtml" />
     <Content Include="Views\Invoice\Details.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\Invoice.cshtml" />
+    <Content Include="Views\Trainers\Create.cshtml" />
+    <Content Include="Views\Trainers\Delete.cshtml" />
+    <Content Include="Views\Trainers\Details.cshtml" />
+    <Content Include="Views\Trainers\Edit.cshtml" />
+    <Content Include="Views\Trainers\Index.cshtml" />
+    <Content Include="Views\Nationality\Create.cshtml" />
+    <Content Include="Views\Nationality\Delete.cshtml" />
+    <Content Include="Views\Nationality\Details.cshtml" />
+    <Content Include="Views\Nationality\Edit.cshtml" />
+    <Content Include="Views\Nationality\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1320,6 +1363,7 @@
     <Folder Include="Content\plugins\colorpicker\js\" />
     <Folder Include="Content\plugins\morris\css\" />
     <Folder Include="Content\plugins\morris\js\" />
+    <Folder Include="FileName\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>

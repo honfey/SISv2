@@ -15,7 +15,7 @@ namespace SISv2.Models
     public partial class Package_Course
     {
         public int Id { get; set; }
-        public string CourseId { get; set; }
+        public int CourseId { get; set; }
         public Nullable<int> StudentId { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
         public Nullable<decimal> FirstPay { get; set; }

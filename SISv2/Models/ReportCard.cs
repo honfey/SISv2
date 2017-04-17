@@ -29,11 +29,11 @@ namespace SISv2.Models
         public Nullable<byte> st { get; set; }
     
         public virtual ClassStudent ClassStudent { get; set; }
-        public virtual Course_Module Course_Module { get; set; }
+        public virtual Course Course { get; set; }
         public virtual CourseWork CourseWork { get; set; }
-        public virtual Intake Intake { get; set; }
         public virtual ModuleStandard ModuleStandard { get; set; }
-        public virtual Student Student { get; set; }
         public virtual Trainer Trainer { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Course_Module Course_Module { get; set; }
     }
 }

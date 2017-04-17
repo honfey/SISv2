@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SISv2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SISv2.Controllers
 {
@@ -21,7 +22,7 @@ namespace SISv2.Controllers
         //    return View(invoice.ToList());
         //}
 
-          public ActionResult Index(string SearchString)
+        public ActionResult Index(string SearchString)
         {
             if (!String.IsNullOrEmpty(SearchString))
             {
@@ -59,16 +60,47 @@ namespace SISv2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StudentId,Ref,Date,Color,cd,cb,ud,ub,st")] Invoice invoice)
+        public ActionResult Create(Invoice invoice)
         {
             if (ModelState.IsValid)
             {
+                invoice.cb = User.Identity.GetUserId();
+                invoice.cd = DateTime.Now;
+                invoice.st = 1;
+
                 db.Invoice.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
+            return View(invoice);
+        }
+
+        public ActionResult Invoice(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoice = db.Invoice.Find(id);
+            if (invoice == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoice);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Invoice(Invoice invoice)
+        {
+            if (ModelState.IsValid)
+            {                        
+                db.Entry(invoice).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View(invoice);
         }
 
@@ -97,6 +129,10 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                invoice.ub = User.Identity.GetUserId();
+                invoice.ud = DateTime.Now;
+                invoice.st = 1;
+
                 db.Entry(invoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -117,27 +153,59 @@ namespace SISv2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
 
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Invoice invoice = db.Invoice.Find(id);
+        //    if (invoice == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(invoice);
+        //}
+
         // POST: Invoice/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete([Bind(Include = "Id,StudentId,Ref,Date,Color,cd,cb,ud,ub,st")] Invoice invoice)
         {
-            Invoice invoice = db.Invoice.Find(id);
-            db.Invoice.Remove(invoice);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                invoice.ub = User.Identity.GetUserId();
+                invoice.st = 0;
+
+                db.Entry(invoice).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "StudentId", invoice.StudentId);
+            return View(invoice);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Invoice invoice = db.Invoice.Find(id);
+        //    db.Invoice.Remove(invoice);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
