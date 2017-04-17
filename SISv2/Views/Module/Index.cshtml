@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<SISv2.Models.Module>
 
 @{
-    ViewBag.Title = "Module";
+    ViewBag.Title = "Index";
 }
 
-<h2>Module</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create a New Module", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ModuleCode)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -32,8 +35,14 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    if (item.st == 1)
+    {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModuleCode)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -53,11 +62,12 @@
             @Html.DisplayFor(modelItem => item.st)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ModuleCode }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.ModuleCode }) |*@
-            @Html.ActionLink("Delete", "Delete", new { id=item.ModuleCode })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
+    }
 }
 
 </table>

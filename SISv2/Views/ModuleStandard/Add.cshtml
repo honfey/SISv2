@@ -1,61 +1,65 @@
 ﻿@model List<SISv2.Models.ModuleStandard>
 
-
 @{
-    ViewBag.Title = "ModelStandard";
+    ViewBag.Title = "ModuleStandard";
 }
 
 <h2>@ViewData["name"]</h2>
+
 @using (Html.BeginForm("Add", "ModuleStandard", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <div><a href="#" id="addNew">Add New</a></div>
-    <table id="dataTable" class="table">
-        <tr>
-            <th>
-                Mark Type
-            </th>
-            <th>
-                Add Lab Name
-            </th>
-            <th>
-            </th>
-            <th>
-                Mark
-            </th>
-            <th></th>
-        </tr>
-                @if (Model != null && Model.Count > 0)
-                {
-                    int j = 0;
-                    <tr class="abc">
-                        @Html.HiddenFor(a => a[j].Course_ModuleId, new { @class = "form-control" })
-                        <td>
-                            @Html.DropDownListFor(a => a[j].MarkTypeId, (SelectList)ViewBag.MarkTypeId, "Select MarkType", new { @class = "form-control" })
-                        </td>
-                        <td>
-                            <input type="checkbox" id="chck" name="[0].Check" onclick="clickt(this)" class="checkbox" />
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(a => a[j].LabName, new { @class = "form-control", style = "display:none", placeholder = "Lab Name" })
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(a => a[j].Marks, new { @class = "form-control" })
-                        </td>
-                        <td>
-                            @if (j > 0)
-                            {
-                                <a href="#" class="remove">Remove</a>
-                            }
-                        </td>
-                    </tr>
-                    j++;
-                }
-    </table>
-    <input type="submit" value="save" />
-    @Html.ActionLink("Back", "ShowStandard");
+        <table id="dataTable" class="table">
+            <tr>
+                <th>
+                    Mark Type
+                </th>
+                <th>
+                    Add Lab Name
+                </th>
+                <th>
+                </th>
+                <th>
+                    Mark
+                </th>
+                <th></th>
+            </tr>
+
+            @if (Model != null && Model.Count > 0)
+            {
+                int j = 0;
+                <tr class="abc">
+                    @Html.HiddenFor(a => a[j].Course_ModuleId, new { @class = "form-control" })
+
+                    <td>
+                        @Html.DropDownListFor(a => a[j].MarkTypeId, (SelectList)ViewBag.MarkTypeId, "Select MarkType", new { @class = "form-control" })
+                    </td>
+                    <td>
+                        <input type="checkbox" id="chck" name="[0].Check" onclick="clickt(this)" class="checkbox" />
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a[j].LabName, new { @class = "form-control", style = "display:none", placeholder = "Lab Name" })
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(a => a[j].Marks, new { @class = "form-control" })
+                    </td>
+                    <td>
+                        @if (j > 0)
+                        {
+                            <a href="#" class="remove">Remove</a>
+                        }
+                    </td>
+                </tr>
+                j++;
+            }
+
+
+        </table>
+        <input type="submit" value="save" />
+        @Html.ActionLink("Back", "ShowStandard");
 
 
 }
@@ -144,5 +148,3 @@
         }
     </script>
 }
-
-

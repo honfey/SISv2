@@ -4,7 +4,6 @@
     ViewBag.Title = "Student Are In Class";
 }
 <br />
-<h2>ClassStudents</h2>
 
 <p>
     @Html.ActionLink("Create New Class", "Create")
@@ -30,52 +29,50 @@
 <br />
 
 <table class="table">
-@{
-    int count = Model.Count();
-}
+    @{
+        int count = Model.Count();
+    }
 
-@if (count == 0)
-{
-
-    <tr>
-        <th>
-            <br>
-            <bold>
-                Does Not Have Class Available !<br>
-            </bold>
-        <th>
-    </tr>
-}
-else
-{
-    <tr>
-        <th>
-            Course Name
-        </th>
-        <th>
-            Module Name
-        </th>
-  
-        <th>
-            Create Date
-        </th>
-        <th>
-            Status
-        </th>
-
-
-        <th></th>
-    </tr>
-
-
-
-    int? same = 0;
-    string date = "";
-
-
-    foreach (var item in Model)
+    @if (count == 0)
     {
-        if (item.st == 1)
+
+        <tr>
+            <th>
+                <br>
+                <bold>
+                    Does Not Have Class Available !<br>
+                </bold>
+            <th>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Module Name
+            </th>
+
+            <th>
+                Create Date
+            </th>
+            <th>
+                Status
+            </th>
+
+
+            <th></th>
+        </tr>
+
+
+
+        int? same = 0;
+        string date = "";
+
+
+        foreach (var item in Model)
         {
 
             if (item.Course_ModuleId != same || item.CreateDate.Value.ToShortDateString() != date)
@@ -83,53 +80,44 @@ else
                 same = item.Course_ModuleId;
                 date = item.CreateDate.Value.ToShortDateString();
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course_Module.CourseId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course_Module.Module.ModuleCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate)
-                </td>
-                @if (item.Status == true)
-                {
+                <tr>
                     <td>
-                        Active
+                        @Html.DisplayFor(modelItem => item.Course_Module.CourseId)
                     </td>
-                }
-                else if (item.Status == false)
-                {
                     <td>
-                        Deactive
-                    </td>                
-                }
-                <td>
-                    @Html.ActionLink("Student in this class", "CreateNewDetail", new { id = item.Course_ModuleId, id2 = item.CreateDate }) |
-                    @if (item.Status == false)
+                        @Html.DisplayFor(modelItem => item.Course_Module.Module.ModuleCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateDate)
+                    </td>
+                    @if (item.Status == true)
                     {
-
-
+                        <td>
+                            Active
+                        </td>
                     }
-                    else
+                    else if (item.Status == false)
                     {
-                     @Html.ActionLink("Delete", "deletecreate", new { id = item.Course_ModuleId })
+                        <td>
+                            Deactive
+                        </td>
                     }
-                </td>
-            </tr>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "deletecreate", new { id = item.Course_ModuleId })
+                        
+                    </td>
+                </tr>
             }
             else
             {
                 continue;
             }
+
+
         }
-
     }
-
-}
 
 
 
 </table>
-

@@ -4,7 +4,7 @@
     ViewBag.Title = "Module Course";
 }
 
-<h2>Module Standard</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -41,10 +41,13 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    if (item.st == 1)
+    {
     <tr>
         <td>
-            @Html.ActionLink(item.Course_Module.CourseId, "Edit", new { id = item.Id })
+            @Html.ActionLink(item.Course_Module.CourseId, "Edit",new {id = item.Id})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MarkType.Name)
@@ -71,9 +74,11 @@
             @Html.DisplayFor(modelItem => item.st)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
+    }
 }
-
 </table>

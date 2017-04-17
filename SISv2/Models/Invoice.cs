@@ -14,14 +14,9 @@ namespace SISv2.Models
     
     public partial class Invoice
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Invoice()
-        {
-            this.Amount = new HashSet<Amount>();
-        }
-    
         public int Id { get; set; }
         public Nullable<int> StudentId { get; set; }
+        public Nullable<int> AmountId { get; set; }
         public string Ref { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public string Color { get; set; }
@@ -31,8 +26,7 @@ namespace SISv2.Models
         public string ub { get; set; }
         public Nullable<byte> st { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Amount> Amount { get; set; }
         public virtual Student Student { get; set; }
+        public virtual Amount Amount { get; set; }
     }
 }

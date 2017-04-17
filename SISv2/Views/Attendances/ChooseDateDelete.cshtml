@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SISv2.Models.ClassStudent>
+
+@{
+    ViewBag.Title = "Check Individual Attendance";
+}
+
+<h2>Select Date (Delete)</h2>
+
+<br>
+
+<table class="table">
+    <tr>
+        <th>
+            Date
+        </th>
+    </tr>
+
+
+
+
+    @foreach (var item in ViewData["DateList"] as List<DateTime?>)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Value.ToShortDateString(), "DeleteConfirmed", new { id = Url.RequestContext.RouteData.Values["id"], Date = item.Value.ToShortDateString(), id2 = Model.ElementAtOrDefault(0).Status, id3 = Model.ElementAtOrDefault(0).CreateDate }, new { @class = "alert" })
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <th>
+            @Html.ActionLink("Back to home", "ClassAvailable")
+        </th>
+    </tr>
+
+
+</table>
+
+@section Scripts {
+    <script>
+    $(document).on("click", ".alert", function (e) {
+        var link = $(this).attr("href");
+        e.preventDefault();
+        bootbox.confirm("Are you sure delete this date attendance ?", function (result) {
+            if (result) {
+                document.location.href = link;
+            }
+        });
+    });
+    </script>
+
+}

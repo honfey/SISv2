@@ -1,20 +1,22 @@
 ﻿@model SISv2.Models.Module
 
 @{
-    ViewBag.Title = "Module";
+    ViewBag.Title = "Details";
 }
 
-<h2>Detail</h2>
+<h2>Details</h2>
+
 <div>
+    <h4>Module</h4>
     <hr />
     <dl class="dl-horizontal">
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Id)
+        <dt>
+            @Html.DisplayNameFor(model => model.ModuleCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>*@
+            @Html.DisplayFor(model => model.ModuleCode)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -67,6 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ModuleCode }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

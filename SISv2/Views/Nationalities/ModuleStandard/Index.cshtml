@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SISv2.Models.ModuleStandard>
+
+@{
+    ViewBag.Title = "Module Course";
+}
+
+<h2>Module Standard</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course_Module.CourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MarkType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ub)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.st)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Course_Module.CourseId, "Edit", new { id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MarkType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ub)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.st)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

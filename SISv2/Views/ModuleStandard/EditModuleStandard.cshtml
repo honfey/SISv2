@@ -1,57 +1,58 @@
 ﻿@model IEnumerable<SISv2.Models.ModuleStandard>
 
 @{
-    ViewBag.Title = "ModelStandard";
+    ViewBag.Title = "ModuleStandard";
 }
 
 <h2>@ViewData["cmName"]</h2>
 <h3>Total Marks = @ViewData["int"]</h3>
-@using(Html.BeginForm("EditModuleStandard", "ModuleStandard", FormMethod.Post))
-{
-    <div><a href="#" id="addNew">Add New</a></div>
-    <table id="dataTable" class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MarkType.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LabName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marks)
-            </th>
-            <th></th>
-        </tr>
 
-        @for (var i = 0; i < Model.Count(); i++)
-        {
-            <tr class="abc">
-                @Html.Hidden("moduleStandard[" + (@i) + "].Id", Model.ElementAtOrDefault(i).Id)
-                <td>
-                    @Html.Hidden("moduleStandard[" + (@i) + "].Course_ModuleId", Model.ElementAtOrDefault(i).Course_ModuleId)
-                    @Html.DropDownList("moduleStandard[" + (@i) + "].MarkTypeId", new SelectList(ViewBag.MT, "Value", "Text", Model.ElementAtOrDefault(i).MarkTypeId), new { @class = "form-control", @onchange = "_readonly(this)", @name = "ddl" })
-                </td>
-                <td>
-                    @if (Model.ElementAtOrDefault(i).MarkTypeId == 5)
+@using (Html.BeginForm("EditModuleStandard", "ModuleStandard", FormMethod.Post))
+{
+   <div><a href="#" id="addNew">Add New</a></div>
+<table id="dataTable" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MarkType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marks)
+        </th>
+        <th></th>
+    </tr>
+
+    @for (var i = 0; i < Model.Count(); i++)
+    {
+        <tr class="abc">
+            @Html.Hidden("moduleStandard[" + (@i) + "].Id", Model.ElementAtOrDefault(i).Id)
+            <td>
+                @Html.Hidden("moduleStandard[" + (@i) + "].Course_ModuleId", Model.ElementAtOrDefault(i).Course_ModuleId)
+                @Html.DropDownList("moduleStandard[" + (@i) + "].MarkTypeId", new SelectList(ViewBag.MT, "Value", "Text", Model.ElementAtOrDefault(i).MarkTypeId), new { @class = "form-control", @onchange = "_readonly(this)", @name = "ddl" })
+            </td>
+            <td>
+                @if (Model.ElementAtOrDefault(i).MarkTypeId == 5)
                     {
-                        @Html.TextBox("moduleStandard[" + (@i) + "].LabName", Model.ElementAtOrDefault(i).LabName, new { @class = "form-control" })
-                    }
-                    else
-                    {
-                        @Html.TextBox("moduleStandard[" + (@i) + "].LabName", Model.ElementAtOrDefault(i).LabName, new { @class = "form-control", @readonly = "readonly" })
-                    }
-                </td>
-                <td>
-                    @Html.TextBox("moduleStandard[" + (@i) + "].Marks", Model.ElementAtOrDefault(i).Marks, new { @class = "form-control" })
-                </td>
-                <td>
-                    <a onclick="return _delete('@Model.ElementAtOrDefault(i).Id',this)">
-                        <i class="fa fa-trash fa-2x" aria-hidden="true" title="delete"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </table>
+                    @Html.TextBox("moduleStandard[" + (@i) + "].LabName", Model.ElementAtOrDefault(i).LabName, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.TextBox("moduleStandard[" + (@i) + "].LabName", Model.ElementAtOrDefault(i).LabName, new { @class = "form-control", @readonly = "readonly" })
+                }
+            </td>
+            <td>
+                @Html.TextBox("moduleStandard[" + (@i) + "].Marks", Model.ElementAtOrDefault(i).Marks, new { @class = "form-control" })
+            </td>
+            <td>
+                <a onclick="return _delete('@Model.ElementAtOrDefault(i).Id',this)">
+                    <i class="fa fa-trash fa-2x" aria-hidden="true" title="delete"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
     <input type="submit" value="Submit" class="btn btn-primary" />
     @Html.ActionLink("Back", "ShowStandard");
 
@@ -162,4 +163,3 @@
 
     </script>
 }
-       
