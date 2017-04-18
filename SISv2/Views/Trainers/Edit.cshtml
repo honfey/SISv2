@@ -1,0 +1,188 @@
+﻿@model SISv2.Models.Trainer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Profile</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h3>Edit Trainer Profile</h3>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("IC/Passport Number:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Position Title:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PositionTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("First Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FirstName, new { placeholder = "FirstName" })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Last Name:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.LastName, new { placeholder = "LastName" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Date Of Birth:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateOfBirth, "")
+                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Gender:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <label>@Html.RadioButtonFor(m => m.Gender, "Male") Male</label>&nbsp; &nbsp; &nbsp;
+                    <label>@Html.RadioButtonFor(m => m.Gender, "Female") Female</label>
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Email Address:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Phone Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PhoneNum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div>
+                <div class="form-group" id="Table1">
+                    @Html.Label("Home Address:", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-10" id="Table2" style="padding-bottom:15px;">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Religion:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(m => m.Religion, "Christian") Christian <br>
+                        @Html.RadioButtonFor(m => m.Religion, "Buddhism") Buddhism <br>
+                        @Html.RadioButtonFor(m => m.Religion, "Islam") Islam <br>
+                        @Html.RadioButtonFor(m => m.Religion, "Hindu") Hindu <br>
+                        @Html.RadioButtonFor(m => m.Religion, "Sikh") Sikh <br>
+                        @Html.RadioButtonFor(m => m.Religion, "Others") Others: <input type="text" name="Religion" id="Religion"> <br>
+                        @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Nationality:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(m => m.Nationality, "Malaysian") Malaysian <br>
+                        @Html.RadioButtonFor(m => m.Nationality, "Singaporean") Singaporean <br>
+                        @Html.RadioButtonFor(m => m.Nationality, "Australian") Australian <br>
+                        @Html.RadioButtonFor(m => m.Nationality, "Others") Others: <input type="text" name="Nationality" id="Nationality">  <br>
+                        @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Race:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(m => m.Race, "Malay") Malay <br>
+                        @Html.RadioButtonFor(m => m.Race, "Chinese") Chinese <br>
+                        @Html.RadioButtonFor(m => m.Race, "Indian") Indian <br>
+                        @Html.RadioButtonFor(m => m.Race, "Others") Others: <input type="text" name="Race" id="Race">  <br>
+                        @Html.ValidationMessageFor(model => model.Race, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Education:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Education, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Certificate:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Certificate:", new List<SelectListItem>
+                         {
+                            new SelectListItem{ Text="---Select Certificate---", Value = "" },
+                            new SelectListItem{ Text="Diploma", Value = "Diploma" },
+                            new SelectListItem{ Text="Higher Diploma", Value = "Higher Diploma" },
+                            new SelectListItem{ Text="Professional Degree", Value = "Professional Degree" },
+                            new SelectListItem{ Text="Master's Degree", Value = "Master's Degree"},
+                            new SelectListItem{ Text="Phd", Value = "Phd" },
+                         }
+                        , htmlAttributes: new { @class = "form-control" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Work Experience[0].Work Experience Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea class="form-control" id="Description" name="Description"></textarea>
+                        @Html.ValidationMessage("Work Experience[0].Work Experience Description", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" onclick="validate" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>
+

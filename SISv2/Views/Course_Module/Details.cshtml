@@ -1,24 +1,15 @@
-﻿@model SISv2.Models.Year
+﻿@model SISv2.Models.Course_Module
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Year</h4>
+    <h4>Course_Module</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Year1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Year1)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.cd)
         </dt>
@@ -59,14 +50,33 @@
             @Html.DisplayFor(model => model.st)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module.ModuleCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module.ModuleCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trainer.TrainerPicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainer.TrainerPicture)
+        </dd>
+
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

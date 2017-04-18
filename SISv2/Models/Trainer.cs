@@ -18,6 +18,7 @@ namespace SISv2.Models
         public Trainer()
         {
             this.ReportCard = new HashSet<ReportCard>();
+            this.Course_Module = new HashSet<Course_Module>();
         }
     
         public int Id { get; set; }
@@ -44,8 +45,18 @@ namespace SISv2.Models
         public Nullable<System.DateTime> ud { get; set; }
         public string ub { get; set; }
         public Nullable<byte> st { get; set; }
+        public string Address { get; set; }
+        public string Religion { get; set; }
+        public string Nationality { get; set; }
+        public string Education { get; set; }
+        public string Certificate { get; set; }
+        public string WorkExperience { get; set; }
+        public string PositionTitle { get; set; }
+        public string CompanyName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReportCard> ReportCard { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course_Module> Course_Module { get; set; }
     }
 }

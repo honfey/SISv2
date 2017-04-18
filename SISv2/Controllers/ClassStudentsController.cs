@@ -76,81 +76,81 @@ namespace SISv2.Controllers
         }
 
         // GET: ClassStudents/Create
-        //public ActionResult Create()
-        //{
-        //    var moduleName = from l in db.Course_Module
-        //                     //join c in db.Module on l.ModuleId equals c.ModuleCode
-        //                     select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
+        public ActionResult Create()
+        {
+            //var moduleName = from l in db.Course_Module
+            //                 join c in db.Module on l.ModuleId equals c.ModuleCode
+            //                 select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
 
-        //    var studentName = from s in db.Student
-        //                      select new { s.Id, Name = s.Name + "(" + s.StudentId + ")" };
+            var studentName = from s in db.Student
+                              select new { s.Id, Name = s.Name + "(" + s.StudentId + ")" };
 
-        //    ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
-        //    ViewBag.StudentId = new MultiSelectList(studentName, "ID", "Name");
+            //ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
+            ViewBag.StudentId = new MultiSelectList(studentName, "ID", "Name");
 
 
 
-        //    return View();
-        //}
+            return View();
+        }
 
         // POST: ClassStudents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(ClassStudent classStudent)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ClassStudent classStudent)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //        if(classStudent.StudentList != null && classStudent.StudentList.Count() > 0)
-        //        {
-        //            if (classStudent.Status == null)
-        //            {
-        //                classStudent.Status = Convert.ToBoolean(1);
-        //            }
-        //            if (classStudent.st == null)
-        //            {
-        //                classStudent.st = 1;
-        //            }
-        //            List<ClassStudent> cs = new List<ClassStudent>();
-
-
-        //            DateTime todaydate = DateTime.Now.Date;
-
-        //            var checking = db.ClassStudent.Any(x => x.Course_ModuleId == classStudent.Course_ModuleId && x.CreateDate == todaydate);
-        //            if (checking)
-        //            {
-        //                var moduleName = from l in db.Course_Module
-        //                                 //join c in db.Module on l.ModuleId equals c.ModuleCode
-        //                                 select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
-
-        //                ModelState.AddModelError("", "You have already create THIS class today !");
-        //                ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
-        //                ViewBag.StudentId = new MultiSelectList(db.Student, "ID", "Name");
-        //                return View(classStudent);
-        //            }
-        //            else
-        //            {
+                if(classStudent.StudentList != null && classStudent.StudentList.Count() > 0)
+                {
+                    if (classStudent.Status == null)
+                    {
+                        classStudent.Status = Convert.ToBoolean(1);
+                    }
+                    if (classStudent.st == null)
+                    {
+                        classStudent.st = 1;
+                    }
+                    List<ClassStudent> cs = new List<ClassStudent>();
 
 
-        //                foreach (var i in classStudent.StudentList)
-        //                {
+                    DateTime todaydate = DateTime.Now.Date;
 
-        //                    cs.Add(new ClassStudent { StudentId = i, Course_ModuleId = classStudent.Course_ModuleId, Day = classStudent.Day, Exam_Day = 1, Trial_Day = 1, Project_Day = 1, CreateDate = DateTime.Now, Status = true,st = 1 });
-        //                }
-        //                db.ClassStudent.AddRange(cs);
-        //            }
-        //        }
+                    var checking = db.ClassStudent.Any(x => x.Course_ModuleId == classStudent.Course_ModuleId && x.CreateDate == todaydate);
+                    if (checking)
+                    {
+                        //    var moduleName = from l in db.Course_Module
+                        //                     join c in db.Module on l.ModuleId equals c.ModuleCode
+                        //                     select new { l.Id, Name = l.CourseId + "  (" + c.ModuleCode + ")" };
 
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+                        ModelState.AddModelError("", "You have already create THIS class today !");
+                        //ViewBag.Course_ModuleId = new SelectList(moduleName, "ID", "Name");
+                        ViewBag.StudentId = new MultiSelectList(db.Student, "ID", "Name");
+                        return View(classStudent);
+                    }
+                    else
+                    {
 
-        //    ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
-        //    ViewBag.StudentId = new SelectList(db.Course_Module, "Id", "StudentId", classStudent.StudentId);
-        //    return View(classStudent);
-        //}
+
+                        foreach (var i in classStudent.StudentList)
+                        {
+
+                            cs.Add(new ClassStudent { StudentId = i, Course_ModuleId = classStudent.Course_ModuleId, Day = classStudent.Day, Exam_Day = 1, Trial_Day = 1, Project_Day = 1, CreateDate = DateTime.Now, Status = true,st = 1 });
+                        }
+                        db.ClassStudent.AddRange(cs);
+                    }
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Course_ModuleId = new SelectList(db.Course_Module, "Id", "CourseId", classStudent.Course_ModuleId);
+            ViewBag.StudentId = new SelectList(db.Course_Module, "Id", "StudentId", classStudent.StudentId);
+            return View(classStudent);
+        }
 
         // GET: ClassStudents/Edit/5
         public ActionResult Edit(int? id)
@@ -210,7 +210,6 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
-                classStudent.st = 0;
                 db.Entry(classStudent).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
