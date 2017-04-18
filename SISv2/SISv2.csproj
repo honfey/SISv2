@@ -174,20 +174,22 @@
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\ClassStudentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CoursesIntakeController.cs" />
     <Compile Include="Controllers\CourseWorksController.cs" />
+    <Compile Include="Controllers\Course_ModuleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
-    <Compile Include="Controllers\IntakeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarkTypeController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\ModuleStandardController.cs" />
-    <Compile Include="Controllers\NationalitiesController.cs" />
+    <Compile Include="Controllers\NationalityController.cs" />
+    <Compile Include="Controllers\Package_Course1Controller.cs" />
     <Compile Include="Controllers\Package_CourseController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
-    <Compile Include="Controllers\YearController.cs" />
+    <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="Extensions\ClaimsExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,9 +242,6 @@
     <Compile Include="Models\Image.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Intake.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Invoice.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -255,9 +254,6 @@
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModuleStandard.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Month.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Nationality.cs">
@@ -310,9 +306,6 @@
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Trainer.cs">
-      <DependentUpon>SISV2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Year.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

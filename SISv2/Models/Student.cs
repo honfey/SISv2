@@ -62,7 +62,6 @@ namespace SISv2.Models
         public virtual ICollection<ClassStudent> ClassStudent { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Guardian> Guardian { get; set; }
-        public virtual Intake Intake { get; set; }
         public virtual Nationality Nationality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Package_Course> Package_Course { get; set; }
