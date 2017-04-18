@@ -80,24 +80,19 @@
                 </thead>
                 <tbody>
                     <tr>
+@foreach (var i in Model.Amount)
+{
                         <td>
-                            @Html.DisplayFor(model => model.Amount.Description, new { htmlAttribute = new {@class = "form-control"}})
-                            @Html.ValidationMessageFor(model => model.Amount.Description, "", new { @class = "text-danger"})
-                            @*@Html.Display("Amount[0].Description", "Description", new { htmlAttributes = new { @class = "control-label col-xs-2" } })
-                            @Html.ValidationMessage("Amount[0].Description", "", new { @class = "text-danger" })*@
+                            @Html.DisplayFor(modelItem => i.Description, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(modelItem => i.Description, "", new { @class = "text-danger" })
                         </td>
-                        @*<td>
-                                @Html.DisplayFor(model => model.Description, new { htmlAttribute = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                            </td>*@
                         <td></td>
                         <td></td>
                         <td>
-                          @Html.DisplayFor(model => model.Amount.Amt, new { htmlAttribute = new {@class = "form-control"}})
-                            @Html.ValidationMessageFor(model => model.Amount.Amt, "", new { @class = "text-danger"})
-                            @*@Html.DisplayFor(model => model.Amount, new { htmlAttribute = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })*@
+                            @Html.DisplayFor(modelItem => i.Amt, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(modelItem => i.Amt, "", new { @class = "text-danger" })
                         </td>
+}
                     </tr>
                 </tbody>
             </table>
@@ -118,32 +113,36 @@
                 <table class="table">
                     <tr>
                         <th style="width:35%">Total (RM)</th>
+@foreach (var i in Model.Amount)
+{
+                        <tr>
                         <td>
-                            @Html.DisplayFor(model => model.Amount.Total, new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Amount.Total, "", new { @class = "text-danger" })
+                            @Html.DisplayFor(modelItem => i.Total, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(modelItem => i.Total, "", new { @class = "text-danger" })
                             @*@Html.Display("Amount[0].Total", new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessage("Amount[0].Total", "", new { @class = "text-danger" })*@
+                                @Html.ValidationMessage("Amount[0].Total", "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
                     <tr>
                         <th>GST Amt</th>
                         <td>
-                            @Html.DisplayFor(model => model.Amount.GSTAmt, new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Amount.GSTAmt, "", new { @class = "text-danger" })
+                            @Html.DisplayFor(modelItem => i.GSTAmt, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(modelItem => i.GSTAmt, "", new { @class = "text-danger" })
                             @*@Html.Display("Amount[0].GSTAmt", new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessage("Amount[0].GSTAmt", "", new { @class = "text-danger" })*@
+                                @Html.ValidationMessage("Amount[0].GSTAmt", "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
 
                     <tr>
                         <th>Final Total</th>
                         <td>
-                            @Html.DisplayFor(model => model.Amount.FinalTotal, new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Amount.FinalTotal, "", new { @class = "text-danger" })
+                            @Html.DisplayFor(modelItem => i.FinalTotal, new { htmlAttribute = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(modelItem => i.FinalTotal, "", new { @class = "text-danger" })
                             @*@Html.Display("Amount[0].FinalTotal", new { htmlAttribute = new { @class = "form-control" } })
-                            @Html.ValidationMessage("Amount[0].FinalTotal", "", new { @class = "text-danger" })*@
+                                @Html.ValidationMessage("Amount[0].FinalTotal", "", new { @class = "text-danger" })*@
                         </td>
                     </tr>
+}
                 </table>
             </div>
         </div>
@@ -168,4 +167,3 @@
 
     <div class="clearfix"></div>
 </div>
-

@@ -303,6 +303,9 @@
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>SISV2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TestType.cs">
       <DependentUpon>SISV2.tt</DependentUpon>
     </Compile>
@@ -1623,17 +1626,17 @@
     <Content Include="Views\ModuleStandard\ShowStandard.cshtml" />
     <Content Include="Views\ModuleStandard\Add.cshtml" />
     <Content Include="Views\ModuleStandard\EditModuleStandard.cshtml" />
+    <Content Include="Views\Module\Create.cshtml" />
+    <Content Include="Views\Module\Delete.cshtml" />
+    <Content Include="Views\Module\Details.cshtml" />
+    <Content Include="Views\Module\Edit.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
     <Content Include="Views\Invoice\Create.cshtml" />
     <Content Include="Views\Invoice\Delete.cshtml" />
     <Content Include="Views\Invoice\Details.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\Invoice.cshtml" />
-    <Content Include="Views\Module\Create.cshtml" />
-    <Content Include="Views\Module\Delete.cshtml" />
-    <Content Include="Views\Module\Details.cshtml" />
-    <Content Include="Views\Module\Edit.cshtml" />
-    <Content Include="Views\Module\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

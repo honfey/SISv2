@@ -14,21 +14,20 @@ namespace SISv2.Models
     
     public partial class Amount
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Amount()
-        {
-            this.Invoice = new HashSet<Invoice>();
-        }
-    
         public int Id { get; set; }
+        public Nullable<int> InvoiceId { get; set; }
         public string Description { get; set; }
         public Nullable<decimal> Amt { get; set; }
         public Nullable<decimal> GST { get; set; }
         public Nullable<decimal> GSTAmt { get; set; }
         public Nullable<decimal> Total { get; set; }
         public Nullable<decimal> FinalTotal { get; set; }
+        public Nullable<System.DateTime> cd { get; set; }
+        public string cb { get; set; }
+        public Nullable<System.DateTime> ud { get; set; }
+        public string ub { get; set; }
+        public Nullable<byte> st { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }

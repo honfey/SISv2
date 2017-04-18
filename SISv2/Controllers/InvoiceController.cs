@@ -55,9 +55,6 @@ namespace SISv2.Controllers
             return View();
         }
 
-        // POST: Invoice/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Invoice invoice)
@@ -69,6 +66,26 @@ namespace SISv2.Controllers
                 invoice.st = 1;
 
                 db.Invoice.Add(invoice);
+
+                //if (invoice.Amount != null && invoice.Amount.Count() > 0)
+                //{
+                //    List<Amount> uh = new List<Amount>();
+
+                //    foreach (var i in invoice.Amount)
+                //        uh.Add(new Amount
+                //        {
+                //            InvoiceId = invoice.Id,
+                //            Description = i.Description,
+                //            Amt = i.Amt,
+                //            GST = i.GST,
+                //            GSTAmt = i.GSTAmt,
+                //            Total = i.Total,
+                //            FinalTotal = i.FinalTotal
+                //        });
+
+                //    db.Amount.AddRange(uh);
+                //}
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,6 +93,46 @@ namespace SISv2.Controllers
             ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
+
+        // POST: Invoice/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create2(Invoice invoice)
+        //{
+        //    //if (invoice.Amount != null && invoice.Amount.Count() > 0)
+        //    //{
+
+        //    //    foreach (var i in invoice.Amount)
+        //    //    {
+        //    //        if (i.Description != null && i.Amt != null)
+        //    //        {
+        //    //            i.InvoiceId = invoice.Id;
+        //    //            db.Entry(i).State = EntityState.Modified;
+        //    //        }
+        //    //    }
+
+        //    //}
+        //    if (invoice.Amount != null && invoice.Amount.Count() > 0)
+        //    {
+        //        foreach (var i in invoice.Amount)
+        //        {
+        //            i.InvoiceId = invoice.Id;
+        //            db.Entry(i).State = EntityState.Modified;
+        //        }
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Invoice.Add(invoice);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
+        //    return View(invoice);
+        //}
 
         public ActionResult Invoice(int? id)
         {
@@ -96,7 +153,7 @@ namespace SISv2.Controllers
         public ActionResult Invoice(Invoice invoice)
         {
             if (ModelState.IsValid)
-            {                        
+            {
                 db.Entry(invoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,6 +186,22 @@ namespace SISv2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(invoice.Amount != null && invoice.Amount.Count() > 0)
+                {
+                    foreach(var i in invoice.Amount)
+                    {
+                        i.InvoiceId = invoice.Id;
+
+                        if(i.Id == 0)
+                        {
+                            db.Entry(i).State = EntityState.Added;
+                        }
+                        else
+                        {
+                            db.Entry(i).State = EntityState.Modified;
+                        }
+                    }
+                }
                 invoice.ub = User.Identity.GetUserId();
                 invoice.ud = DateTime.Now;
                 invoice.st = 1;
@@ -137,7 +210,7 @@ namespace SISv2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StudentId = new SelectList(db.Student, "Id", "StudentId", invoice.StudentId);
+            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
 
@@ -153,59 +226,45 @@ namespace SISv2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudentId = new SelectList(db.Student, "Id", "Name", invoice.StudentId);
             return View(invoice);
         }
-
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Invoice invoice = db.Invoice.Find(id);
-        //    if (invoice == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(invoice);
-        //}
 
         // POST: Invoice/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete([Bind(Include = "Id,StudentId,Ref,Date,Color,cd,cb,ud,ub,st")] Invoice invoice)
+        public ActionResult DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                invoice.ub = User.Identity.GetUserId();
-                invoice.st = 0;
+            Invoice invoice = db.Invoice.Find(id);
 
-                db.Entry(invoice).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.StudentId = new SelectList(db.Student, "Id", "StudentId", invoice.StudentId);
-            return View(invoice);
+            var oldAmount = db.Amount.Where(x => x.InvoiceId == invoice.Id);
+            if (oldAmount != null && oldAmount.Count() > 0)
+                db.Amount.RemoveRange(oldAmount);
+
+            invoice.ub = User.Identity.GetUserId();
+            invoice.st = 0;
+
+            db.Invoice.Remove(invoice);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Invoice invoice = db.Invoice.Find(id);
-        //    db.Invoice.Remove(invoice);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult DeleteAmount(int id)
+        {
+            int rs = 0;
+            Amount i = db.Amount.Find(id);
+            db.Amount.Remove(i);
+            rs = db.SaveChanges();
+            return Json(new { deleteRow = rs }, JsonRequestBehavior.AllowGet);
+        }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

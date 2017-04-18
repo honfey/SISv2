@@ -1,8 +1,8 @@
 ﻿@model SISv2.Models.Invoice
 
-@{
+@*@{
     ViewBag.Title = "Details";
-}
+}*@
 
 <h2>Details</h2>
 
@@ -11,12 +11,63 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Student.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Ref)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Ref)
         </dd>
+
+        @foreach(var i in Model.Amount)
+        {
+                <dt>
+                @Html.DisplayNameFor(modelItem => i.Description)
+                </dt>
+                
+                <dd>
+                @Html.DisplayFor(modelItem => i.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(modelItem => i.Amt)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => i.Amt)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(modelItem => i.GSTAmt)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => i.GSTAmt)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(modelItem => i.Total)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => i.Total)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(modelItem => i.FinalTotal)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => i.FinalTotal)
+                </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Date)
@@ -31,10 +82,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Color)
+            @Html.TextBoxFor(model => model.Color, htmlAttributes: new { @class = "col-md-20", @type ="color"})
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.cd)
         </dt>
 
@@ -72,19 +123,11 @@
 
         <dd>
             @Html.DisplayFor(model => model.st)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.StudentId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Student.StudentId)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary"})
 </p>
